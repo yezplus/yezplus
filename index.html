@@ -1,0 +1,6252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Yez+ — Creative Growth Studio</title>
+
+<script>
+history.scrollRestoration = "manual";
+
+const forceTop = () => {
+    window.scrollTo(0, 0);
+
+    if (document.documentElement) {
+        document.documentElement.scrollTop = 0;
+    }
+
+    if (document.body) {
+        document.body.scrollTop = 0;
+    }
+};
+
+// Fresh page load without a section hash → start at top
+if (!window.location.hash) {
+    forceTop();
+}
+
+// If URL has #pricing / #work / #services etc.,
+// DON'T remove it and DON'T force the page to top.
+window.addEventListener("load", () => {
+    if (!window.location.hash) {
+        forceTop();
+    }
+}, { once: true });
+
+window.addEventListener("pageshow", () => {
+    if (!window.location.hash) {
+        forceTop();
+    }
+});
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+
+<style>
+
+:root{
+    --black:#080808;
+    --black-soft:#111111;
+    --white:#f7f7f4;
+    --purple:#7938ff;
+    --purple-light:#a779ff;
+    --gray:#777;
+    --line:rgba(0,0,0,.11);
+    --dark-line:rgba(255,255,255,.12);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    background:var(--white);
+    color:var(--black);
+    overflow-x:hidden;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:50vh;
+    background:var(--black);
+    z-index:-1;
+    pointer-events:none;
+}
+
+.hero{
+    background:var(--white);
+}
+
+/* Smooth in-page navigation with room for the fixed header. */
+section[id]{
+    scroll-margin-top:-100px;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+/* =========================================================
+LOADER
+========================================================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:var(--black);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.loader-logo{
+    font-family:"Manrope";
+    font-size:clamp(60px,10vw,130px);
+    font-weight:800;
+    letter-spacing:-7px;
+}
+
+.loader-logo span{
+    color:var(--purple-light);
+}
+
+.loader-line{
+    width:0;
+    height:2px;
+    background:var(--purple);
+    margin:28px auto 0;
+}
+
+/* =========================================================
+   CUSTOM CURSOR
+   - System cursor disabled
+   - Instant/no-lag movement
+   - Bold Yez+ style plus
+   - Light/black -> purple, purple -> white
+========================================================= */
+
+html,
+body,
+body *{
+    cursor:none !important;
+}
+
+.cursor{
+    --cursor-color:var(--purple);
+
+    position:fixed;
+    left:0;
+    top:0;
+    width:30px;
+    height:30px;
+    pointer-events:none;
+    z-index:999999;
+    transform:translate(-50%,-50%);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-family:"Manrope",sans-serif;
+    font-size:40px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-2px;
+
+    opacity:0;
+    will-change:left,top,color;
+    color:var(--cursor-color);
+    transition:color .12s ease, opacity .15s ease;
+}
+
+.cursor::before{
+    content:"+";
+    display:block;
+    color:currentColor;
+    transform:translateY(-1px);
+}
+
+.cursor.visible{
+    opacity:1;
+}
+
+.cursor.hover{
+    font-size:50px;
+}
+
+.cursor.hover::before{
+    transform:translateY(-1px) scale(1.05);
+}
+
+@media (max-width: 380px){
+    html,
+    body,
+    body *{
+        cursor:auto !important;
+    }
+
+    .cursor{
+        display:none !important;
+    }
+}
+
+/* =========================================================
+HEADER
+========================================================= */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:5000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:18px 4vw;
+
+    background:var(--white);
+
+    border-bottom:1px solid rgba(0,0,0,.07);
+
+    transition:
+        background .45s,
+        color .45s,
+        border-color .45s;
+}
+
+.header.dark{
+    background:var(--black);
+    color:white;
+    border-color:#202020;
+}
+
+.header.purple{
+    background:var(--purple);
+    color:white;
+    border-color:rgba(255,255,255,.15);
+}
+
+.logo{
+    font-family:"Manrope";
+    font-weight:800;
+    font-size:35px;
+    letter-spacing:-1.5px;
+}
+
+.logo span{
+    color:var(--purple);
+}
+
+.header.dark .logo span,
+.header.purple .logo span{
+    color:white;
+}
+
+.nav{
+    display:flex;
+    gap:30px;
+    align-items:center;
+}
+
+.nav a{
+    font-size:15px;
+    opacity:.7;
+    transition:.3s;
+}
+
+.nav a:hover{
+    opacity:1;
+}
+
+.header-cta{
+    border:1px solid currentColor;
+    border-radius:100px;
+    font-size:18px;
+    padding:11px 19px;
+    opacity:1 !important;
+}
+
+.header-cta:hover{
+    background:var(--black);
+    color:white;
+}
+
+.header.dark .header-cta:hover{
+    background:white;
+    color:black;
+}
+
+.header.purple .header-cta:hover{
+    background:white;
+    color:var(--purple);
+}
+
+/* =========================================================
+HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+
+    padding:150px 4vw 70px;
+}
+
+.hero-grid{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(0,0,0,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px);
+
+    background-size:80px 80px;
+}
+
+.hero-orb{
+    position:absolute;
+    right:-50px;
+    top:-50px;
+
+    font-family:"Manrope", sans-serif;
+    font-size:650px;
+    font-weight:800;
+    line-height:.85;
+    letter-spacing:-25px;
+
+    color:var(--purple);
+
+    filter:blur(18px);
+    opacity:.4;
+
+    pointer-events:none;
+    z-index:0;
+}
+
+.hero-orb::before{
+    content:"+";
+}
+.hero-regular{
+color:transparent;
+    -webkit-text-stroke:1.8px var(--purple);}
+
+.hero-content{
+    position:relative;
+    z-index:3;
+    width:100%;
+}
+
+.hero-tag{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:15px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    margin-bottom:30px;
+}
+
+.hero-tag i{
+    width:7px;
+    height:7px;
+    background:var(--purple);
+    border-radius:50%;
+    box-shadow:0 0 20px var(--purple);
+}
+
+.hero-title{
+    font-family:"Manrope";
+    font-size:175px;
+    line-height:.78;
+    letter-spacing:-11px;
+    font-weight:800;
+}
+
+.hero-line{
+    display:block;
+
+    overflow:hidden;
+}
+
+.hero-word{
+    display:inline-block;
+}
+
+.purple{
+    color:var(--purple);
+}
+
+.hero-bottom{
+    margin-top:65px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
+
+.hero-copy{
+    max-width:450px;
+
+    color:#707070;
+
+    font-size:18px;
+    line-height:1.7;
+}
+
+.hero-btn{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    background:var(--black);
+    color:white;
+
+    border-radius:100px;
+    padding:17px 24px;
+
+    font-size:15px;
+
+    transition:.4s;
+}
+
+.hero-btn:hover{
+    background:var(--purple);
+    transform:translateY(-5px);
+    box-shadow:0 20px 50px rgba(121,56,255,.25);
+}
+
+
+
+/* =========================================================
+STATEMENT
+========================================================= */
+
+.statement{
+    min-height:90vh;
+    padding:150px 4vw;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    position:relative;
+    overflow:hidden;
+
+    background-color:var(--black);
+    background-image:
+        linear-gradient(rgba(255,255,255,.075) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.075) 1px,transparent 1px);
+    background-size:80px 80px;
+    color:white;
+}
+
+.statement > div{
+    position:relative;
+    z-index:1;
+    text-align:right;
+}
+
+.statement-plus{
+    position:absolute;
+    right:450px;
+    top:-250px;
+
+    font-family:"Manrope", sans-serif;
+    font-size:650px;
+    font-weight:800;
+    line-height:.75;
+    letter-spacing:-25px;
+
+    color:white;
+
+    filter:blur(18px);
+    opacity:.35;
+
+    pointer-events:none;
+    z-index:0;
+}
+
+.statement-plus::before{
+    content:"+";
+}
+
+
+.statement-small{
+    color:#aaa;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    margin-bottom:50px;
+}
+
+.statement-title{
+    font-family:"Manrope";
+
+    font-size:clamp(60px,8.5vw,135px);
+
+    line-height:.88;
+    letter-spacing:-7px;
+
+    font-weight:800;
+}
+
+.stroke{
+    color:transparent;
+    -webkit-text-stroke:1px #777;
+}
+
+.statement-title .purple{
+    color:var(--purple);
+}
+
+@media(max-width:1024px){
+
+    .statement-plus{
+        right:50px;
+        top:-250px;
+        font-size:250px;
+        filter:blur(12px);
+        opacity:.35;
+    }
+
+    
+
+}
+@media(max-width:380px){
+
+    .statement-plus{
+        right:0px;
+        top:-250px;
+        font-size:250px;
+        filter:blur(12px);
+        opacity:.35;
+    }
+
+    .statement-title{
+    padding:120px 0;
+        font-size:15px;
+        line-height:.92;
+        letter-spacing:-2px;
+    }
+
+}
+
+/* =========================================================
+SERVICES
+========================================================= */
+
+.services{
+    position:relative;
+    overflow:hidden;
+
+    background:var(--white);
+    padding:140px 4vw;
+}
+
+
+/* =========================================================
+PURPLE BLURRED PLUS
+========================================================= */
+
+.services-plus{
+    position:absolute;
+
+    right:-150px;
+    top:-300px;
+
+    font-family:"Manrope", sans-serif;
+    font-size:650px;
+    font-weight:800;
+    line-height:1;
+
+    color:var(--purple);
+
+    filter:blur(18px);
+    opacity:.4;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+
+
+
+
+/* Keep content above the blurred plus */
+
+.services .section-top,
+.services .services-list{
+    position:relative;
+    z-index:1;
+}
+
+
+/* =========================================================
+SECTION TOP
+========================================================= */
+
+.section-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+
+    margin-bottom:85px;
+}
+
+.label{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#888;
+}
+
+
+/* =========================================================
+SECTION HEADING
+========================================================= */
+
+.section-heading{
+    font-family:"Manrope";
+
+    font-size:clamp(55px,7vw,105px);
+
+    line-height:.88;
+    letter-spacing:-6px;
+
+    margin-top:20px;
+}
+
+.section-description{
+    max-width:360px;
+
+    color:#777;
+    line-height:1.65;
+}
+
+
+/* =========================================================
+SERVICES LIST
+========================================================= */
+
+.services-list{
+    border-top:1px solid var(--line);
+}
+
+
+/* =========================================================
+SERVICE ITEM
+========================================================= */
+
+.service{
+    position:relative;
+
+    display:grid;
+    grid-template-columns:80px 1fr 1fr 60px;
+
+    align-items:center;
+
+    min-height:155px;
+
+    border-bottom:1px solid var(--line);
+
+    overflow:hidden;
+
+    transition:
+        padding .5s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+SERVICE HOVER BACKGROUND
+========================================================= */
+
+.service-bg{
+    position:absolute;
+    inset:0;
+
+    background:var(--black);
+
+    transform:translateY(101%);
+
+    transition:
+        transform .65s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+SERVICE HOVER
+========================================================= */
+
+.service:hover{
+    padding-left:25px;
+}
+
+.service:hover .service-bg{
+    transform:translateY(0);
+}
+
+
+/* Keep service content above background */
+
+.service > *:not(.service-bg){
+    position:relative;
+    z-index:2;
+}
+
+
+/* =========================================================
+SERVICE NUMBER
+========================================================= */
+
+.service-number{
+    color:#999;
+    font-size:12px;
+
+    transition:.4s;
+}
+
+
+/* =========================================================
+SERVICE NAME
+========================================================= */
+
+.service-name{
+    font-family:"Manrope";
+
+    font-size:32px;
+
+    transition:.4s;
+}
+
+
+/* =========================================================
+SERVICE DESCRIPTION
+========================================================= */
+
+.service-description{
+    color:#777;
+
+    max-width:550px;
+    font-size:18px;
+
+    line-height:1.5;
+
+    transition:.4s;
+}
+
+
+/* =========================================================
+SERVICE ARROW
+========================================================= */
+
+.service-arrow{
+    width:45px;
+    height:45px;
+
+    border:1px solid #ccc;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.5s;
+}
+
+
+/* =========================================================
+SERVICE HOVER COLORS
+========================================================= */
+
+.service:hover .service-number,
+.service:hover .service-name{
+    color:white;
+}
+
+.service:hover .service-description{
+    color:#aaa;
+}
+
+.service:hover .service-arrow{
+    color:var(--purple);
+
+    background:white;
+    border-color:white;
+
+    transform:rotate(-45deg);
+}
+
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .services{
+        padding:80px 5vw;
+    }
+
+    .services-plus{
+        width:auto;
+        height:auto;
+
+        right:-3%;
+
+        top:-25px;
+
+        font-size:140px;
+
+        filter:blur(8px);
+        opacity:.4;
+    }
+
+    .section-top{
+        margin-bottom:50px;
+        gap:22px;
+    }
+
+    .section-heading{
+        font-size:15vw;
+        line-height:.9;
+        letter-spacing:-3px;
+    }
+
+    .section-description{
+        max-width:100%;
+        font-size:14px;
+    }
+
+    .service{
+        grid-template-columns:34px minmax(0,1fr) 38px;
+
+        min-height:92px;
+
+        gap:10px;
+
+        padding:18px 0;
+    }
+
+    .service:hover{
+        padding-left:0;
+    }
+
+    .service-name{
+        font-size:18px;
+        line-height:1.15;
+    }
+
+    .service-number{
+        font-size:12px;
+    }
+
+    .service-description{
+        display:none;
+    }
+
+    .service-arrow{
+        width:34px;
+        height:34px;
+
+        font-size:13px;
+    }
+
+    /* Disable desktop hover effect on touch */
+
+    .service:hover .service-bg{
+        transform:translateY(101%);
+    }
+
+    .service:hover .service-number,
+    .service:hover .service-name{
+        color:inherit;
+    }
+
+    .service:hover .service-description{
+        color:#777;
+    }
+
+    .service:hover .service-arrow{
+        color:inherit;
+
+        background:transparent;
+        border-color:#ccc;
+
+        transform:none;
+    }
+}
+
+
+/* =========================================================
+VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:380px){
+
+    .services-plus{
+        right:-8%;
+        top:-100px;
+        font-size:200px;
+    }
+
+    .service{
+        grid-template-columns:28px minmax(0,1fr) 34px;
+    }
+
+    .service-name{
+        font-size:16px;
+    }
+}
+
+/* =========================================================
+CLIENT STATS
+========================================================= */
+
+.stats{
+    background:var(--black);
+    color:white;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    padding:0 4vw;
+
+    border-top:1px solid #222;
+    border-bottom:1px solid #222;
+}
+
+.stat{
+    min-height:260px;
+
+    padding:55px 35px 45px 0;
+
+    border-right:1px solid #292929;
+}
+
+.stat:not(:first-child){
+    padding-left:35px;
+}
+
+.stat:last-child{
+    border-right:0;
+}
+
+.stat-number{
+    font-family:"Manrope";
+
+    font-size:clamp(50px,5vw,80px);
+
+    font-weight:800;
+
+    letter-spacing:-5px;
+
+    margin-bottom:12px;
+
+    color:white;
+}
+
+.stat-number span{
+    color:var(--purple);
+}
+
+.stat-title{
+    font-weight:600;
+    font-size:18px;
+    margin-bottom:8px;
+    color:white;
+}
+
+.stat-copy{
+    color:#999;
+    font-size:15px;
+    line-height:1.5;
+}
+
+/* =========================================================
+WORK
+========================================================= */
+
+.work-section{
+    background:#e9e9e7;
+    padding:140px 0;
+
+    overflow:hidden;
+}
+
+.work-header{
+    padding:0 4vw;
+    margin-bottom:80px;
+}
+
+.horizontal{
+    display:flex;
+    gap:30px;
+    padding-left:4vw;
+    width:max-content;
+}
+
+.work-card{
+    width:65vw;
+    max-width:920px;
+    aspect-ratio:16 / 9;
+    height:auto;
+
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+
+    position:relative;
+    overflow:hidden;
+    flex-shrink:0;
+
+    background:#111;
+}
+
+.work-bg{
+    position:absolute;
+    inset:0;
+
+    transition:
+        transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.work-card:hover .work-bg{
+    transform:scale(1.08);
+}
+
+
+.work-card:nth-child(1) .work-bg{
+    background-image:
+        linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(121,56,255,.8) 100%       
+          ),
+url("images/branding.JPG");
+    background-size:cover;
+    background-position:center;
+}
+
+
+.work-card:nth-child(2) .work-bg{
+     background-image:
+        linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(0,0,0,.8) 100%       
+        ),
+url("images/posters.JPG");
+    background-size:cover;
+    background-position:center;
+}
+
+.work-card:nth-child(3) .work-bg{
+     background-image:
+        linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(121,56,255,.8) 100%       
+        ),
+ url("images/videos.JPG");
+    background-size:cover;
+    background-position:center;
+}
+
+.work-card:nth-child(4) .work-bg{
+    background-image:
+        linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(0,0,0,.8) 100%       
+        ),
+        url("images/websites.JPG");
+    background-size: cover;
+    background-position: center;
+}
+
+.work-info{
+    position:absolute;
+    left:35px;
+    bottom:35px;
+    z-index:2;
+
+    color:white;
+}
+
+.work-info small{
+    font-size:15px;
+    letter-spacing:2px;
+    opacity:.8;
+}
+
+/* WORK CARD OPEN ICON */
+.work-card{
+    display:block;
+    color:inherit;
+    text-decoration:none;
+}
+
+.work-info{
+    width:calc(100% - 70px);
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.work-open{
+    position:absolute;
+    right:35px;
+    bottom:35px;
+    width:45px;
+    height:45px;
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    line-height:1;
+    color:white;
+    transition:.4s ease;
+}
+
+.work-card:hover .work-open{
+    background:white;
+    color:var(--purple);
+    border-color:white;
+    transform:translate(2px,-2px);
+}
+
+@media(max-width:600px){
+    .work-info{
+        width:calc(100% - 58px);
+        left:20px;
+        bottom:20px;
+    }
+
+    .work-open{
+        right:20px;
+        bottom:20px;
+        width:38px;
+        height:38px;
+        font-size:19px;
+    }
+
+
+.work-info h3{
+    font-family:"Manrope";
+    font-size:35px;
+    margin:9px 0;
+}
+
+.work-info small{
+    font-size:12px;
+    letter-spacing:2px;
+    opacity:.8;
+}
+}
+
+
+/* =========================================================
+SERVICES MARQUEE
+========================================================= */
+
+.services-marquee{
+    background:var(--black);
+    color:white;
+    overflow:hidden;
+    padding:24px 0;
+    border-top:1px solid #222;
+    border-bottom:1px solid #222;
+}
+
+.services-marquee-track{
+    display:flex;
+    width:max-content;
+    animation:servicesMarquee 25s linear infinite;
+    will-change:transform;
+}
+
+.services-marquee-group{
+    display:flex;
+    flex-shrink:0;
+}
+
+.services-marquee-item{
+    font-family:"Manrope";
+    font-size:23px;
+    font-weight:700;
+    white-space:nowrap;
+    padding:0 35px;
+}
+
+.services-marquee-item span{
+    color:var(--purple-light);
+    margin-right:35px;
+}
+
+@keyframes servicesMarquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+}
+
+@media(max-width:900px){
+    .services-marquee{
+        padding:20px 0;
+    }
+    .services-marquee-item{
+        font-size:18px;
+        padding:0 25px;
+    }
+    .services-marquee-item span{
+        margin-right:25px;
+    }
+    .services-marquee-track{
+        animation-duration:20s;
+    }
+}
+
+/* =========================================================
+PROCESS
+========================================================= */
+
+.process{
+    background:white;
+    padding:150px 4vw;
+}
+
+.process-grid{
+    display:grid;
+    grid-template-columns:.75fr 1.25fr;
+    gap:110px;
+}
+
+.process-fixed{
+    position:sticky;
+    top:130px;
+    height:max-content;
+}
+
+.process-list{
+    border-top:1px solid var(--line);
+}
+
+.process-item{
+    position:relative;
+
+    display:grid;
+    grid-template-columns:75px 1fr 40px;
+
+    padding:42px 0;
+
+    border-bottom:1px solid var(--line);
+
+    transition:
+        padding .45s,
+        background .45s;
+}
+
+.process-item::before{
+    content:"";
+
+    position:absolute;
+    left:-25px;
+    top:0;
+    bottom:0;
+
+    width:3px;
+
+    background:var(--purple);
+
+    transform:scaleY(0);
+    transform-origin:center;
+
+    transition:.45s;
+}
+
+.process-item:hover{
+    padding-left:25px;
+    background:#fafafa;
+}
+
+.process-item:hover::before{
+    transform:scaleY(1);
+}
+
+.process-num{
+    color:var(--purple);
+    font-size:18px;
+
+    transition:.4s;
+}
+
+.process-item h3{
+    font-family:"Manrope";
+    font-size:32px;
+    transition:.4s;
+}
+
+.process-item p{
+    color:#777;
+    font-size:18px;
+    max-width:520px;
+    line-height:1.6;
+    margin-top:10px;
+}
+
+.process-arrow{
+    width:30px;
+    height:30px;
+
+    border:1px solid #ddd;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.4s;
+}
+
+.process-item:hover .process-arrow{
+    background:var(--purple);
+    color:white;
+    border-color:var(--purple);
+    transform:rotate(45deg);
+}
+
+/* =========================================================
+   PRICING
+========================================================= */
+
+.pricing{
+    position:relative;
+    overflow:hidden;
+
+    background:var(--black);
+    color:white;
+
+    padding:145px 4vw;
+}
+
+
+/* =========================================================
+   WHITE BLURRED PLUS
+========================================================= */
+
+.pricing-plus{
+    position:absolute;
+
+    right:-100px;
+    top:-200px;
+
+    font-family:"Manrope", sans-serif;
+    font-size:650px;
+    font-weight:800;
+    line-height:.75;
+    letter-spacing:-25px;
+
+    color:#fff;
+
+    filter:blur(18px);
+    opacity:.35;
+
+    pointer-events:none;
+
+    z-index:0;
+
+    will-change:transform;
+}
+
+@media (max-width:380px){
+
+    .pricing-plus{
+        font-size:250px;
+        width:auto;
+        height:auto;
+        top:10px;
+        right:0px;
+        filter:blur(12px);
+        opacity:.35;
+    }
+
+}
+
+/* =========================================================
+   PRICING
+========================================================= */
+
+.pricing .section-top{
+    position:relative;
+    z-index:2;
+}
+
+
+/* =========================================================
+   PRICING OPTIONS
+========================================================= */
+
+.pricing-options{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:70px;
+}
+
+.pricing-option{
+    width:100%;
+    background:transparent;
+    border:1px solid #292929;
+    color:#888;
+    padding:22px 24px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    cursor:pointer;
+    text-align:left;
+    transition:.35s;
+}
+
+.pricing-option span{
+    font-size:12px;
+    color:#555;
+}
+
+.pricing-option strong{
+    font-family:"Manrope";
+    font-size:16px;
+    font-weight:600;
+    color:#999;
+}
+
+.pricing-option i{
+    margin-left:auto;
+    font-style:normal;
+    font-size:22px;
+    color:#555;
+    transition:.35s;
+}
+
+.pricing-option:hover,
+.pricing-option.active{
+    border-color:var(--purple);
+}
+
+.pricing-option.active{
+    background:#17111f;
+}
+
+.pricing-option.active strong,
+.pricing-option.active i{
+    color:white;
+}
+
+.pricing-option.active i{
+    transform:rotate(45deg);
+}
+
+
+/* =========================================================
+   PRICING PANELS
+========================================================= */
+
+.pricing-panel{
+    display:none;
+}
+
+.pricing-panel.active{
+    display:block;
+}
+
+
+/* =========================================================
+   PRICING GRID
+========================================================= */
+
+#smm .pricing-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+
+/* =========================================================
+   PRICE CARD
+========================================================= */
+
+.price-card{
+    min-height:550px;
+    padding:40px;
+    border:1px solid #292929;
+    display:flex;
+    flex-direction:column;
+    opacity:1;
+    visibility:visible;
+    transition:.5s;
+}
+
+.price-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--purple);
+}
+
+.price-card.featured{
+    background:#17111f;
+    border-color:var(--purple);
+}
+
+
+/* =========================================================
+   PRICE HEAD
+========================================================= */
+
+.price-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.price-head h3{
+    font-family:"Manrope";
+    font-size:28px;
+}
+
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.badge{
+    background:var(--purple);
+    color:white;
+    border-radius:100px;
+    padding:7px 11px;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.price{
+    font-family:"Manrope";
+    font-size:55px;
+    font-weight:800;
+    letter-spacing:-4px;
+    margin:30px 0 38px;
+}
+
+.price small{
+    font-family:"DM Sans";
+    font-size:15px;
+    color:#666;
+    letter-spacing:0;
+}
+
+
+/* =========================================================
+   PRICE INTRO
+========================================================= */
+
+.price-intro{
+    color:#888;
+    font-size:17px;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.features li{
+    padding:11px 0;
+    border-bottom:1px solid #292929;
+    color:#999;
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.features li::before{
+    content:"✓";
+    color:var(--purple-light);
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   EXCLUDE
+========================================================= */
+
+.exclude-title{
+    font-size:11px;
+    letter-spacing:1.5px;
+    color:#555;
+    margin-top:25px;
+    margin-bottom:4px;
+}
+
+.features.exclude li{
+    color:#666;
+}
+
+.features.exclude li::before{
+    content:"×";
+    color:#555;
+}
+
+
+/* =========================================================
+   PRICE BUTTON
+========================================================= */
+
+.price-btn{
+    margin-top:auto;
+    border:1px solid #333;
+    border-radius:100px;
+    padding:16px;
+    text-align:center;
+    font-size:15px;
+    transition:.35s;
+}
+
+.price-btn:hover{
+    background:var(--purple);
+    border-color:var(--purple);
+}
+
+
+/* =========================================================
+   WEBSITE EXTRA
+========================================================= */
+
+.website-extra{
+    margin-top:16px;
+    padding:28px 35px;
+    border:1px solid #292929;
+}
+
+.website-extra h3{
+    font-family:"Manrope";
+    margin-bottom:8px;
+}
+
+.website-extra p{
+    color:#888;
+    line-height:1.6;
+}
+
+.pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    margin-top:30px;
+    gap:12px;
+}
+
+/* =========================================================
+   ADS PRICING
+========================================================= */
+
+.ads-heading{
+    margin-top:30px;
+    margin-bottom:28px;
+}
+
+.ads-heading span{
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--purple-light);
+}
+
+.ads-heading h3{
+    font-family:"Manrope";
+    font-size:38px;
+    line-height:1.05;
+    margin-top:10px;
+}
+
+
+/* =========================================================
+   AD BUDGET GRID
+========================================================= */
+
+.ad-budget-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.ad-budget-card{
+    border:1px solid #292929;
+    padding:28px;
+    min-height:280px;
+    display:flex;
+    flex-direction:column;
+    transition:.4s;
+}
+
+.ad-budget-card:hover{
+    transform:translateY(-7px);
+    border-color:var(--purple);
+}
+
+.ad-budget-card.featured{
+    background:#17111f;
+    border-color:var(--purple);
+}
+
+
+/* =========================================================
+   AD BUDGET TOP
+========================================================= */
+
+.ad-budget-top{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.ad-budget-top span{
+    font-size:11px;
+    letter-spacing:1.5px;
+    color:#666;
+}
+
+.ad-budget-top strong{
+    font-family:"Manrope";
+    font-size:35px;
+    color:white;
+}
+
+
+/* =========================================================
+   AD FEE
+========================================================= */
+
+.ad-fee{
+    margin-top:38px;
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.ad-fee b{
+    font-family:"Manrope";
+    font-size:25px;
+    letter-spacing:-.4
+}
+
+.ad-fee span{
+    color:var(--purple-light);
+    font-size:25px;
+}
+
+
+/* =========================================================
+   AD DESCRIPTION
+========================================================= */
+
+.ad-budget-card p{
+    margin-top:auto;
+    padding-top:25px;
+    color:#777;
+    font-size:14px;
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   AD NOTE
+========================================================= */
+
+.ad-note{
+    margin-top:12px;
+    padding:25px 30px;
+    border:1px solid #292929;
+}
+
+.ad-note span{
+    font-size:10px;
+    letter-spacing:1.5px;
+    color:#666;
+}
+
+.ad-note p{
+    margin-top:8px;
+    color:#777;
+    font-size:14px;
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .ads-heading{
+        margin-top:18px;
+    }
+
+    .ads-heading h3{
+        font-size:30px;
+    }
+
+    .ad-budget-grid{
+        grid-template-columns:1fr;
+        gap:10px;
+    }
+
+    .ad-budget-card{
+        min-height:230px;
+        padding:24px;
+    }
+
+    .ad-fee{
+        margin-top:25px;
+    }
+
+    .ad-note{
+        padding:22px;
+    }
+
+}
+
+/* =========================================================
+   COMPLETE PACKAGE
+========================================================= */
+
+.complete-packages{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.complete-card{
+    margin-top:30px;
+    padding:45px;
+    border:1px solid #292929;
+    background:#0c0910;
+}
+
+.complete-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:30px;
+    padding-bottom:35px;
+    border-bottom:1px solid #292929;
+}
+
+.complete-label{
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--purple-light);
+}
+
+.complete-head h3{
+    font-family:"Manrope";
+    font-size:32px;
+    margin-top:10px;
+}
+
+.complete-head .price{
+    margin:0;
+    white-space:nowrap;
+}
+
+.complete-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+    padding:35px 0;
+}
+
+.complete-grid h4{
+    font-size:12px;
+    letter-spacing:1.5px;
+    color:#777;
+    margin-bottom:12px;
+}
+
+.complete-card .price-btn{
+    display:block;
+}
+
+
+/* =========================================================
+   COMPLETE PACKAGE — MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .complete-card{
+        margin-top:18px;
+        padding:28px 24px;
+    }
+
+    .complete-head{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .complete-head h3{
+        font-size:25px;
+    }
+
+    .complete-head .price{
+        margin-top:10px;
+    }
+
+    .complete-grid{
+        grid-template-columns:1fr;
+        gap:28px;
+    }
+
+}
+/* =========================================================
+   OPTION SWITCH ANIMATION
+========================================================= */
+
+.pricing-panel.active{
+    animation:pricingPanelIn .45s ease both;
+}
+
+@keyframes pricingPanelIn{
+
+    from{
+        opacity:0;
+        transform:translateY(18px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.pricing-option{
+    position:relative;
+    overflow:hidden;
+}
+
+.pricing-option::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0;
+    height:2px;
+    background:var(--purple);
+    transition:.4s ease;
+}
+
+.pricing-option.active::after{
+    width:100%;
+}
+
+.pricing-option i{
+    transition:
+        transform .35s ease,
+        color .35s ease;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .pricing-options{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+        margin-top:45px;
+    }
+
+    .pricing-option{
+        min-height:72px;
+        padding:16px;
+        gap:9px;
+    }
+
+    .pricing-option strong{
+        font-size:14px;
+    }
+
+    .pricing-option span{
+        font-size:10px;
+    }
+
+    .pricing-option i{
+        font-size:19px;
+    }
+
+    .pricing-grid{
+        grid-template-columns:1fr;
+        gap:12px;
+        margin-top:18px;
+    }
+
+    .price-card{
+        min-height:auto;
+        padding:28px 24px;
+    }
+
+    .price-head h3{
+        font-size:24px;
+    }
+
+    .price{
+        font-size:45px;
+        margin:22px 0 28px;
+    }
+
+    .price-intro{
+        font-size:15px;
+    }
+
+    .features li{
+        font-size:15px;
+    }
+
+    .website-extra{
+        padding:24px;
+    }
+
+    .ad-management{
+        padding:24px;
+    }
+
+    .ad-percentages{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .complete-card{
+        padding:28px 24px;
+    }
+
+    .complete-head{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .complete-head h3{
+        font-size:25px;
+    }
+
+    .complete-head .price{
+        margin-top:10px;
+    }
+
+    .complete-grid{
+        grid-template-columns:1fr;
+        gap:28px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:400px){
+
+    .pricing-options{
+        gap:8px;
+    }
+
+    .pricing-option{
+        padding:14px 12px;
+        min-height:68px;
+    }
+
+    .pricing-option strong{
+        font-size:12px;
+    }
+
+    .pricing-option i{
+        font-size:17px;
+    }
+
+    .price-card{
+        padding:24px 20px;
+    }
+
+    .badge{
+        font-size:9px;
+        padding:6px 8px;
+    }
+
+}
+/* =========================================================
+ENQUIRY
+========================================================= */
+
+.enquiry{
+    background:var(--white);
+    padding:150px 4vw;
+}
+
+.enquiry-grid{
+    display:grid;
+
+    grid-template-columns:.8fr 1.2fr;
+
+    gap:120px;
+}
+
+.enquiry-title{
+    font-family:"Manrope";
+
+    font-size:clamp(55px,7vw,105px);
+
+    line-height:.88;
+
+    letter-spacing:-6px;
+
+    margin-top:20px;
+}
+
+.enquiry-title span{
+    color:var(--purple);
+}
+
+.enquiry-copy{
+    color:#777;
+    line-height:1.7;
+    font-size:18px;
+
+    max-width:380px;
+
+    margin-top:30px;
+}
+
+.enquiry-form{
+    border-top:1px solid var(--line);
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.field{
+    position:relative;
+
+    padding:25px 0;
+
+    border-bottom:1px solid var(--line);
+}
+
+.field.full{
+    grid-column:1 / -1;
+}
+
+.field label{
+    display:block;
+font-weight:700;
+    font-size:15px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+
+    color:#000;
+
+    margin-bottom:10px;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    font-size:18px;
+
+    color:#777;
+
+    resize:none;
+}
+
+.field textarea{
+    min-height:120px;
+}
+
+.field select{
+    cursor:pointer;
+}
+
+.form-submit{
+    margin-top:30px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:20px;
+}
+
+.form-note{
+    color:#999;
+    font-size:15px;
+}
+
+.submit-btn{
+    border:0;
+
+    background:var(--black);
+    color:white;
+
+    border-radius:100px;
+
+    padding:17px 26px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.4s;
+}
+
+.submit-btn:hover{
+    background:var(--purple);
+    transform:translateY(-4px);
+}
+
+/* =========================================================
+FINAL CTA
+========================================================= */
+
+.final{
+    min-height:90vh;
+
+    background:var(--purple);
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.final::before{
+    content:"YEZ+";
+
+    position:absolute;
+
+    font-family:"Manrope";
+
+    font-size:40vw;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    opacity:.055;
+}
+
+.final-content{
+    position:relative;
+    z-index:2;
+}
+
+.final-title{
+    font-family:"Manrope";
+
+    font-size:clamp(70px,11vw,175px);
+
+    line-height:.78;
+
+    letter-spacing:-10px;
+
+    margin-top:25px;
+}
+
+.final-title span{
+    color:transparent;
+    -webkit-text-stroke:1.8px white;
+}
+
+.final-copy{
+    max-width:450px;
+
+    margin:40px auto;
+    font-size:18px;
+
+    line-height:1.6;
+
+    opacity:.8;
+}
+
+.final-btn{
+    display:inline-flex;
+
+    background:white;
+    color:black;
+
+    border-radius:100px;
+
+    padding:18px 28px;
+
+    font-size:15px;
+
+    transition:.4s;
+}
+
+.final-btn:hover{
+    transform:scale(1.08);
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+footer{
+    background:var(--black);
+    color:white;
+
+    padding:75px 5vw ;
+}
+
+.footer-main{
+     display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    padding-bottom:75px;
+}
+
+
+.footer-logo{
+    font-family:"Manrope";
+
+    font-size:55px;
+
+    font-weight:800;
+
+    letter-spacing:-4px;
+    margin-top:0;
+
+}
+
+.footer-logo span{
+    color:var(--purple);
+}
+
+.footer-brand{
+
+    display:flex;
+    flex-direction:column;
+  margin-top:0;
+    align-self:flex-start;
+    align-items:flex-start;
+}
+
+.footer-tagline{
+    margin-top:18px;
+    max-width:320px;
+    color:#999;
+    font-family:"DM Sans",sans-serif;
+    font-size:15px;
+    font-weight:400;
+    line-height:1.6;
+    letter-spacing:0;
+}
+
+.footer-nav{
+    display:flex;
+    gap:45px;
+    margin-top:0;          /* was: padding-top:15px; margin-top:0; */
+    align-self:flex-start;
+    width:auto;
+    margin-left:auto;
+}
+
+.footer-col{
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+    margin-top:0;
+    min-width:150px;
+}
+
+.footer-col small{
+    margin-top:0 !important;
+    font-size:15px;
+    color:#555;
+    margin-bottom:8px;
+}
+
+.footer-col a{
+    color:#999;
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.footer-col a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    border-top:1px solid #222;
+
+    padding:25px 0 0 0;
+
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#999;
+    font-size:13px;
+}
+
+.footer-col .sub-link{
+    padding-left:14px;
+    color:#666;
+    font-size:14px;
+}
+
+
+
+/* =========================================================
+MOBILE HEADER / MENU
+Desktop is intentionally untouched.
+========================================================= */
+.menu-toggle,
+.mobile-menu,
+.mobile-menu-overlay{
+    display:none;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+@media(max-width:900px){
+    .header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:12px;
+    }
+
+    .menu-toggle{
+        display:flex;
+        width:38px;
+        height:38px;
+        flex:0 0 38px;
+        border:1px solid currentColor;
+        border-radius:50%;
+        background:transparent;
+        color:inherit;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        gap:5px;
+        padding:0;
+        position:relative;
+        z-index:5003;
+    }
+
+    .menu-toggle span{
+        display:block;
+        width:14px;
+        height:1.5px;
+        background:currentColor;
+        transition:transform .35s ease, opacity .25s ease;
+    }
+
+    .menu-toggle.is-open span:first-child{
+        transform:translateY(3.25px) rotate(45deg);
+    }
+
+    .menu-toggle.is-open span:last-child{
+        transform:translateY(-3.25px) rotate(-45deg);
+    }
+
+    .mobile-menu-overlay{
+        display:block;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.42);
+        z-index:4998;
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none;
+        transition:opacity .4s ease, visibility .4s ease;
+    }
+
+    .mobile-menu{
+        display:flex;
+        position:fixed;
+        top:0;
+        right:0;
+        width:75vw;
+        max-width:420px;
+        height:100svh;
+        z-index:5002;
+        background:var(--black);
+        color:white;
+        flex-direction:column;
+        padding:92px 7vw 32px;
+        transform:translateX(101%);
+        transition:transform .65s cubic-bezier(.2,.8,.2,1);
+        box-shadow:-25px 0 70px rgba(0,0,0,.22);
+    }
+
+    body.menu-open .mobile-menu{
+        transform:translateX(0);
+    }
+
+    body.menu-open .mobile-menu-overlay{
+        opacity:1;
+        visibility:visible;
+        pointer-events:auto;
+    }
+
+    body.menu-open{
+        overflow:hidden;
+    }
+
+    .mobile-menu-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding-bottom:25px;
+        border-bottom:1px solid #292929;
+        font-size:10px;
+        letter-spacing:2px;
+        color:#777;
+    }
+
+/* =========================================================
+   MOBILE HEADER / MENU
+   Desktop is intentionally untouched.
+========================================================= */
+
+.menu-toggle,
+.mobile-menu,
+.mobile-menu-overlay{
+    display:none;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+
+@media (max-width:900px){
+
+    .header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:12px;
+    }
+
+    /* =========================
+       HAMBURGER CIRCLE
+    ========================= */
+
+    .menu-toggle{
+        display:flex;
+        width:38px;
+        height:38px;
+        flex:0 0 38px;
+        border:1px solid currentColor;
+        border-radius:50%;
+        background:transparent;
+        color:inherit;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        gap:5px;
+        padding:0;
+        position:relative;
+        z-index:5005;
+    }
+
+    .menu-toggle span{
+        display:block;
+        width:14px;
+        height:1.5px;
+        background:currentColor;
+        transition:
+            transform .35s ease,
+            opacity .25s ease;
+    }
+
+    .menu-toggle.is-open span:first-child{
+        transform:translateY(3.25px) rotate(45deg);
+    }
+
+    .menu-toggle.is-open span:last-child{
+        transform:translateY(-3.25px) rotate(-45deg);
+    }
+
+
+    /* =========================
+       DARK OVERLAY
+    ========================= */
+
+    .mobile-menu-overlay{
+        display:block;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.42);
+        z-index:4998;
+
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none;
+
+        transition:
+            opacity .4s ease,
+            visibility .4s ease;
+    }
+
+    body.menu-open .mobile-menu-overlay{
+        opacity:1;
+        visibility:visible;
+        pointer-events:auto;
+    }
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    .mobile-menu{
+        display:flex;
+        position:fixed;
+        top:0;
+        right:0;
+
+        width:75vw;
+        max-width:420px;
+        height:100svh;
+
+        z-index:5002;
+
+        background:var(--black);
+        color:white;
+
+        flex-direction:column;
+
+        padding:92px 7vw 32px;
+
+        transform:translateX(101%);
+
+        transition:
+            transform .65s cubic-bezier(.2,.8,.2,1);
+
+        box-shadow:-25px 0 70px rgba(0,0,0,.22);
+    }
+
+    body.menu-open .mobile-menu{
+        transform:translateX(0);
+    }
+
+    body.menu-open{
+        overflow:hidden;
+    }
+
+
+    /* =========================
+       MENU HEADER
+    ========================= */
+
+    .mobile-menu-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+
+        padding-bottom:25px;
+
+        border-bottom:1px solid #292929;
+
+        font-size:10px;
+        letter-spacing:2px;
+        color:#777;
+    }
+
+
+    /* =========================
+       CLOSE CIRCLE
+       SAME POSITION AS
+       HEADER HAMBURGER
+    ========================= */
+
+    .menu-close{
+        display:flex;
+
+        position:fixed;
+
+        /*
+          Header hamburger position.
+          DO NOT use top:50%.
+        */
+        top:12px;
+        right:14px;
+
+        width:38px;
+        height:38px;
+
+        border:1px solid #444;
+        border-radius:50%;
+
+        background:var(--black);
+        color:white;
+
+        font-size:24px;
+        line-height:1;
+        font-weight:300;
+
+        align-items:center;
+        justify-content:center;
+
+        padding:0 0 3px;
+
+        z-index:9999;
+
+        cursor:pointer;
+
+        transform:none;
+
+        transition:
+            border-color .25s ease,
+            opacity .2s ease;
+    }
+
+    .menu-close:hover{
+        border-color:#666;
+    }
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    .mobile-menu-nav{
+        display:flex;
+        flex-direction:column;
+        margin-top:12px;
+    }
+
+    .mobile-menu-nav a{
+        display:flex;
+        align-items:baseline;
+        gap:14px;
+
+        padding:19px 0;
+
+        border-bottom:1px solid #292929;
+
+        font-family:"Manrope";
+        font-size:clamp(25px,7vw,38px);
+        font-weight:700;
+        letter-spacing:-1.5px;
+
+        transform:translateX(18px);
+        opacity:0;
+
+        transition:
+            transform .45s ease,
+            opacity .45s ease,
+            color .25s ease;
+    }
+
+    .mobile-menu-nav a span{
+        font-family:"DM Sans";
+        color:var(--purple-light);
+
+        font-size:10px;
+        letter-spacing:1px;
+
+        min-width:18px;
+    }
+
+    .mobile-menu-nav a:hover{
+        color:var(--purple-light);
+    }
+
+    body.menu-open .mobile-menu-nav a{
+        transform:translateX(0);
+        opacity:1;
+    }
+
+    body.menu-open .mobile-menu-nav a:nth-child(1){
+        transition-delay:.12s;
+    }
+
+    body.menu-open .mobile-menu-nav a:nth-child(2){
+        transition-delay:.17s;
+    }
+
+    body.menu-open .mobile-menu-nav a:nth-child(3){
+        transition-delay:.22s;
+    }
+
+    body.menu-open .mobile-menu-nav a:nth-child(4){
+        transition-delay:.27s;
+    }
+
+    body.menu-open .mobile-menu-nav a:nth-child(5){
+        transition-delay:.32s;
+    }
+
+
+    /* =========================
+       MENU FOOTER
+    ========================= */
+
+    .mobile-menu-foot{
+        margin-top:auto;
+
+        padding-top:25px;
+
+        border-top:1px solid #292929;
+
+        display:flex;
+        justify-content:space-between;
+        align-items:end;
+
+        gap:15px;
+    }
+
+    .mobile-menu-foot > span{
+        font-family:"Manrope";
+        font-weight:800;
+        font-size:24px;
+        letter-spacing:-1.5px;
+    }
+
+    .mobile-menu-foot > span span{
+        color:var(--purple);
+    }
+
+    
+}
+
+
+/* =========================================================
+   EXACT 380px MOBILE
+========================================================= */
+
+@media (max-width:380px){
+
+    .menu-toggle{
+        width:38px;
+        height:38px;
+        flex:0 0 38px;
+    }
+
+    /*
+      Close circle stays exactly in header area.
+      Same 38px size as hamburger.
+    */
+
+    .menu-close{
+        top:12px;
+        right:14px;
+
+        width:38px;
+        height:38px;
+    }
+
+    .mobile-menu{
+        width:75vw;
+        max-width:none;
+
+        padding-left:7vw;
+        padding-right:7vw;
+    }
+}
+
+    .mobile-menu-nav{
+        display:flex;
+        flex-direction:column;
+        margin-top:12px;
+    }
+
+    .mobile-menu-nav a{
+        display:flex;
+        align-items:baseline;
+        gap:14px;
+        padding:19px 0;
+        border-bottom:1px solid #292929;
+        font-family:"Manrope";
+        font-size:15px;
+        font-weight:400;
+        letter-spacing:-.4px;
+        transform:translateX(18px);
+        opacity:0;
+        transition:transform .45s ease, opacity .45s ease, color .25s ease;
+    }
+
+    .mobile-menu-nav a span{
+        font-family:"DM Sans";
+        color:var(--purple-light);
+        font-size:10px;
+        letter-spacing:1px;
+        min-width:18px;
+    }
+
+    .mobile-menu-nav a:hover{
+        color:var(--purple-light);
+    }
+
+    body.menu-open .mobile-menu-nav a{
+        transform:translateX(0);
+        opacity:1;
+    }
+
+    body.menu-open .mobile-menu-nav a:nth-child(1){transition-delay:.12s}
+    body.menu-open .mobile-menu-nav a:nth-child(2){transition-delay:.17s}
+    body.menu-open .mobile-menu-nav a:nth-child(3){transition-delay:.22s}
+    body.menu-open .mobile-menu-nav a:nth-child(4){transition-delay:.27s}
+    body.menu-open .mobile-menu-nav a:nth-child(5){transition-delay:.32s}
+
+    .mobile-menu-foot{
+        margin-top:auto;
+        padding-top:25px;
+        border-top:1px solid #292929;
+        display:flex;
+        justify-content:space-between;
+        align-items:end;
+        gap:15px;
+    }
+
+    .mobile-menu-foot > span{
+        font-family:"Manrope";
+        font-weight:800;
+        font-size:24px;
+        letter-spacing:-1.5px;
+    }
+
+    .mobile-menu-foot > span span{
+        color:var(--purple);
+    }
+
+    
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .header{
+        padding:17px 5vw;
+    }
+
+    .nav{
+        display:none;
+    }
+
+    .hero{
+        padding:145px 5vw 80px;
+    }
+
+    .hero-title{
+        padding:100px 0;
+
+        font-size:19vw;
+        letter-spacing:-6px;
+    }
+
+    .hero-bottom{
+        flex-direction:column;
+        align-items:start;
+        gap:30px;
+    }
+
+    .hero-orb{
+        width:400px;
+        height:400px;
+        top:-200px;
+        right:-200px;
+    }
+
+    .statement,
+    .services,
+    .process,
+    .pricing,
+    .enquiry{
+        padding:100px 5vw;
+    }
+
+    .section-top{
+        flex-direction:column;
+        align-items:start;
+        gap:30px;
+    }
+
+    .service{
+        grid-template-columns:45px 1fr 45px;
+        min-height:120px;
+    }
+
+    .service-description{
+        display:none;
+    }
+
+    .service-name{
+        font-size:22px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        padding:0 5vw;
+    }
+
+    .stat{
+        min-height:210px;
+        padding:40px 20px 35px 0;
+    }
+
+    .stat:nth-child(even){
+        padding-left:20px;
+    }
+    .stat:nth-child(odd){
+        padding-left:0;
+    }
+
+    .stat:nth-child(2){
+        border-right:0;
+    }
+
+    .stat-number{
+        font-size:48px;
+    }
+
+    .work-section{
+        padding:100px 0;
+    }
+
+    .work-header{
+        padding:0 5vw;
+    }
+
+    .work-card{
+        width:85vw;
+        height:470px;
+    }
+
+    .process-grid,
+    .enquiry-grid{
+        grid-template-columns:1fr;
+        gap:70px;
+    }
+
+    .process-fixed{
+        position:static;
+    }
+
+        .form-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .form-submit{
+        flex-direction:column;
+        align-items:start;
+    }
+
+.footer-main{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:40px;
+}
+
+.footer-brand{
+    min-width:0;
+    width:100%;
+}
+
+.footer-tagline{
+    max-width:420px;
+}
+
+.footer-nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:35px 55px;
+    width:100%;
+}
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
+
+}
+
+/* =========================================================
+   MOBILE POLISH / TOUCH DEVICES
+   ========================================================= */
+
+@media (max-width: 600px){
+
+    html, body{
+        width:100%;
+        max-width:100%;
+        overflow-x:hidden;
+    }
+
+    .header{
+        padding:14px 5vw;
+        min-height:64px;
+    }
+
+    .logo{
+        font-size:22px;
+        letter-spacing:-1px;
+    }
+
+    .header-cta{
+        padding:9px 14px;
+        font-size:11px;
+    }
+
+    .hero{
+        min-height:100svh;
+        padding:115px 5vw 90px;
+        align-items:flex-start;
+    }
+
+    .hero-content{
+        min-height:calc(100svh - 205px);
+        display:flex;
+        flex-direction:column;
+    }
+
+    .hero-grid{
+        background-size:55px 55px;
+    }
+
+    .hero-orb{
+        width:300px;
+        height:300px;
+        right:-175px;
+        top:18%;
+        filter:blur(12px);
+    }
+
+    .hero-tag{
+        font-size:8px;
+        letter-spacing:1.5px;
+        margin-bottom:24px;
+    }
+
+    .hero-title{
+        font-size:19vw;
+        line-height:.82;
+        letter-spacing:-4px;
+        max-width:100%;
+    }
+
+    .hero-bottom{
+        margin-top:auto;
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        gap:22px;
+    }
+
+    .hero-copy{
+        max-width:none;
+        width:100%;
+        font-size:14px;
+        line-height:1.55;
+        white-space:normal;
+        overflow:visible;
+        text-overflow:clip;
+        color:#777;
+        padding-right:0;
+    }
+
+    .hero-btn{
+        display:inline-flex;
+        align-self:flex-start;
+        padding:15px 20px;
+        font-size:13px;
+    }
+
+    .hero-scroll{
+        display:none;
+    }
+
+    .services-orb{
+        width:300px;
+        height:300px;
+        right:-175px;
+        top:40px;
+        filter:blur(12px);
+    }
+
+    .statement,
+    .services,
+    .process,
+    .pricing,
+    .enquiry{
+        padding:80px 5vw;
+    }
+
+    .statement{
+        min-height:auto;
+        background-size:55px 55px;
+    }
+
+    .statement-small{
+        margin-bottom:32px;
+    }
+
+    .statement-title,
+    .section-heading,
+    .enquiry-title{
+        letter-spacing:-3px;
+    }
+
+    .statement-title{
+        font-size:13vw;
+        line-height:.9;
+    }
+
+    .section-top{
+        margin-bottom:50px;
+        gap:22px;
+    }
+
+    .section-heading{
+        font-size:15vw;
+        line-height:.9;
+    }
+
+    .section-description{
+        max-width:100%;
+        font-size:14px;
+    }
+
+    .service{
+        grid-template-columns:34px minmax(0,1fr) 38px;
+        min-height:92px;
+        gap:10px;
+        padding:18px 0;
+    }
+
+    .service:hover{
+        padding-left:0;
+    }
+
+    .service-name{
+        font-size:18px;
+        line-height:1.15;
+    }
+
+    .service-number{
+        font-size:12px;
+    }
+
+    .service-arrow{
+        width:34px;
+        height:34px;
+        font-size:13px;
+    }
+
+    .service:hover .service-bg{
+        transform:translateY(101%);
+    }
+
+    .service:hover .service-number,
+    .service:hover .service-name{
+        color:inherit;
+    }
+
+    .service:hover .service-description{
+        color:#777;
+    }
+
+    .service:hover .service-arrow{
+        color:inherit;
+        background:transparent;
+        border-color:#ccc;
+        transform:none;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        padding:0 5vw;
+    }
+
+    .stat{
+        min-width:0;
+        min-height:185px;
+        padding:32px 14px 28px 0;
+    }
+
+    .stat:nth-child(even){
+        padding-left:14px;
+    }
+    .stat:nth-child(odd){
+        padding-left:0;
+    }
+
+    .stat:nth-child(2),
+    .stat:nth-child(4){
+        border-right:0;
+    }
+
+    .stat-number{
+        font-size:36px;
+        letter-spacing:-3px;
+        white-space:nowrap;
+    }
+
+    .stat-title{
+        font-size:13px;
+    }
+
+    .stat-copy{
+        font-size:11px;
+    }
+
+    .work-section{
+        padding:80px 0;
+    }
+
+    .work-header{
+        padding:0 5vw;
+        margin-bottom:45px;
+    }
+
+    
+    
+
+    .work-card{
+        width:85vw;
+        min-width:85vw;
+        max-width:none;
+        height:360px;
+        scroll-snap-align:center;
+        scroll-snap-stop:always;
+    }
+
+    .work-info{
+        left:22px;
+        right:22px;
+        bottom:22px;
+    }
+
+    .work-info h3{
+        font-size:30px;
+        line-height:1;
+    }
+
+    .process-grid,
+    .enquiry-grid{
+        gap:50px;
+    }
+
+    .process-item{
+        grid-template-columns:38px minmax(0,1fr) 34px;
+        gap:10px;
+        padding:30px 0;
+    }
+
+    .process-item:hover{
+        padding-left:0;
+        background:transparent;
+    }
+
+    .process-item::before{
+        left:0;
+    }
+
+    .process-item:hover::before{
+        transform:scaleY(0);
+    }
+
+    .process-item h3{
+        font-size:21px;
+    }
+
+    .process-item p{
+        font-size:13px;
+        line-height:1.55;
+    }
+
+    .process-arrow{
+        width:30px;
+        height:30px;
+    }
+
+    .
+    .enquiry-title{
+        font-size:15vw;
+        line-height:.9;
+    }
+
+    .enquiry-copy{
+        font-size:14px;
+    }
+
+    .field{
+        padding:20px 0;
+    }
+
+    .field input,
+    .field textarea,
+    .field select{
+        font-size:16px;
+    }
+
+    .form-submit{
+        gap:18px;
+    }
+
+    .submit-btn{
+        width:100%;
+        padding:16px 20px;
+    }
+
+    .final{
+        min-height:75svh;
+        padding:70px 5vw;
+    }
+
+    .final-title{
+        font-size:20vw;
+        line-height:.82;
+        letter-spacing:-5px;
+    }
+
+    .final-copy{
+        max-width:320px;
+        margin:28px auto;
+        font-size:14px;
+    }
+
+    .final-btn{
+        padding:16px 22px;
+    }
+
+    footer{
+        padding:55px 5vw 25px;
+    }
+
+    .footer-main{
+        gap:45px;
+    }
+
+    .footer-logo{
+        font-size:42px;
+        letter-spacing:-3px;
+    }
+
+    .footer-nav{
+        gap:28px 30px;
+        width:100%;
+    }
+
+    .footer-col{
+        min-width:130px;
+    }
+
+    .footer-tagline{
+        max-width:100%;
+    }
+
+    .footer-bottom{
+        font-size:12px;
+    }
+}
+
+@media (max-width:900px){
+
+    .work-section{
+        overflow:visible;
+    }
+
+    .horizontal{
+        width:100% !important;
+        max-width:100%;
+
+        display:flex !important;
+        flex-direction:row !important;
+
+        overflow-x:auto !important;
+        overflow-y:hidden !important;
+
+        transform:none !important;
+
+        padding:0 5vw 14px !important;
+        gap:16px;
+
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        touch-action:pan-x pan-y;
+        overscroll-behavior-x:contain;
+
+        scrollbar-width:none;
+    }
+
+    .horizontal::-webkit-scrollbar{
+        display:none;
+    }
+
+    .work-card{
+        flex:0 0 auto;
+        width:85vw !important;
+        min-width:85vw !important;
+        max-width:none !important;
+        scroll-snap-align:center;
+        scroll-snap-stop:always;
+    }
+}
+
+
+
+/* =========================================================
+   PRICING GRID — RESPONSIVE ALIGNMENT
+========================================================= */
+
+.pricing-grid,
+#smm .pricing-grid,
+.ad-budget-grid,
+.complete-grid{
+    align-items:stretch;
+}
+
+.price-card,
+.ad-budget-card{
+    min-width:0;
+}
+
+
+/* ---------- LAPTOP : 4 col -> 2 col ---------- */
+
+@media(max-width:1200px){
+
+    .pricing-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:14px;
+    }
+
+    #smm .pricing-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .ad-budget-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .complete-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:26px 30px;
+    }
+
+    .price-card{
+        min-height:auto;
+    }
+}
+
+
+/* ---------- TABLET : ellame 2 col ---------- */
+
+@media(max-width:1024px){
+
+    #smm .pricing-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .pricing-options{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .price{
+        font-size:48px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE — ALL PRICING GRIDS : 1 COLUMN
+========================================================= */
+
+@media(max-width:900px){
+
+    .pricing-grid,
+    #smm .pricing-grid,
+    #websites .pricing-grid,
+    .ad-budget-grid,
+    .complete-grid{
+        grid-template-columns:minmax(0,1fr) !important;
+        gap:12px;
+    }
+
+    .complete-grid{
+        gap:26px;
+    }
+
+    .price-card,
+    .ad-budget-card{
+        min-height:auto;
+        width:100%;
+        min-width:0;
+    }
+
+    /* pricing option buttons 2 col-la irundha ok,
+       1 col venum-na idha uncomment pannunga */
+    /*
+    .pricing-options{
+        grid-template-columns:minmax(0,1fr);
+    }
+    */
+}
+
+
+
+@media (max-width: 380px){
+
+    .header-cta{
+        padding:8px 11px;
+        font-size:12px;
+    }
+
+    .hero-title{
+        padding:150px 0 100px 0;
+        font-size:18vw;
+        letter-spacing:-3px;
+    }
+
+.hero-orb{
+        font-size:250px;
+        width:auto;
+        height:auto;
+        top:50px;
+        right:40px;
+
+    }
+
+
+    .service{
+        grid-template-columns:28px minmax(0,1fr) 34px;
+    }
+
+    .service-name{
+        font-size:16px;
+    }
+
+    .stat-number{
+        font-size:32px;
+    }
+
+    .work-card{
+        height:330px;
+    }
+
+    .work-info h3{
+        font-size:26px;
+    }
+.final-title{
+        font-size:12vw;
+        line-height:.85;
+        letter-spacing:-2px;
+    }
+    .footer-bottom{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* TEMPORARILY HIDE COMPLETE PACKAGES */
+#complete,
+.pricing-option[data-target="complete"]{
+    display:none !important;
+}
+@media (max-width: 900px){
+
+    .footer-nav{
+        width:100%;
+        margin-left:0;
+        display:grid !important;
+        grid-template-columns:1fr 1fr !important;
+        column-gap:30px;
+        row-gap:45px;
+    }
+
+    .footer-col{
+        width:100%;
+        min-width:0;
+        margin:0;
+    }
+    .contact-link{
+        display:flex;
+        align-items:flex-start;
+        gap:6px;
+        white-space:nowrap;
+        font-size:14px !important;
+    }
+
+    .contact-icon{
+        flex:0 0 auto;
+    }
+
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader">
+
+    <div>
+
+        <div class="loader-logo">
+            Yez<span>+</span>
+        </div>
+
+        <div class="loader-line"></div>
+
+    </div>
+
+</div>
+
+
+<!-- CURSOR -->
+
+<div class="cursor"></div>
+
+
+<!-- HEADER -->
+
+<header class="header" id="header">
+
+    <a href="index.html" class="logo">
+        Yez<span>+</span>
+    </a>
+
+    <nav class="nav">
+
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Packages</a>
+        <a href="#enquiry">Enquiry</a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <a href="#enquiry" class="header-cta">
+            Let's Talk ↗
+        </a>
+
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span>
+        </button>
+
+    </div>
+
+</header>
+
+<div class="mobile-menu-overlay"></div>
+<aside class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-head">
+        <span>MENU</span>
+        <button class="menu-close" type="button" aria-label="Close menu">×</button>
+    </div>
+    <nav class="mobile-menu-nav">
+        <a href="#services"><span>01</span>Services</a>
+        <a href="#work"><span>02</span>Work</a>
+        <a href="#process"><span>03</span>Process</a>
+        <a href="#pricing"><span>04</span>Packages</a>
+        <a href="#enquiry"><span>05</span>Enquiry</a>
+    </nav>
+    <div class="mobile-menu-foot">
+        <span>Yez<span>+</span></span>
+    </div>
+</aside>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-orb"></div>
+
+    <div class="hero-content">
+
+        
+
+        <h1 class="hero-title">
+
+    <span class="hero-line">
+        <span class="hero-word">YEZ</span>
+    </span>
+
+    <span class="hero-line">
+        <span class="hero-word purple">
+            PLUS <span class="hero-regular"></span>
+        </span>
+    </span>
+
+    <span class="hero-line">
+        <span class="hero-word">TRUE</span>
+    </span>
+
+    <span class="hero-line">
+        <span class="hero-word purple">
+            SUCCESS <span class="hero-regular"></span>
+        </span>
+    </span>
+
+</h1>
+
+        <div class="hero-bottom">
+
+            <p class="hero-copy">
+                We build brands, content and digital experiences
+                that get attention — and turn attention into
+                meaningful business growth.
+            </p>
+
+            <a href="#enquiry" class="hero-btn">
+                Start a Project
+                <span>↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    
+
+</section>
+
+
+<!-- STATEMENT -->
+
+<section class="statement">
+<div class="statement-plus"></div>
+    <div>
+
+        
+
+        <h2 class="statement-title">
+
+            WE DON'T JUST<br>
+
+            <span class="stroke">
+                MAKE CONTENT
+            </span>
+
+            <br>
+
+            WE MAKE<br>
+
+            <span class="purple">
+                THINGS HAPPEN
+            </span>
+
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+
+    <div class="section-top">
+
+        <div>
+
+            
+
+            <h2 class="section-heading">
+                What<br>
+                <span class="purple">We Do?</span>
+            </h2>
+
+        </div>
+
+
+    <div class="services-plus">+</div>
+
+
+    </div>
+
+
+    <div class="services-list">
+
+        <div class="service">
+
+            <div class="service-bg"></div>
+
+            <span class="service-number">
+                01
+            </span>
+
+            <h3 class="service-name">
+                Social Media Management
+            </h3>
+
+            <p class="service-description">
+From content planning to posting and community engagement, we manage your social media with a clear strategy to build a stronger, more active brand presence.
+            </p>
+
+            <div class="service-arrow">
+                ↗
+            </div>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-bg"></div>
+
+            <span class="service-number">
+                02
+            </span>
+
+            <h3 class="service-name">
+                Content Creation
+            </h3>
+
+            <p class="service-description">
+                Scroll-stopping visuals and content designed to make your brand stand out and stay memorable.
+            </p>
+
+            <div class="service-arrow">
+                ↗
+            </div>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-bg"></div>
+
+            <span class="service-number">
+                03
+            </span>
+
+            <h3 class="service-name">
+                Performance Ads
+            </h3>
+
+            <p class="service-description">
+                Paid campaigns focused on leads,
+                conversions and measurable outcomes.
+            </p>
+
+            <div class="service-arrow">
+                ↗
+            </div>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-bg"></div>
+
+            <span class="service-number">
+                04
+            </span>
+
+            <h3 class="service-name">
+                Brand Strategy
+            </h3>
+
+            <p class="service-description">
+                Positioning and identity that give your
+                business a clear reason to be remembered.
+            </p>
+
+            <div class="service-arrow">
+                ↗
+            </div>
+
+        </div>
+
+<div class="service"> 
+
+    <div class="service-bg"></div> 
+
+    <span class="service-number"> 
+        05 
+    </span> 
+
+    <h3 class="service-name"> 
+        Website Development 
+    </h3> 
+
+    <p class="service-description"> 
+        Modern, high-converting websites designed 
+        to build trust, engage visitors and drive growth. 
+    </p> 
+
+    <div class="service-arrow"> 
+        ↗ 
+    </div> 
+
+</div>
+
+    </div>
+
+</section>
+
+
+<!-- CLIENT / PROJECT STATS -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <div class="stat-number">
+            10<span>+</span>
+        </div>
+
+        <div class="stat-title">
+            Businesses Served
+        </div>
+
+        <p class="stat-copy">
+            From local businesses to ambitious startups.
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-number">
+            15<span>+</span>
+        </div>
+
+        <div class="stat-title">
+            Projects Delivered
+        </div>
+
+        <p class="stat-copy">
+            Campaigns, creatives, content and digital work.
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-number">
+            100K<span>+</span>
+        </div>
+
+        <div class="stat-title">
+            Content Reach
+        </div>
+
+        <p class="stat-copy">
+            Attention generated across digital platforms.
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-number">
+    ᦠ
+</div>
+
+        <div class="stat-title">
+            Growth
+        </div>
+
+        <p class="stat-copy">
+            Helping every client do more and grow more.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- WORK -->
+
+<section class="work-section" id="work">
+
+    <div class="work-header">
+
+        
+
+        <h2 class="section-heading">
+            Work that<br>
+            <span class="purple">
+                hits different
+            </span>
+        </h2>
+
+    </div>
+
+
+    <div class="horizontal">
+
+        <a class="work-card" href="branding.html" aria-label="Open project 1">
+
+    <div class="work-bg"></div>
+
+    <div class="work-info">
+
+        <small>
+            Memorable
+        </small>
+
+        <h3>
+            BRANDING
+        </h3>
+
+        <span class="work-open" aria-hidden="true">↗</span>
+
+    </div>
+
+</a>
+
+
+        <a class="work-card" href="posters.html" aria-label="Open project 2">
+
+
+            <div class="work-bg"></div>
+
+            <div class="work-info">
+
+                <small>
+                    Iconic
+                </small>
+
+                <h3>
+                    POSTERS
+                </h3>
+                <span class="work-open" aria-hidden="true">↗</span>
+
+            </div>
+
+        </a>
+
+
+        <a class="work-card" href="videos.html" aria-label="Open project 3">
+
+
+            <div class="work-bg"></div>
+
+            <div class="work-info">
+
+                <small>
+                    Engaging
+                </small>
+
+                <h3>
+                    VIDEOS
+                </h3>
+                <span class="work-open" aria-hidden="true">↗</span>
+
+            </div>
+
+        </a>
+
+
+        <a class="work-card" href="websites.html" aria-label="Open project 4">
+
+
+            <div class="work-bg"></div>
+
+            <div class="work-info">
+
+                <small>
+                    Immersive
+                </small>
+
+                <h3>
+                    WEBSITES
+                </h3>
+                <span class="work-open" aria-hidden="true">↗</span>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES MARQUEE -->
+<div class="services-marquee" aria-label="Our services">
+    <div class="services-marquee-track">
+        <div class="services-marquee-group">
+            <div class="services-marquee-item"><span>✦</span> SOCIAL MEDIA</div>
+<div class="services-marquee-item"><span>✦</span> STRATEGY</div>
+            <div class="services-marquee-item"><span>✦</span> CONTENT</div>
+            <div class="services-marquee-item"><span>✦</span> PERFORMANCE ADS</div>
+            <div class="services-marquee-item"><span>✦</span> BRANDING</div>
+            <div class="services-marquee-item"><span>✦</span> DIGITAL GROWTH</div>
+                        <div class="services-marquee-item"><span>✦</span> WEBSITES</div>
+        </div>
+        <div class="services-marquee-group" aria-hidden="true">
+            <div class="services-marquee-item"><span>✦</span> SOCIAL MEDIA</div>
+<div class="services-marquee-item"><span>✦</span> STRATEGY</div>
+            <div class="services-marquee-item"><span>✦</span> CONTENT</div>
+            <div class="services-marquee-item"><span>✦</span> PERFORMANCE ADS</div>
+            <div class="services-marquee-item"><span>✦</span> BRANDING</div>
+            <div class="services-marquee-item"><span>✦</span> DIGITAL GROWTH</div>
+                        <div class="services-marquee-item"><span>✦</span> WEBSITES</div>
+            
+        </div>
+    </div>
+</div>
+
+
+<!-- PROCESS -->
+
+<section class="process" id="process">
+
+    <div class="process-grid">
+
+        <div class="process-fixed">
+
+           
+
+            <h2 class="section-heading">
+                From<br>
+                idea to<br>
+                <span class="purple">
+                    impact
+                </span>
+            </h2>
+
+        </div>
+
+
+        <div class="process-list">
+
+            <div class="process-item">
+
+                <span class="process-num">
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        Discover
+                    </h3>
+
+                    <p>
+                        We understand your business, audience,
+                        market and the real problem we're solving.
+                    </p>
+
+                </div>
+
+                <div class="process-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+
+            <div class="process-item">
+
+                <span class="process-num">
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        Strategize
+                    </h3>
+
+                    <p>
+                        We turn insights into a clear creative
+                        and growth strategy.
+                    </p>
+
+                </div>
+
+                <div class="process-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+
+            <div class="process-item">
+
+                <span class="process-num">
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        Create
+                    </h3>
+
+                    <p>
+                        Ideas become content, campaigns,
+                        creatives and digital experiences.
+                    </p>
+
+                </div>
+
+                <div class="process-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+
+            <div class="process-item">
+
+                <span class="process-num">
+                    04
+                </span>
+
+                <div>
+
+                    <h3>
+                        Launch
+                    </h3>
+
+                    <p>
+                        We put the work in front of the right
+                        people and start collecting data.
+                    </p>
+
+                </div>
+
+                <div class="process-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+
+            <div class="process-item">
+
+                <span class="process-num">
+                    05
+                </span>
+
+                <div>
+
+                    <h3>
+                        Optimize
+                    </h3>
+
+                    <p>
+                        Measure what matters, improve what works
+                        and scale the winners.
+                    </p>
+
+                </div>
+
+                <div class="process-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section class="pricing" id="pricing">
+
+    <div class="section-top">
+
+        <h2 class="section-heading">
+            Pick your<br>
+            <span class="purple">level</span>
+        </h2>
+
+        <div class="pricing-plus">+</div>
+
+    </div>
+
+
+    <!-- PRICING OPTIONS -->
+
+    <div class="pricing-options">
+
+        <button class="pricing-option active" data-target="smm">
+            <span>01</span>
+            <strong>Social Media</strong>
+            <i>+</i>
+        </button>
+
+        <button class="pricing-option" data-target="websites">
+            <span>02</span>
+            <strong>Websites</strong>
+            <i>+</i>
+        </button>
+
+        <button class="pricing-option" data-target="ads">
+            <span>03</span>
+            <strong>Ads</strong>
+            <i>+</i>
+        </button>
+
+        <button class="pricing-option" data-target="complete">
+            <span>04</span>
+            <strong>Complete Packages</strong>
+            <i>+</i>
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         SOCIAL MEDIA
+    ========================== -->
+
+    <div class="pricing-panel active" id="smm">
+
+        <div class="pricing-grid">
+
+            <!-- STARTER -->
+
+            <div class="price-card">
+
+                <div class="price-head">
+                    <h3>Starter</h3>
+                </div>
+
+                <div class="price">
+                    ₹3K
+                    <small>/month</small>
+                </div>
+
+                <p class="price-intro">
+                    For businesses starting their social media journey.
+                </p>
+
+                <ul class="features">
+
+                    <li>3 Static Posts</li>
+                    <li>1 Reel</li>
+                    <li>Captions</li>
+                    <li>Hashtags</li>
+                    <li>Posting & Scheduling</li>
+
+                </ul>
+
+                <div class="exclude-title">EXCLUDE</div>
+
+                <ul class="features exclude">
+
+                    <li>Carousel</li>
+                    <li>Community Management</li>
+                    <li>Paid Ads</li>
+                    <li>Monthly Report</li>
+                    <li>Content Strategy</li>
+
+                </ul>
+
+                <a href="#enquiry" class="price-btn">
+                    Start with Starter ↗
+                </a>
+
+            </div>
+
+
+            <!-- GROWTH -->
+
+            <div class="price-card featured">
+
+                <div class="price-head">
+
+                    <h3>Growth</h3>
+
+                    <span class="badge">
+                        MOST POPULAR
+                    </span>
+
+                </div>
+
+                <div class="price">
+                    ₹7.5K
+                    <small>/month</small>
+                </div>
+
+                <p class="price-intro">
+                    For businesses ready to consistently grow their presence.
+                </p>
+
+                <ul class="features">
+
+                    <li>3 Static Posts</li>
+                    <li>1 Carousel</li>
+                    <li>3 Reels</li>
+                    <li>Captions + Hashtags</li>
+                    <li>Content Calendar</li>
+                    <li>Content Strategy</li>
+                    <li>Posting & Scheduling</li>
+                    <li>Monthly Report</li>
+
+                </ul>
+
+                <div class="exclude-title">EXCLUDE</div>
+
+                <ul class="features exclude">
+
+                    <li>Paid Ad Spend</li>
+                    <li>Community Management</li>
+
+                </ul>
+
+                <a href="#enquiry" class="price-btn">
+                    Grow with us ↗
+                </a>
+
+            </div>
+
+
+            <!-- PRO -->
+
+            <div class="price-card">
+
+                <div class="price-head">
+                    <h3>Pro</h3>
+                </div>
+
+                <div class="price">
+                    ₹12K
+                    <small>/month</small>
+                </div>
+
+                <p class="price-intro">
+                    For businesses looking for serious social media growth.
+                </p>
+
+                <ul class="features">
+
+                    <li>6 Static Posts</li>
+                    <li>2 Carousels</li>
+                    <li>5 Reels</li>
+                    <li>Captions + Hashtags</li>
+                    <li>Content Calendar</li>
+                    <li>Content Strategy</li>
+                    <li>Posting & Scheduling</li>
+                    <li>Community Management</li>
+                    <li>Monthly Analytics Report</li>
+
+                </ul>
+
+                <div class="exclude-title">EXCLUDE</div>
+
+                <ul class="features exclude">
+
+                    <li>Paid Ad Spend</li>
+
+                </ul>
+
+                <a href="#enquiry" class="price-btn">
+                    Go Pro ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WEBSITES
+    ========================== -->
+
+    <div class="pricing-panel" id="websites">
+
+        <div class="pricing-grid">
+
+            <div class="price-card">
+
+                <div class="price-head">
+                    <h3>Landing Page</h3>
+                </div>
+
+                <div class="price">
+                    ₹10K
+                </div>
+
+                <p class="price-intro">
+                    A clean one-page website for businesses that need a professional online presence.
+                </p>
+
+                <ul class="features">
+    <li>1 Page</li>
+    <li>Mobile Responsive</li>
+    <li>WhatsApp Integration</li>
+    <li>Contact Form</li>
+    <li>Basic Animation</li>
+    <li>Basic SEO</li>
+</ul>
+
+<div class="exclude-title">EXCLUDE</div>
+
+<ul class="features exclude">
+    <li>Domain Registration</li>
+    <li>Web Hosting</li>
+    <li>Monthly Maintenance</li>
+</ul>
+
+                <a href="#enquiry" class="price-btn">
+                    Build Website ↗
+                </a>
+
+            </div>
+
+
+            <div class="price-card featured">
+
+                <div class="price-head">
+                    <h3>Business</h3>
+
+                    <span class="badge">
+                        MOST POPULAR
+                    </span>
+                </div>
+
+                <div class="price">
+                    ₹25K
+                </div>
+
+                <p class="price-intro">
+                    A complete business website built to establish trust and generate enquiries.
+                </p>
+
+                <ul class="features">
+
+                    <li>Up to 6 Pages</li>
+                    <li>Custom Design</li>
+                    <li>Mobile Responsive</li>
+                    <li>WhatsApp Integration</li>
+                    <li>Contact Form</li>
+                    <li>Google Maps</li>
+                    <li>Basic SEO</li>
+                    <li>Basic Analytics</li>
+                    <li>Basic Animations</li>
+<li>Domain Registration</li>
+    <li>Web Hosting</li>
+    <li>Monthly Maintenance</li>
+
+                </ul>
+
+                <a href="#enquiry" class="price-btn">
+                    Build Website ↗
+                </a>
+
+            </div>
+
+
+            <div class="price-card">
+
+                <div class="price-head">
+                    <h3>Professional</h3>
+                </div>
+
+                <div class="price">
+                    ₹40K+
+                </div>
+
+                <p class="price-intro">
+                    A premium custom website for brands ready to make a stronger digital impact.
+                </p>
+
+                <ul class="features">
+
+                    <li>Up to 10 Pages</li>
+                    <li>Custom UI/UX</li>
+                    <li>Advanced Animations</li>
+                    <li>Mobile Responsive</li>
+                    <li>WhatsApp + Forms</li>
+                    <li>Basic SEO</li>
+                    <li>Analytics</li>
+                    <li>Search Console</li>
+                    <li>Speed Optimization</li>
+<li>Domain Registration</li>
+    <li>Web Hosting</li>
+    <li>Monthly Maintenance</li>
+
+                </ul>
+
+                <a href="#enquiry" class="price-btn">
+                    Build Website ↗
+                </a>
+
+
+        </div>
+
+
+        <!-- E-COMMERCE -->
+
+        <div class="price-card">
+
+            <div class="price-head">
+                <h3>E-Commerce</h3>
+            </div>
+
+            <div class="price">
+                ₹55K+
+            </div>
+
+            <p class="price-intro">
+                A complete online store built to sell products and manage orders.
+            </p>
+
+            <ul class="features">
+
+                <li>Online Store</li>
+                <li>Product Pages</li>
+                <li>Product Categories</li>
+                <li>Cart & Checkout</li>
+                <li>Payment Gateway</li>
+                <li>Shipping Setup</li>
+                <li>Mobile Responsive</li>
+                <li>Basic SEO</li>
+                <li>Basic Analytics</li>
+<li>Domain Registration</li>
+    <li>Web Hosting</li>
+    <li>Monthly Maintenance</li>
+
+            </ul>
+
+            <a href="#enquiry" class="price-btn">
+                Build Store ↗
+            </a>
+
+        </div>
+
+            </div>
+
+
+    </div>
+
+
+    <!-- =========================
+     ADS
+========================== -->
+
+<div class="pricing-panel" id="ads">
+
+    <div class="ads-heading">
+        <span>PAID ADVERTISING</span>
+        <h3>Put your budget<br>to work.</h3>
+    </div>
+
+    <div class="ad-budget-grid">
+
+        <div class="ad-budget-card">
+
+            <div class="ad-budget-top">
+                <span>STARTER</span>
+                <strong>Up to ₹25,000</strong>
+            </div>
+
+            <div class="ad-fee">
+                <b>₹500-₹2000</b>
+                <span>+ 15% of ad spend</span>
+            </div>
+
+            <p>
+                Post / Carousel / Reel creatives included as required.
+            </p>
+
+        </div>
+
+
+        <div class="ad-budget-card featured">
+
+            <div class="ad-budget-top">
+                <span>GROWTH</span>
+                <strong>₹25,001–₹50,000</strong>
+            </div>
+
+            <div class="ad-fee">
+                <b>₹500-₹2000</b>
+                <span>+ 12% of ad spend</span>
+            </div>
+
+            <p>
+                Post / Carousel / Reel creatives included as required.
+            </p>
+
+        </div>
+
+
+        <div class="ad-budget-card">
+
+            <div class="ad-budget-top">
+                <span>SCALE</span>
+                <strong>₹50,001–₹1,00,000</strong>
+            </div>
+
+            <div class="ad-fee">
+                <b>₹500-₹2000</b>
+                <span>+ 10% of ad spend</span>
+            </div>
+
+            <p>
+                Post / Carousel / Reel creatives included as required.
+            </p>
+
+        </div>
+
+
+        <div class="ad-budget-card">
+
+            <div class="ad-budget-top">
+                <span>PRO</span>
+                <strong>₹1,00,000+</strong>
+            </div>
+
+            <div class="ad-fee">
+                <b>₹500-₹2000</b>
+                <span>+ 8% of ad spend</span>
+            </div>
+
+            <p>
+                Post / Carousel / Reel creatives included as required.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="ad-note">
+
+        <span>AD SPEND IS SEPARATE</span>
+
+        <p>
+            Your advertising budget is paid directly to the advertising platform.
+            Management fee includes campaign setup, targeting, optimisation and performance tracking.
+        </p>
+
+    </div>
+
+</div>
+
+
+   <!-- =========================
+     COMPLETE PACKAGES
+========================== -->
+
+<div class="pricing-panel" id="complete">
+
+    <div class="complete-packages">
+
+
+        <!-- EXISTING BRAND -->
+
+        <div class="complete-card">
+
+            <div class="complete-head">
+
+                <div>
+                    <span class="complete-label">
+                        EXISTING BRAND
+                    </span>
+
+                    <h3>
+                        Complete Digital Growth
+                    </h3>
+                </div>
+
+                <div class="price">
+                    ₹25K
+                    <small>/month</small>
+                </div>
+
+            </div>
+
+
+            <div class="complete-grid">
+
+                <div>
+                    <h4>SOCIAL MEDIA</h4>
+
+                    <ul class="features">
+                        <li>12 Posts</li>
+                        <li>2 Carousels</li>
+                        <li>4 Reels</li>
+                        <li>Captions + Hashtags</li>
+                        <li>Content Calendar</li>
+                        <li>Content Strategy</li>
+                        <li>Posting & Scheduling</li>
+                    </ul>
+                </div>
+
+
+                <div>
+                    <h4>WEBSITE</h4>
+
+                    <ul class="features">
+                        <li>2 SEO Blogs / Month</li>
+                        <li>Website Content Updates</li>
+                        <li>Basic Website Maintenance</li>
+                    </ul>
+                </div>
+
+
+                <div>
+                    <h4>ADS</h4>
+
+                    <ul class="features">
+                        <li>Meta Ads Management</li>
+                        <li>Campaign Setup</li>
+                        <li>Audience Targeting</li>
+                        <li>Retargeting</li>
+                        <li>Ad Optimization</li>
+                        <li>Performance Tracking</li>
+                    </ul>
+                </div>
+
+
+                <div>
+                    <h4>REPORTING</h4>
+
+                    <ul class="features">
+                        <li>Monthly Analytics</li>
+                        <li>Monthly Performance Report</li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <a href="#enquiry" class="price-btn">
+                Grow with us ↗
+            </a>
+
+        </div>
+
+
+        <!-- NEW BRAND -->
+
+        <div class="complete-card new-brand-card">
+
+            <div class="complete-head">
+
+                <div>
+                    <span class="complete-label">
+                        NEW BRAND
+                    </span>
+
+                    <h3>
+                        Complete Brand Launch
+                    </h3>
+                </div>
+
+                <div class="price">
+                    ₹50K
+                </div>
+
+            </div>
+
+
+            <div class="complete-grid">
+
+                <div>
+                    <h4>BRANDING</h4>
+
+                    <ul class="features">
+                        <li>Logo Design</li>
+                        <li>Logo Variations</li>
+                        <li>Colour Palette</li>
+                        <li>Typography</li>
+                        <li>Brand Guidelines</li>
+                        <li>Business Card</li>
+                    </ul>
+                </div>
+
+
+                <div>
+                    <h4>SOCIAL MEDIA</h4>
+
+                    <ul class="features">
+                        <li>Instagram + Facebook</li>
+                        <li>LinkedIn Setup</li>
+                        <li>Google Business Profile</li>
+                        <li>Profile & Cover Designs</li>
+                        <li>Highlight Covers</li>
+                        <li>8 Posts + 2 Carousels</li>
+                        <li>3 Reels</li>
+                    </ul>
+                </div>
+
+
+                <div>
+                    <h4>WEBSITE</h4>
+
+                    <ul class="features">
+                        <li>Up to 5 Pages</li>
+                        <li>Mobile Responsive</li>
+                        <li>WhatsApp Integration</li>
+                        <li>Contact Form</li>
+                        <li>Basic SEO</li>
+                        <li>Analytics Setup</li>
+                    </ul>
+                </div>
+
+
+                <div>
+                    <h4>MARKETING</h4>
+
+                    <ul class="features">
+                        <li>Meta Business Setup</li>
+                        <li>Meta Pixel</li>
+                        <li>Ads Account Setup</li>
+                        <li>Initial Campaign Setup</li>
+                        <li>Conversion Tracking</li>
+                        <li>2 Website Blogs</li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <a href="#enquiry" class="price-btn">
+                Launch your brand ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- FINAL CTA -->
+
+<section class="final">
+
+    <div class="final-content">
+
+        
+
+        <h2 class="final-title">
+            READY  TO  SAY<br>
+            <span>YEZ+</span>
+        </h2>
+
+        <p class="final-copy">
+            Your next stage of growth doesn't need
+            another boring marketing plan.
+            It needs a better idea.
+        </p>
+
+        <a href="#enquiry" class="final-btn">
+            Start a Conversation ↗
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ENQUIRY -->
+
+<section class="enquiry" id="enquiry">
+
+    <div class="enquiry-grid">
+
+        <div>
+
+            
+
+            <h2 class="enquiry-title">
+                Tell us<br>
+                what you're<br>
+                <span>Building</span>
+            </h2>
+
+            <p class="enquiry-copy">
+                Have a project, campaign or growth goal in mind?
+                Tell us a little about it. We'll take it from there.
+            </p>
+
+        </div>
+
+
+        <form class="enquiry-form" id="enquiryForm">
+
+    <div class="form-row">
+
+        <div class="field">
+
+            <label>
+                Your name
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Business / Brand
+            </label>
+
+            <input
+                type="text"
+                name="business"
+                placeholder="Brand name"
+                required
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="form-row">
+
+        <div class="field">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Phone
+            </label>
+
+            <input
+                type="tel"
+                name="phone"
+                placeholder="+91"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="field full">
+
+        <label>
+            What do you need?
+        </label>
+
+        <select name="service" required>
+
+            <option value="">
+                Select a service
+            </option>
+
+            <option>
+                Social Media Management
+            </option>
+
+            <option>
+                Performance Ads
+            </option>
+
+            <option>
+                Websites
+            </option>
+
+            <option>
+                Complete Growth Package
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="field full">
+
+        <label>
+            Tell us about your project
+        </label>
+
+        <textarea
+            name="project"
+            placeholder="What are you trying to achieve?"
+            required
+        ></textarea>
+
+    </div>
+
+
+    <div class="form-submit">
+
+        <p class="form-note">
+            We'll get back to you within 1 business day.
+        </p>
+
+        <button
+            type="submit"
+            class="submit-btn"
+        >
+            Send Enquiry ↗
+        </button>
+
+    </div>
+
+</form>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-main">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+
+            
+<a href="index.html" class="footer-logo">
+        Yez<span>+</span>
+    </a>
+
+
+            <p class="footer-tagline">
+                We help brands do more, grow more, and stand out with bold ideas,
+                meaningful content, and digital experiences that drive real growth.
+            </p>
+
+        </div>
+
+
+        <!-- FOOTER NAV -->
+<div class="footer-nav">
+
+    <!-- EXPLORE -->
+    <div class="footer-col">
+        <small>Explore</small>
+
+        <a href="#services">Services</a>
+
+        <a href="#work">Work</a>
+        <a class="sub-link" href="branding.html"> ↳ Branding</a>
+        <a class="sub-link" href="posters.html"> ↳ Posters</a>
+        <a class="sub-link" href="videos.html"> ↳ Videos</a>
+        <a class="sub-link" href="websites.html"> ↳ Websites</a>
+
+        <a href="#process">Process</a>
+        <a href="#pricing">Packages</a>
+    </div>
+
+
+
+            <!-- SOCIAL PLATFORM -->
+            <div class="footer-col">
+
+                <small>Social Platform</small>
+
+                <a href="https://www.instagram.com/yezplus/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram</a>
+
+                <a href="https://www.linkedin.com/company/yezplus" target="_blank">LinkedIn</a>
+
+                <a href="https://wa.me/9486864679"_blank">
+                    WhatsApp
+                </a>
+
+            </div>
+
+
+            <!-- CONNECT -->
+            <div class="footer-col">
+
+                <small>Connect</small>
+
+                <a href="mailto:hello.yezplus@gmail.com" class="contact-link">
+
+                    <span class="contact-icon">
+                        Email:
+                    </span>
+
+                    hello.yezplus@gmail.com
+
+                </a>
+
+                <a href="tel:+919486864679" class="contact-link">
+
+                    <span class="contact-icon">
+                        ☎
+                    </span>
+
+                    +91 94 8686 46 79
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Yez+. All rights reserved.
+        </span>
+
+        <span>
+            <strong>YEZ</strong> PLUS
+            <strong>TRUE</strong> SUCCESS
+        </span>
+
+    </div>
+
+</footer>
+
+<script>
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+/* =========================================================
+LOADER
+========================================================= */
+
+const loader = document.querySelector(".loader");
+const loaderLine = document.querySelector(".loader-line");
+
+const loaderTL = gsap.timeline();
+
+loaderTL
+
+// Line builds
+.to(loaderLine,{
+    width:"46px",
+    duration:.3,
+    ease:"power3.inOut"
+})
+
+.to({},{
+    duration:.15
+})
+
+.to(loaderLine,{
+    width:()=>document.querySelector(".loader-logo").getBoundingClientRect().width+"px",
+    duration:.3,
+    ease:"power3.inOut"
+})
+
+.to({},{
+    duration:.15
+})
+
+// Loader leaves
+.to(loader,{
+    yPercent:-100,
+    duration:.7,
+    ease:"power4.inOut"
+})
+
+// Hero animation
+.from(".hero-tag",{
+    y:30,
+    opacity:0,
+    duration:.5
+},"-=.3")
+
+.from(".hero-word",{
+    yPercent:120,
+    duration:.7,
+    stagger:.07,
+    ease:"power4.out"
+},"-=.35");
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+const cursor = document.querySelector(".cursor");
+
+let lastX = 0;
+let lastY = 0;
+
+function chooseCursorColor(r,g,b){
+
+    /* Yez+ purple family -> white cursor */
+    const isPurple =
+        r >= 70 &&
+        r <= 190 &&
+        g >= 20 &&
+        g <= 140 &&
+        b >= 170 &&
+        b <= 255;
+
+    return isPurple ? "#ffffff" : "#7938ff";
+}
+
+
+function isPurple(r,g,b){
+    return r >= 70 && r <= 180 &&
+           g >= 15 && g <= 130 &&
+           b >= 150 && b <= 255;
+}
+
+function parseColor(value){
+    if(!value || value === "transparent") return null;
+
+    const match = value.match(
+        /rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)/
+    );
+
+    if(!match) return null;
+
+    return {
+        r: Number(match[1]),
+        g: Number(match[2]),
+        b: Number(match[3]),
+        a: match[4] === undefined ? 1 : Number(match[4])
+    };
+}
+
+function getSurfaceColor(x, y) {
+    const elements = document.elementsFromPoint(x, y);
+
+    let effectiveBg = null;
+    let isPurpleText = false;
+
+    /*
+     * Find the element/text under cursor
+     * and walk through its ancestors to determine
+     * the actual visible background.
+     */
+    for (const el of elements) {
+        if (
+            !el ||
+            el === cursor ||
+            el === document.documentElement ||
+            el === document.body
+        ) {
+            continue;
+        }
+
+        const style = getComputedStyle(el);
+
+        const bg = parseColor(style.backgroundColor);
+        const text = parseColor(style.color);
+
+        /*
+         * Detect purple text
+         */
+        if (
+            text &&
+            isPurple(text.r, text.g, text.b)
+        ) {
+            isPurpleText = true;
+        }
+
+        /*
+         * First solid background encountered
+         */
+        if (
+            !effectiveBg &&
+            bg &&
+            bg.a > 0.05
+        ) {
+            effectiveBg = bg;
+        }
+    }
+
+    /*
+     * =====================================================
+     * PRIORITY 1
+     * WHITE BACKGROUND + PURPLE TEXT
+     * -> BLACK CURSOR
+     * =====================================================
+     */
+   if (
+    isPurpleText &&
+    effectiveBg &&
+    effectiveBg.r > 220 &&
+    effectiveBg.g > 220 &&
+    effectiveBg.b > 220
+) {
+    return "#000000";
+}
+
+    /*
+     * =====================================================
+     * PRIORITY 2
+     * PURPLE BACKGROUND
+     * -> WHITE CURSOR
+     * =====================================================
+     */
+    if (
+        effectiveBg &&
+        isPurple(
+            effectiveBg.r,
+            effectiveBg.g,
+            effectiveBg.b
+        )
+    ) {
+        return "#ffffff";
+    }
+
+    /*
+     * =====================================================
+     * PRIORITY 3
+     * PURPLE TEXT
+     * -> WHITE CURSOR
+     *
+     * Used when purple text is on a dark/transparent
+     * background.
+     * =====================================================
+     */
+    if (isPurpleText) {
+        return "#ffffff";
+    }
+
+    /*
+     * =====================================================
+     * DEFAULT
+     * -> PURPLE CURSOR
+     * =====================================================
+     */
+    return "#7938ff";
+}
+function moveCursor(e){
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    /* Direct positioning: no lerp, no GSAP delay */
+    cursor.style.left = lastX + "px";
+    cursor.style.top = lastY + "px";
+
+    cursor.style.setProperty(
+        "--cursor-color",
+        getSurfaceColor(lastX,lastY)
+    );
+
+    cursor.classList.add("visible");
+
+    const target = document.elementFromPoint(lastX,lastY);
+
+    const interactive = target && target.closest(
+        "a,button,.service,.process-item,.work-card,.price-card,select,input,textarea"
+    );
+
+    cursor.classList.toggle("hover",!!interactive);
+}
+
+document.addEventListener("mousemove",moveCursor,{passive:true});
+
+document.addEventListener("mouseleave",()=>{
+    cursor.classList.remove("visible");
+});
+
+document.addEventListener("mouseenter",()=>{
+    if(window.matchMedia("(hover:hover) and (pointer:fine)").matches){
+        cursor.classList.add("visible");
+    }
+});
+
+document.addEventListener("mouseover",e=>{
+
+    if(!cursor.classList.contains("visible")) return;
+
+    const target = e.target.closest?.(
+        "a,button,.service,.process-item,.work-card,.price-card,select,input,textarea"
+    );
+
+    cursor.classList.toggle("hover",!!target);
+});
+
+/* Re-check while pointer is stationary and the page scrolls */
+window.addEventListener("scroll",()=>{
+
+    if(!cursor.classList.contains("visible")) return;
+
+    cursor.style.setProperty(
+        "--cursor-color",
+        getSurfaceColor(lastX,lastY)
+    );
+
+},{passive:true});
+
+
+
+
+/* =========================================================
+   MOVING PURPLE PLUS
+   HERO + SERVICES
+   ========================================================= */
+
+const heroPlus = document.querySelector(".hero-orb");
+const servicesPlus = document.querySelector(".services-plus");
+const pricingPlus = document.querySelector(".pricing-plus");
+const statementPlus = document.querySelector(".statement-plus");
+
+document.addEventListener("mousemove", e => {
+
+    const x =
+        (e.clientX / window.innerWidth - .5) * 90;
+
+    const y =
+        (e.clientY / window.innerHeight - .5) * 90;
+
+    if(heroPlus){
+        gsap.to(heroPlus,{
+            x:x,
+            y:y,
+            duration:1.5,
+            ease:"power3.out"
+        });
+    }
+
+    if(servicesPlus){
+        gsap.to(servicesPlus,{
+            x:x,
+            y:y,
+            duration:1.5,
+            ease:"power3.out"
+        });
+    }
+
+    if(pricingPlus){
+        gsap.to(pricingPlus,{
+            x:x,
+            y:y,
+            duration:1.5,
+            ease:"power3.out"
+        });
+    }
+
+    if(statementPlus){
+        gsap.to(statementPlus,{
+            x:x,
+            y:y,
+            duration:1.5,
+            ease:"power3.out"
+        });
+    }
+
+});
+/* =========================================================
+STATEMENT
+========================================================= */
+
+gsap.from(".statement-title",{
+
+    scrollTrigger:{
+        trigger:".statement",
+        start:"top 70%",
+        end:"bottom 45%",
+        scrub:1
+    },
+
+    y:100,
+    opacity:0
+
+});
+
+
+/* =========================================================
+SERVICES
+========================================================= */
+
+gsap.from(".service",{
+
+    scrollTrigger:{
+        trigger:".services-list",
+        start:"top 75%"
+    },
+
+    y:70,
+    opacity:0,
+
+    stagger:.1,
+
+    duration:.8,
+
+    ease:"power3.out"
+
+});
+
+
+/* =========================================================
+STATS COUNTER
+========================================================= */
+
+gsap.from(".stat-number",{
+
+    scrollTrigger:{
+        trigger:".stats",
+        start:"top 80%"
+    },
+
+    y:40,
+    opacity:0,
+
+    stagger:.12,
+
+    duration:.8,
+
+    ease:"power3.out"
+
+});
+
+
+const horizontal = document.querySelector(".horizontal");
+
+if(horizontal){
+
+    const mm = gsap.matchMedia();
+
+    /* Desktop only: vertical scroll drives horizontal cards */
+    mm.add("(min-width:901px)", () => {
+
+        const getDistance = () => Math.max(
+            0,
+            horizontal.scrollWidth - window.innerWidth + window.innerWidth * 0.04
+        );
+
+        const tween = gsap.to(horizontal, {
+            x: () => -getDistance(),
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".work-section",
+                start: "top top",
+                end: () => "+=" + getDistance(),
+                scrub: 1,
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true
+            }
+        });
+
+        return () => tween.kill();
+    });
+
+    /* Mobile / tablet: native swipe */
+    mm.add("(max-width:900px)", () => {
+
+        gsap.set(horizontal, { clearProps: "transform" });
+        horizontal.scrollLeft = 0;
+
+        return () => gsap.set(horizontal, { clearProps: "transform" });
+    });
+
+}
+
+/* =========================================================
+WORK CARD REVEAL
+========================================================= */
+
+gsap.from(".work-card",{
+
+    scrollTrigger:{
+        trigger:".work-section",
+        start:"top 75%"
+    },
+
+    scale:.9,
+    opacity:0,
+
+    stagger:.15,
+
+    duration:1,
+
+    ease:"power3.out"
+
+});
+
+
+/* =========================================================
+PROCESS
+========================================================= */
+
+gsap.from(".process-item",{
+
+    scrollTrigger:{
+        trigger:".process-list",
+        start:"top 75%"
+    },
+
+    x:80,
+    opacity:0,
+
+    stagger:.13,
+
+    duration:.8,
+
+    ease:"power3.out"
+
+});
+
+
+/* =========================================================
+PRICING
+========================================================= */
+
+gsap.fromTo(".price-card",
+{
+    y:80,
+    autoAlpha:0
+},
+{
+    scrollTrigger:{
+        trigger:".pricing-grid",
+        start:"top 88%",
+        once:true
+    },
+
+    y:0,
+    autoAlpha:1,
+
+    stagger:.18,
+
+    duration:1.1,
+
+    ease:"power3.out"
+});
+
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const options = document.querySelectorAll(".pricing-option");
+    const panels = document.querySelectorAll(".pricing-panel");
+
+    options.forEach(option => {
+
+        option.addEventListener("click", function(){
+
+            const target = this.getAttribute("data-target");
+
+            options.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            panels.forEach(panel => {
+                panel.classList.remove("active");
+            });
+
+            this.classList.add("active");
+
+            const targetPanel = document.getElementById(target);
+
+            if(targetPanel){
+                targetPanel.classList.add("active");
+            }
+
+        });
+
+    });
+
+});
+
+/* =========================================================
+ENQUIRY
+========================================================= */
+
+gsap.from(".enquiry-grid",{
+
+    scrollTrigger:{
+        trigger:".enquiry",
+        start:"top 75%"
+    },
+
+    y:60,
+    opacity:0,
+
+    duration:1,
+
+    ease:"power3.out"
+
+});
+
+
+/* =========================================================
+FINAL
+========================================================= */
+
+gsap.from(".final-title",{
+
+    scrollTrigger:{
+        trigger:".final",
+        start:"top 70%"
+    },
+
+    scale:.65,
+    opacity:0,
+
+    duration:1.3,
+
+    ease:"power4.out"
+
+});
+
+
+/* =========================================================
+MAGNETIC BUTTONS
+========================================================= */
+
+document
+.querySelectorAll(".hero-btn,.final-btn,.submit-btn,.header-cta")
+.forEach(btn=>{
+
+    btn.addEventListener("mousemove",e=>{
+
+        const rect =
+            btn.getBoundingClientRect();
+
+        const x =
+            e.clientX-
+            rect.left-
+            rect.width/2;
+
+        const y =
+            e.clientY-
+            rect.top-
+            rect.height/2;
+
+        gsap.to(btn,{
+            x:x*.12,
+            y:y*.12,
+            duration:.3
+        });
+
+    });
+
+    btn.addEventListener("mouseleave",()=>{
+
+        gsap.to(btn,{
+            x:0,
+            y:0,
+            duration:.5,
+            ease:"elastic.out(1,.4)"
+        });
+
+    });
+
+});
+
+
+/* =========================================================
+HEADER COLOR
+========================================================= */
+
+const header =
+    document.querySelector(".header");
+
+const sections =
+    document.querySelectorAll(
+        ".statement,.pricing,.final"
+    );
+
+function updateHeader(){
+
+    const headerMiddle =
+        window.scrollY+80;
+
+    let dark = false;
+    let purple = false;
+
+    sections.forEach(section=>{
+
+        const top = section.offsetTop;
+        const bottom = top+section.offsetHeight;
+
+        if(
+            headerMiddle>=top &&
+            headerMiddle<=bottom
+        ){
+
+            if(section.classList.contains("final")){
+                purple=true;
+            }else{
+                dark=true;
+            }
+
+        }
+
+    });
+
+    header.classList.remove("dark","purple");
+
+    if(purple){
+        header.classList.add("purple");
+    }else if(dark){
+        header.classList.add("dark");
+    }
+
+}
+
+window.addEventListener("scroll",updateHeader);
+
+updateHeader();
+
+
+/* =========================================================
+MOBILE MENU
+========================================================= */
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+const mobileOverlay = document.querySelector(".mobile-menu-overlay");
+const mobileMenuLinks = document.querySelectorAll(".mobile-menu-nav a");
+const menuClose = document.querySelector(".menu-close");
+
+function setMobileMenu(open){
+    document.body.classList.toggle("menu-open", open);
+    menuToggle?.classList.toggle("is-open", open);
+    menuToggle?.setAttribute("aria-expanded", open ? "true" : "false");
+    mobileMenu?.setAttribute("aria-hidden", open ? "false" : "true");
+    menuToggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+}
+
+menuToggle?.addEventListener("click",()=>{
+    setMobileMenu(!document.body.classList.contains("menu-open"));
+});
+
+menuClose?.addEventListener("click",()=>setMobileMenu(false));
+mobileOverlay?.addEventListener("click",()=>setMobileMenu(false));
+mobileMenuLinks.forEach(link=>{
+    link.addEventListener("click",()=>setMobileMenu(false));
+});
+
+document.addEventListener("keydown",e=>{
+    if(e.key === "Escape") setMobileMenu(false);
+});
+
+window.addEventListener("resize",()=>{
+    if(window.innerWidth > 900) setMobileMenu(false);
+});
+
+
+/* =========================================================
+FORM
+========================================================= */
+
+const form = document.getElementById("enquiryForm");
+
+const SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbxpUx6oKw93cirrQpPEchnxG-sWkNhLhO5E9SVTdyFxsaZjMwH1fWPWxFOGEysjOYAbGg/exec";
+
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const button = form.querySelector(".submit-btn");
+
+    button.disabled = true;
+    button.textContent = "Sending...";
+
+    const data = new URLSearchParams();
+
+    data.append(
+        "name",
+        form.querySelector('[name="name"]').value
+    );
+
+    data.append(
+        "business",
+        form.querySelector('[name="business"]').value
+    );
+
+    data.append(
+        "email",
+        form.querySelector('[name="email"]').value
+    );
+
+    data.append(
+        "phone",
+        form.querySelector('[name="phone"]').value
+    );
+
+    data.append(
+        "service",
+        form.querySelector('[name="service"]').value
+    );
+
+    data.append(
+        "project",
+        form.querySelector('[name="project"]').value
+    );
+
+    try {
+
+        await fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: data
+        });
+
+        button.textContent = "Enquiry Sent ✓";
+        button.style.background = "#7938ff";
+
+        form.reset();
+
+    } catch (error) {
+
+        button.disabled = false;
+        button.textContent = "Send Enquiry ↗";
+
+        alert("Something went wrong. Please try again.");
+
+    }
+
+});
+
+
+/* =========================================================
+RESIZE
+========================================================= */
+
+window.addEventListener("resize",()=>{
+
+    ScrollTrigger.refresh();
+
+});
+
+</script>
+
+
+<script>
+/* Smooth navigation for header/footer in-page links. */
+document.addEventListener("click", function(e){
+    const link = e.target.closest('a[href^="#"]');
+    if(!link) return;
+
+    const hash = link.getAttribute("href");
+    if(!hash || hash === "#") return;
+
+    const target = document.querySelector(hash);
+    if(!target) return;
+
+    e.preventDefault();
+    history.pushState(null, "", hash);
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+</script>
+</body>
+</html>

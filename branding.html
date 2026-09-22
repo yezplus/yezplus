@@ -1,0 +1,3772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Yez+ — Branding Works</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+
+    --black:#080808;
+    --black-soft:#111111;
+
+    --white:#f7f7f4;
+
+    --purple:#7938ff;
+    --purple-light:#a779ff;
+
+    --gray:#777;
+
+    --line:rgba(0,0,0,.11);
+    --dark-line:rgba(255,255,255,.12);
+
+}
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    font-family:"DM Sans",sans-serif;
+
+    background:var(--black);
+
+    color:var(--white);
+
+    overflow-x:hidden;
+
+}
+
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+button{
+    font-family:inherit;
+}
+
+/* =========================
+   CUSTOM + CURSOR
+========================= */
+
+*{
+    cursor:none !important;
+}
+
+.filter-btn,
+.filter-btn:hover,
+button,
+button:hover,
+a,
+a:hover{
+    cursor:none !important;
+}
+
+.cursor{
+    position:fixed;
+    top:0;
+    left:0;
+    width:30px;
+    height:30px;
+    pointer-events:none;
+    z-index:99999;
+    transform:translate(-50%,-50%);
+    color:#8B5CF6;
+    font-family:"Manrope",sans-serif;
+    font-size:40px;
+    font-weight:800;
+    line-height:1;
+    transition:
+        transform .2s ease,
+        font-size .2s ease,
+        color .2s ease;
+}
+
+.cursor::before{
+    content:"+";
+}
+
+.cursor.hover{
+    font-size:50px;
+    transform:translate(-50%,-50%) rotate(45deg);
+}
+
+@media(max-width:380px){
+    *{
+        cursor:auto;
+    }
+
+    .cursor{
+        display:none;
+    }
+}
+
+
+
+/* =========================================================
+   HEADER
+   DOMORE+ ORIGINAL STYLE
+   LOGO ONLY
+========================================================= */
+
+.header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    z-index:5000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    padding:18px 4vw;
+
+    background:var(--black);
+
+    color:white;
+
+    border-bottom:1px solid #202020;
+
+}
+
+
+.logo{
+
+    font-family:"Manrope";
+
+    font-weight:800;
+
+    font-size:35px;
+
+    letter-spacing:-1.5px;
+
+    color:white;
+
+}
+
+
+.logo span{
+
+    color:var(--purple);
+
+}
+
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:92vh;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:var(--black);
+
+    display:flex;
+
+    align-items:center;
+
+    padding:150px 4vw 90px;
+
+}
+
+
+.hero-grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(256,256,256,.035) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:80px 80px;
+
+}
+
+
+.hero-plus{
+
+    position:absolute;
+
+    right:-100px;
+
+    top:-180px;
+
+    font-family:"Manrope";
+
+    font-size:650px;
+
+    line-height:.75;
+
+    font-weight:800;
+
+    letter-spacing:-25px;
+
+    color:var(--purple);
+
+    filter:blur(18px);
+
+    opacity:.35;
+
+    pointer-events:none;
+
+}
+
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+}
+
+
+.hero-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin-bottom:35px;
+
+}
+
+
+.hero-label i{
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--purple);
+
+    box-shadow:0 0 20px var(--purple);
+
+}
+
+
+.hero-title{
+
+    font-family:"Manrope";
+
+    font-size:clamp(65px,11vw,165px);
+
+    line-height:.82;
+
+    letter-spacing:-10px;
+
+    font-weight:800;
+
+}
+
+
+.hero-title .purple{
+
+    color:var(--purple);
+
+}
+
+
+.hero-title .stroke{
+
+    color:transparent;
+
+    -webkit-text-stroke:1.5px var(--white);
+
+}
+
+
+.hero-bottom{
+    margin-top:60px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+    gap:30px;
+}
+
+
+.hero-copy{
+    max-width:470px;
+    color:#777;
+    font-size:17px;
+    line-height:1.7;
+}
+
+
+.hero-count{
+
+    font-family:"Manrope";
+
+    font-size:14px;
+    display: none;
+
+    color:#777;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+
+.hero-count strong{
+
+    font-size:55px;
+
+    color:var(--black);
+
+    letter-spacing:-3px;
+
+    margin-right:8px;
+
+}
+
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters-wrap{
+
+    background:var(--black);
+
+    padding:0 4vw 60px;
+
+    width:100%;
+
+    max-width:100%;
+
+    overflow:hidden;
+
+}
+
+
+.filters{
+
+    display:flex;
+
+    gap:8px;
+
+    width:100%;
+
+    max-width:100%;
+
+    min-width:0;
+
+    overflow-x:visible;
+
+    overflow-y:visible;
+
+    scrollbar-width:none;
+
+    -webkit-overflow-scrolling:touch;
+
+    overscroll-behavior-x:contain;
+
+    border-bottom:1px solid var(--line);
+
+    padding-bottom:25px;
+
+}
+
+
+.filters::-webkit-scrollbar{
+    display:none;
+}
+
+
+.filter{
+
+    flex-shrink:0;
+
+    border:1px solid #d4d4d0;
+
+    background:transparent;
+
+    color:#fff;
+
+    border-radius:100px;
+
+    padding:12px 19px;
+
+    font-size:11px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.filter:hover{
+
+    background:var(--white);
+
+    border-color:var(--black);
+
+    color:black;
+
+}
+.filter.active{
+
+    background:var(--purple);
+
+    border-color:var(--purple);
+
+    color:white;
+
+}
+
+
+
+/* =========================================================
+   PORTFOLIO
+========================================================= */
+
+.portfolio{
+
+    background:var(--black);
+
+    width:100%;
+
+    padding:0 4vw 150px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,minmax(0,1fr));
+
+    grid-auto-rows:auto;
+
+    align-items:start;
+
+    gap:18px;
+}
+
+/* All Works: normal cards remain 4 per row.
+   Others are placed in their own full-width 3-column grid. */
+.other-grid{
+    grid-column:1 / -1;
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+    align-items:start;
+}
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+.project{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:100%;
+
+    min-width:0;
+
+    background:#111;
+
+    border-radius:2px;
+
+    cursor:pointer;
+
+    grid-column:span 1;
+
+    transition:
+
+        transform .5s cubic-bezier(.2,.8,.2,1),
+
+        border-radius .5s,
+
+        box-shadow .5s;
+
+}
+
+
+/* CATEGORY CARD RATIOS
+   The card follows the requested ratio.
+   Images stay fully visible with object-fit:contain. */
+
+.project.ratio-logo{
+    aspect-ratio:1 / 1;
+}
+
+.project.ratio-idcard{
+    aspect-ratio:4 / 5;
+}
+
+.project.ratio-visiting,
+.project.ratio-certificate{
+    aspect-ratio:4 / 3;
+}
+
+.project.ratio-menu{
+    aspect-ratio:3 / 4;
+}
+
+/* Others use the actual image ratio.
+   The ratio is set from the image's natural dimensions in JS. */
+.project.ratio-other{
+    height:320px;
+}
+
+
+.project:hover{
+
+    transform:translateY(-8px);
+
+    border-radius:8px;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.18);
+
+}
+
+
+.project.hidden{
+
+    display:none;
+
+}
+
+
+
+/* =========================================================
+   UNIQUE CARD BACKGROUND
+========================================================= */
+
+.project:nth-child(1){
+    background:linear-gradient(145deg,#1b1427,#09070d);
+}
+
+.project:nth-child(2){
+    background:linear-gradient(145deg,#241737,#0a080e);
+}
+
+.project:nth-child(3){
+    background:linear-gradient(145deg,#141c25,#08090c);
+}
+
+.project:nth-child(4){
+    background:linear-gradient(145deg,#28182f,#09070d);
+}
+
+.project:nth-child(5){
+    background:linear-gradient(145deg,#19192b,#08080d);
+}
+
+.project:nth-child(6){
+    background:linear-gradient(145deg,#241529,#09070d);
+}
+
+.project:nth-child(7){
+    background:linear-gradient(145deg,#16221c,#080b09);
+}
+
+.project:nth-child(8){
+    background:linear-gradient(145deg,#271d13,#090806);
+}
+
+.project:nth-child(9){
+    background:linear-gradient(145deg,#19152b,#08070d);
+}
+
+.project:nth-child(10){
+    background:linear-gradient(145deg,#24152e,#09070d);
+}
+
+.project:nth-child(11){
+    background:linear-gradient(145deg,#151d28,#08090d);
+}
+
+.project:nth-child(12){
+    background:linear-gradient(145deg,#29171e,#090708);
+}
+
+.project:nth-child(13){
+    background:linear-gradient(145deg,#1b162c,#08070d);
+}
+
+.project:nth-child(14){
+    background:linear-gradient(145deg,#24182d,#09070c);
+}
+
+.project:nth-child(15){
+    background:linear-gradient(145deg,#161d26,#08090c);
+}
+
+.project:nth-child(16){
+    background:linear-gradient(145deg,#28171f,#090708);
+}
+
+.project:nth-child(17){
+    background:linear-gradient(145deg,#19152d,#08070d);
+}
+
+.project:nth-child(18){
+    background:linear-gradient(145deg,#24172a,#09070c);
+}
+
+.project:nth-child(19){
+    background:linear-gradient(145deg,#171e26,#08090c);
+}
+
+.project:nth-child(20){
+    background:linear-gradient(145deg,#25172c,#09070d);
+}
+
+.project:nth-child(21){
+    background:linear-gradient(145deg,#18182a,#08080d);
+}
+
+
+
+/* =========================================================
+   CARD MEDIA
+========================================================= */
+
+.card-media{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    overflow:hidden;
+
+}
+
+
+.card-slide{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    transition:opacity .8s ease;
+
+}
+
+
+.card-slide.active{
+
+    opacity:1;
+
+}
+
+
+.card-slide img{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    background:#111;
+
+    transition:transform 1.2s ease;
+
+}
+
+
+.project:hover
+.card-slide.active img{
+
+    transform:scale(1.04);
+
+}
+
+
+
+/* =========================================================
+   CARD OVERLAY
+========================================================= */
+
+.card-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            transparent 35%,
+            rgba(0,0,0,.04) 48%,
+            rgba(0,0,0,.88) 88%,
+            rgba(0,0,0,1) 100%
+        );
+
+}
+
+
+
+/* =========================================================
+   SLIDE DOTS
+========================================================= */
+
+.slide-dots{
+
+    position:absolute;
+
+    top:20px;
+
+    left:20px;
+
+    z-index:5;
+
+    display:flex;
+
+    gap:4px;
+
+}
+
+
+.slide-dot{
+
+    width:22px;
+
+    height:2px;
+
+    background:rgba(255,255,255,.35);
+
+    transition:.4s;
+
+}
+
+
+.slide-dot.active{
+
+    background:white;
+
+    width:30px;
+
+}
+
+
+
+/* =========================================================
+   CARD INFO
+========================================================= */
+
+.card-info{
+
+    position:absolute;
+
+    z-index:4;
+
+    left:25px;
+
+    right:25px;
+
+    bottom:23px;
+
+    color:white;
+
+}
+
+
+.card-category{
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#c1aaff;
+
+    margin-bottom:8px;
+
+}
+
+
+.card-title{
+
+    font-family:"Manrope";
+
+    font-size:25px;
+
+    font-weight:700;
+
+    letter-spacing:-.8px;
+
+}
+
+
+.card-meta{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:12px;
+
+    color:#999;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+
+.open-icon{
+
+    width:34px;
+
+    height:34px;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:16px;
+
+    transition:.35s;
+
+}
+
+
+.project:hover .open-icon{
+
+    background:white;
+
+    border-color:white;
+
+    color:var(--purple);
+
+    transform:translate(2px,-2px);
+
+}
+
+
+
+/* =========================================================
+   FULLSCREEN VIEWER
+========================================================= */
+
+.viewer{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:none;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(121,56,255,.13),
+            transparent 45%
+        ),
+
+        rgba(5,5,7,.97);
+
+    backdrop-filter:blur(20px);
+
+}
+
+
+.viewer.active{
+
+    display:block;
+
+    animation:viewerIn .35s ease;
+
+}
+
+
+@keyframes viewerIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+
+/* =========================================================
+   VIEWER TOP
+========================================================= */
+
+.viewer-top{
+
+    position:absolute;
+
+    top:22px;
+
+    left:30px;
+
+    right:30px;
+
+    z-index:10;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+
+.viewer-title{
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    color:white;
+
+}
+
+
+.viewer-title span:first-child{
+
+    color:var(--purple-light);
+
+    margin-right:12px;
+
+}
+
+
+.close{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    background:rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:27px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.close:hover{
+
+    background:white;
+
+    color:black;
+
+}
+
+
+
+/* =========================================================
+   VIEWER IMAGE
+========================================================= */
+
+.viewer-stage{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:80px 100px;
+
+}
+
+
+.viewer-image{
+
+    max-width:88vw;
+
+    max-height:84vh;
+
+    width:auto;
+
+    height:auto;
+
+    object-fit:contain;
+
+    border-radius:3px;
+
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.75);
+
+    user-select:none;
+
+}
+
+
+
+/* =========================================================
+   VIEWER NAV
+========================================================= */
+
+.viewer-nav{
+
+    position:absolute;
+
+    left:25px;
+
+    right:25px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    pointer-events:none;
+
+}
+
+
+.nav-btn{
+
+    pointer-events:auto;
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    background:rgba(0,0,0,.35);
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.nav-btn:hover{
+
+    background:white;
+
+    color:black;
+
+}
+
+
+
+/* =========================================================
+   VIEWER COUNTER
+========================================================= */
+
+.viewer-bottom{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:25px;
+
+    display:flex;
+
+    justify-content:center;
+
+    color:#888;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+
+
+/* =========================================================
+   FOOTER
+   SAME DOMORE+ STYLE
+========================================================= */
+
+footer{
+
+    background:var(--black);
+
+    color:white;
+
+    padding:75px 5vw;
+
+}
+
+
+.footer-main{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    padding-bottom:75px;
+
+}
+
+
+.footer-logo{
+
+    font-family:"Manrope";
+
+    font-size:55px;
+
+    font-weight:800;
+
+    letter-spacing:-4px;
+
+    margin-top:0;
+
+}
+
+
+.footer-logo span{
+
+    color:var(--purple);
+
+}
+
+
+.footer-brand{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-top:0;
+
+    align-self:flex-start;
+
+    align-items:flex-start;
+
+}
+
+
+.footer-tagline{
+
+    margin-top:18px;
+
+    max-width:320px;
+
+    color:#999;
+
+    font-family:"DM Sans",sans-serif;
+
+    font-size:15px;
+
+    font-weight:400;
+
+    line-height:1.6;
+
+    letter-spacing:0;
+
+}
+
+
+.footer-nav{
+
+    display:flex;
+
+    gap:90px;
+
+    padding-top:15px;
+
+    margin-top:0;
+
+    align-self:flex-start;
+
+}
+
+
+.footer-col{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+    margin-top:0;
+
+}
+
+
+.footer-col small{
+
+    font-size:15px;
+
+    color:#555;
+
+    margin-bottom:8px;
+
+}
+
+
+.footer-col a{
+
+    color:#999;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+
+.footer-col a:hover{
+
+    color:white;
+
+}
+
+
+.footer-bottom{
+
+    border-top:1px solid #222;
+
+    padding:25px 0 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#999;
+
+    font-size:13px;
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .header{
+
+        padding:16px 5vw;
+
+    }
+
+
+    .logo{
+
+        font-size:30px;
+
+    }
+
+
+    .hero{
+
+        min-height:auto;
+
+        padding:130px 5vw 70px;
+
+    }
+
+
+    .hero-title{
+
+        font-size:16vw;
+
+        letter-spacing:-5px;
+
+    }
+
+
+    .hero-bottom{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        margin-top:45px;
+
+    }
+
+
+    .hero-copy{
+
+        font-size:15px;
+
+    }
+
+
+    .filters-wrap{
+
+        padding:0 5vw 40px;
+
+    }
+
+
+    .portfolio{
+
+        grid-template-columns:repeat(3,minmax(0,1fr));
+
+        grid-auto-rows:auto;
+
+        padding:0 5vw 90px;
+
+        gap:12px;
+
+    }
+
+    .other-grid{
+
+        grid-template-columns:repeat(3,minmax(0,1fr));
+
+        gap:12px;
+
+    }
+
+
+    .project,
+    .project:nth-child(5n+1),
+    .project:nth-child(5n+2){
+
+        grid-column:span 1;
+
+        height:auto;
+
+    }
+
+    .project.ratio-logo{
+        aspect-ratio:1 / 1;
+    }
+
+    .project.ratio-idcard{
+        aspect-ratio:4 / 5;
+    }
+
+    .project.ratio-visiting,
+    .project.ratio-certificate{
+        aspect-ratio:4 / 3;
+    }
+
+    .project.ratio-menu{
+        aspect-ratio:3 / 4;
+    }
+
+    .project.ratio-other{
+        height:auto;
+        aspect-ratio:auto;
+    }
+
+    .filters-wrap{
+        padding-left:5vw;
+        padding-right:5vw;
+        overflow:hidden;
+    }
+
+    .filters{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        overflow-x:auto;
+        overflow-y:hidden;
+        padding-right:2px;
+    }
+
+
+
+    .card-title{
+
+        font-size:21px;
+
+    }
+
+
+    .viewer-stage{
+
+        padding:80px 25px;
+
+    }
+
+
+    .viewer-image{
+
+        max-width:94vw;
+
+        max-height:82vh;
+
+    }
+
+
+    .viewer-nav{
+
+        left:10px;
+
+        right:10px;
+
+    }
+
+
+    footer{
+
+        padding:55px 5vw;
+
+    }
+
+
+    .footer-main{
+
+        flex-direction:column;
+
+        gap:55px;
+
+        padding-bottom:55px;
+
+    }
+
+
+    .footer-nav{
+
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+        gap:45px 25px;
+
+        padding-top:0;
+
+    }
+
+
+    .footer-col:last-child{
+
+        grid-column:1 / -1;
+
+    }
+
+
+    .footer-bottom{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        line-height:1.5;
+
+    }
+
+}
+
+
+
+@media(max-width:550px){
+
+    .hero-title{
+
+        font-size:18vw;
+
+        line-height:.88;
+
+        letter-spacing:-4px;
+
+    }
+
+
+    .hero-plus{
+
+        font-size:300px;
+
+        right:-80px;
+
+        top:-70px;
+
+    }
+
+
+    .portfolio{
+
+        grid-template-columns:repeat(2,minmax(0,1fr));
+
+        grid-auto-rows:auto;
+
+    }
+
+    .other-grid{
+
+        grid-template-columns:repeat(2,minmax(0,1fr));
+
+        gap:12px;
+
+    }
+
+
+    .project,
+    .project:nth-child(5n+1),
+    .project:nth-child(5n+2){
+
+        grid-column:span 1;
+
+        height:auto;
+
+    }
+
+    .project.ratio-logo{
+        aspect-ratio:1 / 1;
+    }
+
+    .project.ratio-idcard{
+        aspect-ratio:4 / 5;
+    }
+
+    .project.ratio-visiting,
+    .project.ratio-certificate{
+        aspect-ratio:4 / 3;
+    }
+
+    .project.ratio-menu{
+        aspect-ratio:3 / 4;
+    }
+
+    .project.ratio-other{
+        height:auto;
+        aspect-ratio:auto;
+    }
+
+    .filters-wrap{
+        overflow:hidden;
+    }
+
+    .filters{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        overflow-x:auto;
+        overflow-y:hidden;
+        touch-action:auto;
+        overscroll-behavior-x:contain;
+    }
+
+
+
+    .card-info{
+
+        left:20px;
+
+        right:20px;
+
+        bottom:20px;
+
+    }
+
+
+    .card-title{
+
+        font-size:23px;
+
+    }
+
+
+    .viewer{
+
+        padding:10px;
+
+    }
+
+
+    .viewer-top{
+
+        top:15px;
+
+        left:15px;
+
+        right:15px;
+
+    }
+
+
+    .viewer-stage{
+
+        padding:70px 10px 80px;
+
+    }
+
+
+    .viewer-image{
+
+        max-width:96vw;
+
+        max-height:78vh;
+
+    }
+
+
+    .viewer-nav{
+
+        top:auto;
+
+        bottom:25px;
+
+        transform:none;
+
+    }
+
+
+    .nav-btn{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+
+    .viewer-bottom{
+
+        display:none;
+
+    }
+
+
+    .footer-logo{
+
+        font-size:45px;
+
+        letter-spacing:-3px;
+
+    }
+
+
+    .footer-nav{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .footer-col:last-child{
+
+        grid-column:auto;
+
+    }
+
+}
+
+
+
+
+/* =========================================================
+   PAGE LOAD ANIMATION (HEADER / HERO / FILTERS)
+========================================================= */
+
+.header{
+    opacity:0;
+    transform:translateY(-30px);
+}
+
+.hero-label{
+    opacity:0;
+    transform:translateY(30px);
+}
+
+.hero-title{
+    opacity:0;
+    transform:translateY(70px);
+    clip-path:inset(0 0 100% 0);
+}
+
+.hero-bottom{
+    opacity:0;
+    transform:translateY(35px);
+}
+
+.hero-plus{
+    opacity:0;
+    transform:scale(.75) rotate(-8deg);
+}
+
+.filters-wrap{
+    opacity:0;
+    transform:translateY(35px);
+}
+
+body.page-loaded .header{
+    opacity:1;
+    transform:translateY(0);
+    transition:
+        opacity .7s ease,
+        transform .8s cubic-bezier(.16,1,.3,1);
+}
+
+body.page-loaded .hero-plus{
+    opacity:.35;
+    transform:scale(1) rotate(0deg);
+    transition:
+        opacity 1.4s ease,
+        transform 1.8s cubic-bezier(.16,1,.3,1);
+}
+
+body.page-loaded .hero-label{
+    opacity:1;
+    transform:translateY(0);
+    transition:
+        opacity .7s ease .25s,
+        transform .8s cubic-bezier(.16,1,.3,1) .25s;
+}
+
+body.page-loaded .hero-title{
+    opacity:1;
+    transform:translateY(0);
+    clip-path:inset(0 0 0 0);
+    transition:
+        opacity .9s ease .4s,
+        transform 1.1s cubic-bezier(.16,1,.3,1) .4s,
+        clip-path 1.1s cubic-bezier(.16,1,.3,1) .4s;
+}
+
+body.page-loaded .hero-bottom{
+    opacity:1;
+    transform:translateY(0);
+    transition:
+        opacity .8s ease .8s,
+        transform .9s cubic-bezier(.16,1,.3,1) .8s;
+}
+
+body.page-loaded .filters-wrap{
+    opacity:1;
+    transform:translateY(0);
+    transition:
+        opacity .8s ease 1s,
+        transform .9s cubic-bezier(.16,1,.3,1) 1s;
+}
+
+
+
+/* =========================================================
+   SCROLL-REVEAL ANIMATION FOR CARDS
+   ("vara vara" — ஒவ்வொரு card-உம் scroll பண்ணும்போது
+   screen-க்குள் வரும்போது தான் animate ஆகும்)
+========================================================= */
+
+.project{
+    opacity:0;
+    transform:translateY(60px) scale(.96);
+    transition:
+        opacity .7s ease,
+        transform .8s cubic-bezier(.16,1,.3,1);
+}
+
+.project.in-view{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+        transition:none !important;
+    }
+}
+
+
+@media(max-width:420px){
+
+    .portfolio{
+
+        grid-template-columns:1fr;
+
+        grid-auto-rows:auto;
+
+    .other-grid{
+
+        grid-template-columns:1fr;
+
+        gap:12px;
+
+    }
+
+    }
+
+    .project{
+
+        grid-column:span 1 !important;
+
+        height:auto;
+
+    }
+
+    .project.ratio-logo{
+        aspect-ratio:1 / 1;
+    }
+
+    .project.ratio-idcard{
+        aspect-ratio:4 / 5;
+    }
+
+    .project.ratio-visiting,
+    .project.ratio-certificate{
+        aspect-ratio:4 / 3;
+    }
+
+    .project.ratio-menu{
+        aspect-ratio:3 / 4;
+    }
+
+    .project.ratio-other{
+        height:auto;
+        aspect-ratio:auto;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE FILTERS + OTHERS CARD HEIGHT
+========================================================= */
+
+@media(max-width:900px){
+    .filters-wrap{
+        overflow:hidden;
+    }
+
+    .filters{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        overflow:visible;
+        gap:8px;
+        padding-bottom:25px;
+    }
+
+    .filter{
+        flex:0 0 auto;
+        max-width:100%;
+        white-space:nowrap;
+    }
+
+    .project.ratio-other{
+        height:280px;
+    }
+}
+
+@media(max-width:550px){
+    .filters{
+        gap:7px;
+    }
+
+    .filter{
+        padding:10px 14px;
+        font-size:10px;
+        letter-spacing:1.2px;
+    }
+
+    .project.ratio-other{
+        height:240px;
+    }
+}
+
+@media(max-width:420px){
+    .filters{
+        gap:6px;
+    }
+
+    .filter{
+        padding:9px 12px;
+        font-size:9px;
+        letter-spacing:1px;
+    }
+
+    .project.ratio-other{
+        height:300px;
+    }
+}
+
+
+.footer-col .sub-link{
+    padding-left:14px;
+    color:#666;
+    font-size:14px;
+}
+
+
+@media(max-width:1200px){
+    .footer-nav{
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        gap:45px 25px;
+        padding-top:0;
+    }
+
+    .footer-col:last-child{
+        grid-column:auto;
+    }
+}
+
+@media(max-width:550px){
+    .footer-nav{
+        grid-template-columns:1fr 1fr;
+        gap:35px 20px;
+    }
+
+    .footer-col:last-child{
+        grid-column:auto;
+    }
+}
+
+
+
+/* =========================================================
+   CARD INFO
+   CATEGORY
+   PAGE COUNT
+   TITLE + ARROW
+========================================================= */
+
+.card-info{
+    position:absolute;
+    z-index:4;
+
+    left:25px;
+    right:25px;
+    bottom:23px;
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.card-category{
+    order:1;
+
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#c1aaff;
+
+    margin:0 0 8px 0;
+}
+
+
+/* =========================================================
+   PAGE COUNT
+========================================================= */
+
+.card-meta{
+    order:2;
+
+    position:relative;
+
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+
+    margin:0 0 6px 0;
+
+    color:#999;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.card-title{
+    order:3;
+
+    position:relative;
+
+    font-family:"Manrope";
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:-.8px;
+    line-height:1.15;
+
+    padding-right:50px;
+}
+
+
+/* =========================================================
+   ARROW
+   FORCE ARROW TO TITLE LINE
+========================================================= */
+
+.card-meta .open-icon{
+    position:absolute;
+
+    right:0;
+    bottom:-1px;
+
+    width:34px;
+    height:34px;
+
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-size:16px;
+
+    transition:.35s;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.project:hover .open-icon{
+    background:white;
+    border-color:white;
+    color:var(--purple);
+
+    transform:translate(2px,-2px);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:550px){
+
+    .card-info{
+        left:20px;
+        right:20px;
+        bottom:20px;
+    }
+
+    .card-category{
+        font-size:9px;
+        margin-bottom:6px;
+    }
+
+    .card-meta{
+        font-size:9px;
+        margin-bottom:5px;
+    }
+
+    .card-title{
+        font-size:20px;
+        line-height:1.15;
+        padding-right:45px;
+    }
+
+    .card-meta .open-icon{
+        width:32px;
+        height:32px;
+        bottom:0;
+    }
+
+}
+@media(max-width:550px){
+
+    /* Visiting Card */
+    .project.ratio-visiting .card-title{
+        font-size:17px;
+        line-height:1.2;
+        padding-right:45px;
+    }
+
+    /* Certificate */
+    .project.ratio-certificate .card-title{
+        font-size:17px;
+        line-height:1.2;
+        padding-right:45px;
+    }
+
+}
+</style>
+
+
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        Yez<span>+</span>
+    </a>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-plus">+</div>
+
+    <div class="hero-content">
+
+<div class="hero-label"></div>
+
+            
+
+
+        <h1 class="hero-title">
+
+            BRAND<br>
+
+            <span class="purple">ING</span>
+
+            <span class="stroke">/-</span>
+
+        </h1>
+
+
+        <div class="hero-bottom">
+
+            <p class="hero-copy">
+
+                A collection of visual identities, logos,
+                cards, menus and print experiences crafted
+                to make brands impossible to ignore.
+
+            </p>
+
+
+            <div class="hero-count">
+
+                <strong id="totalCount"></strong>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FILTERS
+========================================================= -->
+
+<div class="filters-wrap">
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            data-filter="all"
+        >
+            All Works
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="logo"
+        >
+            Logos
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="idcard"
+        >
+            ID Cards
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="menu"
+        >
+            Menu Cards
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="visiting"
+        >
+            Visiting Cards
+        </button>
+
+       <button
+            class="filter"
+            data-filter="certificate"
+        >
+            Certificate
+        </button>
+
+
+
+        <button
+            class="filter"
+            data-filter="other"
+        >
+            Others
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     PORTFOLIO
+========================================================= -->
+
+<main
+    class="portfolio"
+    id="portfolio"
+></main>
+
+
+
+<!-- =========================================================
+     FULLSCREEN VIEWER
+========================================================= -->
+
+<div
+    class="viewer"
+    id="viewer"
+>
+
+
+    <div class="viewer-top">
+
+        <div class="viewer-title">
+
+            <span id="viewerCategory">
+                Logo
+            </span>
+
+            <span id="viewerTitle">
+                Project
+            </span>
+
+        </div>
+
+
+        <button
+            class="close"
+            id="closeViewer"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+
+    <div class="viewer-stage">
+
+        <img
+            id="viewerImage"
+            class="viewer-image"
+            src=""
+            alt=""
+        >
+
+    </div>
+
+
+
+    <div class="viewer-nav">
+
+        <button
+            class="nav-btn"
+            id="prevBtn"
+            aria-label="Previous"
+        >
+            ←
+        </button>
+
+
+        <button
+            class="nav-btn"
+            id="nextBtn"
+            aria-label="Next"
+        >
+            →
+        </button>
+
+    </div>
+
+
+
+    <div class="viewer-bottom">
+
+        <span id="viewerCounter">
+            01 / 01
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+
+    <div class="footer-main">
+
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="footer-logo"
+            >
+                Yez<span>+</span>
+            </a>
+
+
+            <p class="footer-tagline">
+
+                We help brands do more, grow more,
+                and stand out with bold ideas,
+                meaningful content, and digital
+                experiences that drive real growth.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-nav">
+
+
+<!-- EXPLORE -->
+    <div class="footer-col">
+        <small>Home</small>
+
+        <a href="index.html#services">Services</a>
+
+        <a href="index.html#work">Work</a>
+        <a class="sub-link" href="branding.html"> ↳ Branding</a>
+        <a class="sub-link" href="posters.html"> ↳ Posters</a>
+        <a class="sub-link" href="videos.html"> ↳ Videos</a>
+        <a class="sub-link" href="websites.html"> ↳ Websites</a>
+
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Packages</a>
+    </div>
+            <!-- EXPLORE -->
+<div class="footer-col">
+    <small>Filters</small>
+    <a href="javascript:void(0)" onclick="goToFilter('all')">All Works</a>
+    <a href="javascript:void(0)" onclick="goToFilter('logo')">Logos</a>
+    <a href="javascript:void(0)" onclick="goToFilter('idcard')">ID Cards</a>
+    <a href="javascript:void(0)" onclick="goToFilter('menu')">Menu Cards</a>
+    <a href="javascript:void(0)" onclick="goToFilter('visiting')">Visiting Cards</a>
+    <a href="javascript:void(0)" onclick="goToFilter('certificate')">Certificate</a>
+    <a href="javascript:void(0)" onclick="goToFilter('other')">Others</a>
+</div>
+
+
+
+            <!-- SOCIAL -->
+
+            <div class="footer-col">
+
+                <small>
+                    Social Platform
+                </small>
+
+                <a
+                    href="https://www.instagram.com/yezplus/?utm_source=ig_web_button_share_sheet"
+                    target="_blank"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/company/yezplus"
+                    target="_blank"
+                >
+                    LinkedIn
+                </a>
+
+                <a
+                    href="https://wa.me/9486864679"
+                    target="_blank"
+                >
+                    WhatsApp
+                </a>
+
+            </div>
+
+
+
+            <!-- CONNECT -->
+
+            <div class="footer-col">
+
+                <small>
+                    Connect
+                </small>
+
+                <a
+                    href="mailto:hello.yezplus@gmail.com"
+                >
+                    <span class="contact-icon">
+                        Email:
+                    </span>
+
+                    hello.yezplus@gmail.com
+
+                </a>
+
+
+                <a
+                    href="tel:+919486864679"
+                >
+
+                    <span class="contact-icon">
+                        ☎
+                    </span>
+
+                    +91 94 8686 46 79
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Yez+. All rights reserved.
+        </span>
+
+
+        <span>
+
+            <strong>YEZ</strong> PLUS
+
+            <strong>TRUE</strong> SUCCESS
+
+        </span>
+
+    </div>
+
+
+</footer>
+
+<div class="cursor"></div>
+
+<script>
+
+
+/* =========================================================
+   PROJECT DATA
+=========================================================
+
+   CHANGE ONLY THE IMAGE PATHS / TITLES.
+
+========================================================= */
+
+
+const projects = [
+
+
+    /* =====================================================
+       LOGOS
+    ===================================================== */
+
+
+    {
+    category:"logo",
+    title:"DoMore+",
+
+    images:[
+        "work/branding/logo/1.jpg"
+    ]
+},
+
+
+{
+    category:"logo",
+    title:"Zutriva",
+
+    images:[
+        "work/branding/logo/2.jpg"
+    ]
+},
+
+
+{
+    category:"logo",
+    title:"Ilam Kalvi",
+
+    images:[
+        "work/branding/logo/3.jpg"
+    ]
+},
+
+
+{
+    category:"logo",
+    title:"Chill Chick'n",
+
+    images:[
+        "work/branding/logo/4.jpg"
+    ]
+},
+
+
+{
+    category:"logo",
+    title:"Puma Crackers",
+
+    images:[
+        "work/branding/logo/5.jpg"
+    ]
+},
+
+
+{
+    category:"logo",
+    title:"Banyan Engineering",
+
+    images:[
+        "work/branding/logo/6.jpg"
+    ]
+},
+
+
+{
+    category:"logo",
+    title:"MG Elite Interiors",
+
+    images:[
+        "work/branding/logo/7.jpg"
+    ]
+},
+
+
+/* =====================================================
+   ID CARDS
+===================================================== */
+
+{
+    category:"idcard",
+    title:"Hurryep BirthDay",
+
+    images:[
+        "work/branding/id/1.jpg"
+    ]
+},
+
+
+{
+    category:"idcard",
+    title:"Hurryep Welcome ID",
+
+    images:[
+        "work/branding/id/2.jpg"
+    ]
+},
+
+
+/* =====================================================
+   MENU CARDS
+===================================================== */
+
+{
+    category:"menu",
+    title:"TM Catering Menu",
+
+    images:[
+        "work/branding/menu/tm/1.jpg",
+        "work/branding/menu/tm/2.jpg",
+        "work/branding/menu/tm/3.jpg"
+    ]
+},
+
+
+{
+    category:"menu",
+    title:"Drava & Hungry Hub Menu",
+
+    images:[
+        "work/branding/menu/dh/1.jpg",
+        "work/branding/menu/dh/2.jpg"
+    ]
+},
+
+
+/* =====================================================
+   VISITING CARDS
+===================================================== */
+
+{
+    category:"visiting",
+    title:"TM Catering Visiting Card",
+
+    images:[
+        "work/branding/visiting/1.jpg",
+        "work/branding/visiting/2.jpg"
+    ]
+},
+
+
+/* =====================================================
+   CERTIFICATES
+===================================================== */
+
+{
+    category:"certificate",
+    title:"SEC College Certificate",
+
+    images:[
+        "work/branding/certificate/1.jpg"
+    ]
+},
+
+
+{
+    category:"certificate",
+    title:"SEC College Certificate",
+
+    images:[
+        "work/branding/certificate/2.jpg"
+    ]
+},
+
+
+{
+    category:"certificate",
+    title:"SEC College Certificate",
+
+    images:[
+        "work/branding/certificate/3.jpg"
+    ]
+},
+
+
+{
+    category:"certificate",
+    title:"SEC College Certificate",
+
+    images:[
+        "work/branding/certificate/4.jpg"
+    ]
+},
+
+
+{
+    category:"certificate",
+    title:"SEC College Certificate",
+
+    images:[
+        "work/branding/certificate/5.jpg"
+    ]
+},
+
+
+/* =====================================================
+   OTHERS
+===================================================== */
+
+{
+    category:"other",
+    title:"Cliqkeys Banner",
+
+    images:[
+        "work/branding/others/1.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"Cliqkeys FB Banner",
+
+    images:[
+        "work/branding/others/2.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"Nilapadham FB Banner",
+
+    images:[
+        "work/branding/others/3.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"PIET College FB Banner",
+
+    images:[
+        "work/branding/others/4.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"Saidev FB Banner",
+
+    images:[
+        "work/branding/others/5.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"VSquare FB Banner",
+
+    images:[
+        "work/branding/others/6.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"Sweet destiny Website Launch",
+
+    images:[
+        "work/branding/others/7.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"SEC Agenda",
+
+    images:[
+        "work/branding/others/8.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"SEC Agenda",
+
+    images:[
+        "work/branding/others/9.jpg"
+    ]
+},
+
+
+{
+    category:"other",
+    title:"Hungry Hub Ticket Pas",
+
+    images:[
+        "work/branding/others/10.jpg"
+    ]
+}
+
+];
+
+
+
+/* =========================================================
+   CATEGORY NAMES
+========================================================= */
+
+const categoryNames = {
+
+    logo:"Logo",
+
+    idcard:"ID Card",
+
+    menu:"Menu Card",
+
+    visiting:"Visiting Card",
+
+    certificate:"certificate",
+
+    other:"Other"
+
+};
+
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const portfolio =
+    document.getElementById("portfolio");
+
+const totalCount =
+    document.getElementById("totalCount");
+
+
+const viewer =
+    document.getElementById("viewer");
+
+const viewerImage =
+    document.getElementById("viewerImage");
+
+const viewerTitle =
+    document.getElementById("viewerTitle");
+
+const viewerCategory =
+    document.getElementById("viewerCategory");
+
+const viewerCounter =
+    document.getElementById("viewerCounter");
+
+
+let currentProject = 0;
+
+let currentImage = 0;
+
+
+
+/* =========================================================
+   SCROLL-REVEAL OBSERVER
+========================================================= */
+
+const revealObserver = new IntersectionObserver(
+
+    (entries) => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("in-view");
+
+                revealObserver.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.12,
+        rootMargin:"0px 0px -60px 0px"
+    }
+
+);
+
+
+function observeCards(){
+
+    document
+        .querySelectorAll(".project:not(.in-view)")
+        .forEach(card => {
+
+            revealObserver.observe(card);
+
+        });
+
+}
+
+
+
+/* =========================================================
+   BUILD PORTFOLIO
+========================================================= */
+
+function buildPortfolio(filter = "all"){
+
+    portfolio.innerHTML = "";
+    portfolio.classList.toggle("other-filter", filter === "other");
+
+    const otherGrid =
+        filter === "all"
+        ? document.createElement("div")
+        : null;
+
+    if(otherGrid){
+        otherGrid.className = "other-grid";
+    }
+
+
+    const visibleProjects =
+        projects.filter(project => {
+
+            return filter === "all"
+
+                ? true
+
+                : project.category === filter;
+
+        });
+
+
+    totalCount.textContent =
+        String(visibleProjects.length)
+        .padStart(2,"0");
+
+
+
+    visibleProjects.forEach((project,cardIndex) => {
+
+
+        const originalIndex =
+            projects.indexOf(project);
+
+
+        const card =
+            document.createElement("article");
+
+
+        card.className = `project ratio-${project.category}`;
+
+
+        /* stagger delay so cards in the same row
+           don't all pop in at the exact same instant */
+
+        card.style.transitionDelay =
+            (cardIndex % 6) * 0.08 + "s";
+
+
+        /* =================================================
+           SLIDES
+        ================================================= */
+
+        let slidesHTML = "";
+
+
+        project.images.forEach(
+            (image,index) => {
+
+                slidesHTML += `
+
+                    <div
+                        class="card-slide ${
+                            index === 0
+                            ? "active"
+                            : ""
+                        }"
+                    >
+
+                        <img
+                            src="${image}"
+                            alt="${project.title}"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+
+        /* =================================================
+           DOTS
+        ================================================= */
+
+        let dotsHTML = "";
+
+
+        project.images.forEach(
+            (image,index) => {
+
+                dotsHTML += `
+
+                    <span
+                        class="slide-dot ${
+                            index === 0
+                            ? "active"
+                            : ""
+                        }"
+                    ></span>
+
+                `;
+
+            }
+        );
+
+
+
+        /* =================================================
+           CARD HTML
+        ================================================= */
+
+        card.innerHTML = `
+
+            <div class="card-media">
+
+                ${slidesHTML}
+
+            </div>
+
+
+            <div class="card-overlay"></div>
+
+
+            <div class="slide-dots">
+
+                ${dotsHTML}
+
+            </div>
+
+
+            <div class="card-info">
+
+                <div class="card-category">
+
+                    ${categoryNames[
+                        project.category
+                    ]}
+
+                </div>
+
+
+                <div class="card-title">
+
+                    ${project.title}
+
+                </div>
+
+
+                <div class="card-meta">
+
+                    <span>
+
+                        ${project.images.length}
+
+                        ${
+                            project.images.length === 1
+                            ? "Page"
+                            : "Pages"
+                        }
+
+                    </span>
+
+
+                    <span class="open-icon">
+
+                        ↗
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+        /* Others: use the image's real/native ratio.
+           No fixed height is applied. */
+        if(project.category === "other"){
+            const firstImage = card.querySelector(".card-slide img");
+
+            const setOriginalRatio = () => {
+                if(firstImage.naturalWidth && firstImage.naturalHeight){
+                    card.style.aspectRatio =
+                        `${firstImage.naturalWidth} / ${firstImage.naturalHeight}`;
+                }
+            };
+
+            if(firstImage.complete){
+                setOriginalRatio();
+            }else{
+                firstImage.addEventListener("load",setOriginalRatio,{once:true});
+            }
+        }
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                openViewer(originalIndex);
+
+            }
+        );
+
+
+        if(filter === "all" && project.category === "other" && otherGrid){
+            otherGrid.appendChild(card);
+        }else{
+            portfolio.appendChild(card);
+        }
+
+    });
+
+    if(otherGrid && otherGrid.children.length){
+        portfolio.appendChild(otherGrid);
+    }
+
+
+    /* start watching the freshly built cards
+       for scroll-reveal */
+
+    observeCards();
+
+}
+
+
+
+/* =========================================================
+   AUTO SLIDE
+========================================================= */
+
+function startAutoSlides(){
+
+    setInterval(() => {
+
+
+        const cards =
+            document.querySelectorAll(".project");
+
+
+        cards.forEach(card => {
+
+
+            const slides =
+                card.querySelectorAll(
+                    ".card-slide"
+                );
+
+
+            const dots =
+                card.querySelectorAll(
+                    ".slide-dot"
+                );
+
+
+            if(slides.length <= 1)
+                return;
+
+
+            let activeIndex = 0;
+
+
+            slides.forEach(
+                (slide,index) => {
+
+                    if(
+                        slide.classList
+                        .contains("active")
+                    ){
+
+                        activeIndex = index;
+
+                    }
+
+                }
+            );
+
+
+            const nextIndex =
+                (activeIndex + 1)
+                % slides.length;
+
+
+
+            slides[
+                activeIndex
+            ].classList.remove("active");
+
+
+            dots[
+                activeIndex
+            ].classList.remove("active");
+
+
+            slides[
+                nextIndex
+            ].classList.add("active");
+
+
+            dots[
+                nextIndex
+            ].classList.add("active");
+
+
+        });
+
+
+    },3000);
+
+}
+
+
+
+/* =========================================================
+   OPEN VIEWER
+========================================================= */
+
+function openViewer(projectIndex){
+
+    currentProject =
+        projectIndex;
+
+
+    currentImage = 0;
+
+
+    updateViewer();
+
+
+    viewer.classList.add("active");
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+/* =========================================================
+   UPDATE VIEWER
+========================================================= */
+
+function updateViewer(){
+
+    const project =
+        projects[currentProject];
+
+
+    viewerImage.src =
+        project.images[currentImage];
+
+
+    viewerImage.alt =
+        project.title;
+
+
+    viewerTitle.textContent =
+        project.title;
+
+
+    viewerCategory.textContent =
+        categoryNames[
+            project.category
+        ];
+
+
+    viewerCounter.textContent =
+
+    String(
+        currentProject + 1
+    ).padStart(2,"0")
+
+    +
+
+    " / "
+
+    +
+
+    String(
+        projects.length
+    ).padStart(2,"0");
+
+}
+
+
+
+/* =========================================================
+   NEXT PROJECT
+========================================================= */
+
+function nextImage(){
+    const project = projects[currentProject];
+
+    // Go through every image in the current card first.
+    // After the last image, move to the next card.
+    if(currentImage < project.images.length - 1){
+        currentImage++;
+    }else{
+        currentProject =
+            (currentProject + 1) % projects.length;
+        currentImage = 0;
+    }
+
+    updateViewer();
+}
+
+
+/* =========================================================
+   PREVIOUS PROJECT
+========================================================= */
+
+function previousImage(){
+    // Move backward through images inside the current card.
+    if(currentImage > 0){
+        currentImage--;
+    }else{
+        // From image 1, go to the previous card's last image.
+        currentProject =
+            (currentProject - 1 + projects.length)
+            % projects.length;
+        currentImage = projects[currentProject].images.length - 1;
+    }
+
+    updateViewer();
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+function closeViewer(){
+
+    viewer.classList.remove("active");
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+document
+    .getElementById("nextBtn")
+    .addEventListener(
+        "click",
+        nextImage
+    );
+
+
+document
+    .getElementById("prevBtn")
+    .addEventListener(
+        "click",
+        previousImage
+    );
+
+
+document
+    .getElementById("closeViewer")
+    .addEventListener(
+        "click",
+        closeViewer
+    );
+
+
+
+/* =========================================================
+   OUTSIDE CLICK
+========================================================= */
+
+viewer.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target === viewer
+        ){
+
+            closeViewer();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+
+        if(
+            !viewer.classList
+            .contains("active")
+        ){
+
+            return;
+
+        }
+
+
+        if(event.key === "Escape"){
+
+            closeViewer();
+
+        }
+
+
+        if(event.key === "ArrowRight"){
+
+            nextImage();
+
+        }
+
+
+        if(event.key === "ArrowLeft"){
+
+            previousImage();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   TOUCH SWIPE
+========================================================= */
+
+let touchStartX = 0;
+
+
+viewer.addEventListener(
+    "touchstart",
+    event => {
+
+        touchStartX =
+            event.changedTouches[0]
+            .screenX;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+viewer.addEventListener(
+    "touchend",
+    event => {
+
+
+        const touchEndX =
+            event.changedTouches[0]
+            .screenX;
+
+
+        const distance =
+            touchEndX - touchStartX;
+
+
+        if(
+            Math.abs(distance) < 50
+        ){
+
+            return;
+
+        }
+
+
+        if(distance < 0){
+
+            nextImage();
+
+        }else{
+
+            previousImage();
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+document
+    .querySelectorAll(".filter")
+    .forEach(button => {
+
+
+        button.addEventListener(
+            "click",
+            () => {
+
+
+                document
+                    .querySelectorAll(
+                        ".filter"
+                    )
+                    .forEach(btn => {
+
+                        btn.classList
+                            .remove("active");
+
+                    });
+
+
+                button.classList
+                    .add("active");
+
+
+                buildPortfolio(
+                    button.dataset.filter
+                );
+
+            }
+        );
+
+    });
+
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+buildPortfolio();
+
+startAutoSlides();
+
+
+</script>
+
+<script>
+const cursor = document.querySelector(".cursor");
+
+document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+
+document.querySelectorAll("a, button, .filter-btn, .work-card").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+        cursor.classList.add("hover");
+    });
+
+    el.addEventListener("mouseleave", () => {
+        cursor.classList.remove("hover");
+    });
+});
+
+
+/* =========================================================
+   PAGE LOAD
+========================================================= */
+
+window.addEventListener("load", () => {
+    requestAnimationFrame(() => {
+        document.body.classList.add("page-loaded");
+    });
+});
+
+
+
+
+
+/* =========================================================
+   FOOTER -> FILTER LINK
+========================================================= */
+function goToFilter(filterName){
+
+    const targetBtn =
+        document.querySelector(`.filter[data-filter="${filterName}"]`);
+
+    if(targetBtn){
+        targetBtn.click();
+    }
+
+    document
+        .querySelector(".filters-wrap")
+        .scrollIntoView({ behavior:"smooth", block:"start" });
+
+}
+</script>
+
+
+</body>
+</html>

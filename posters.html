@@ -1,0 +1,4762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Yez+ — Posters Works</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+
+    --black:#080808;
+    --black-soft:#111111;
+
+    --white:#f7f7f4;
+
+    --purple:#7938ff;
+    --purple-light:#a779ff;
+
+    --gray:#777;
+
+    --line:rgba(0,0,0,.11);
+    --dark-line:rgba(255,255,255,.12);
+
+}
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    font-family:"DM Sans",sans-serif;
+
+    background:var(--black);
+
+    color:var(--white);
+
+    overflow-x:hidden;
+
+}
+
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+button{
+    font-family:inherit;
+}
+
+/* =========================
+   CUSTOM + CURSOR
+========================= */
+
+*{
+    cursor:none !important;
+}
+
+.filter-btn,
+.filter-btn:hover,
+button,
+button:hover,
+a,
+a:hover{
+    cursor:none !important;
+}
+
+.cursor{
+    position:fixed;
+    top:0;
+    left:0;
+    width:30px;
+    height:30px;
+    pointer-events:none;
+    z-index:99999;
+    transform:translate(-50%,-50%);
+    color:#8B5CF6;
+    font-family:"Manrope",sans-serif;
+    font-size:40px;
+    font-weight:800;
+    line-height:1;
+    transition:
+        transform .2s ease,
+        font-size .2s ease,
+        color .2s ease;
+}
+
+.cursor::before{
+    content:"+";
+}
+
+.cursor.hover{
+    font-size:50px;
+    transform:translate(-50%,-50%) rotate(45deg);
+}
+
+@media(max-width:380px){
+    *{
+        cursor:auto;
+    }
+
+    .cursor{
+        display:none;
+    }
+}
+
+
+
+/* =========================================================
+   HEADER
+   YEZ+ ORIGINAL STYLE
+   LOGO ONLY
+========================================================= */
+
+.header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    z-index:5000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    padding:18px 4vw;
+
+    background:var(--black);
+
+    color:white;
+
+    border-bottom:1px solid #202020;
+
+}
+
+
+.logo{
+
+    font-family:"Manrope";
+
+    font-weight:800;
+
+    font-size:35px;
+
+    letter-spacing:-1.5px;
+
+    color:white;
+
+}
+
+
+.logo span{
+
+    color:var(--purple);
+
+}
+
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:92vh;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:var(--black);
+
+    display:flex;
+
+    align-items:center;
+
+    padding:150px 4vw 90px;
+
+}
+
+
+.hero-grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(256,256,256,.035) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:80px 80px;
+
+}
+
+
+.hero-plus{
+
+    position:absolute;
+
+    right:-100px;
+
+    top:-180px;
+
+    font-family:"Manrope";
+
+    font-size:650px;
+
+    line-height:.75;
+
+    font-weight:800;
+
+    letter-spacing:-25px;
+
+    color:var(--purple);
+
+    filter:blur(18px);
+
+    opacity:.35;
+
+    pointer-events:none;
+
+}
+
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+}
+
+
+.hero-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin-bottom:35px;
+
+}
+
+
+.hero-label i{
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--purple);
+
+    box-shadow:0 0 20px var(--purple);
+
+}
+
+
+.hero-title{
+
+    font-family:"Manrope";
+
+    font-size:clamp(65px,11vw,165px);
+
+    line-height:.82;
+
+    letter-spacing:-10px;
+
+    font-weight:800;
+
+}
+
+
+.hero-title .purple{
+
+    color:var(--purple);
+
+}
+
+
+.hero-title .stroke{
+
+    color:transparent;
+
+    -webkit-text-stroke:1.5px var(--white);
+
+}
+
+
+.hero-bottom{
+
+    margin-top:60px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+}
+
+
+.hero-copy{
+
+    max-width:470px;
+
+    color:#777;
+
+    font-size:17px;
+
+    line-height:1.7;
+
+}
+
+
+.hero-count{
+
+    font-family:"Manrope";
+
+    font-size:14px;
+    display: none;
+
+    color:#777;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+
+.hero-count strong{
+
+    font-size:55px;
+
+    color:var(--black);
+
+    letter-spacing:-3px;
+
+    margin-right:8px;
+
+}
+
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters-wrap{
+    background:var(--black);
+    padding:0 4vw 60px;
+}
+
+.filters-main,
+.festival-filters{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:25px;
+}
+
+.festival-filters{
+    display:none;
+    border-bottom:0;
+    padding:12px 0 0;
+}
+
+.festival-filters.show{
+    display:flex;
+}
+
+.filter{
+    flex:0 0 auto;
+    border:1px solid #d4d4d0;
+    background:transparent;
+    color:#fff;
+    border-radius:100px;
+    padding:12px 19px;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.filter:hover{
+    background:var(--white);
+    border-color:var(--black);
+    color:black;
+}
+
+.filter.active{
+    background:var(--purple);
+    border-color:var(--purple);
+    color:white;
+}
+
+/* =========================================================
+   PORTFOLIO
+========================================================= */
+
+.portfolio{
+
+    background:var(--black);
+
+    width:100%;
+
+    padding:0 4vw 150px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+
+/* =========================================================
+   SMO CAROUSEL — FIRST 3 CARDS = 1:1
+========================================================= */
+
+.project.ratio-smo-carousel{
+    aspect-ratio:1 / 1;
+}
+
+
+
+/* BLOGS + BANNERS — 3 cards per row */
+.portfolio.three-col{
+    grid-template-columns:repeat(3,1fr);
+}
+
+/* ALL WORKS — 4-column cards + 3-column Blog/Banner cards mixed together */
+.portfolio.all-mixed{
+    grid-template-columns:repeat(12,1fr);
+}
+
+.portfolio.all-mixed .project{
+    grid-column:span 3;
+}
+
+.portfolio.all-mixed .project.card-wide{
+    grid-column:span 4;
+}
+
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+.project{
+    position:relative;
+    overflow:hidden;
+    background:#111;
+    border-radius:2px;
+    cursor:pointer;
+    aspect-ratio:4 / 5;
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        border-radius .5s,
+        box-shadow .5s;
+}
+
+
+.project.ratio-blog{
+    aspect-ratio:16 / 9;
+}
+.project.ratio-banner{
+    aspect-ratio:10 / 8;
+}
+.project.ratio-smo,
+.project.ratio-festival{
+    aspect-ratio:4 / 5;
+}
+
+
+.project:hover{
+
+    transform:translateY(-8px);
+
+    border-radius:8px;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.18);
+
+}
+
+
+.project.hidden{
+
+    display:none;
+
+}
+
+
+
+/* =========================================================
+   CARD BACKGROUND
+========================================================= */
+
+.project{
+    background:linear-gradient(145deg,#1b1427,#09070d);
+}
+
+/* =========================================================
+   CARD MEDIA
+========================================================= */
+
+.card-media{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+}
+
+
+.card-slide{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    transition:opacity .8s ease;
+
+}
+
+
+.card-slide.active{
+
+    opacity:1;
+
+}
+
+
+.card-slide img{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:transform 1.2s ease;
+
+}
+
+
+.project:hover
+.card-slide.active img{
+
+    transform:scale(1.04);
+
+}
+
+
+
+/* =========================================================
+   CARD OVERLAY
+========================================================= */
+
+.card-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            transparent 35%,
+            rgba(0,0,0,.04) 48%,
+            rgba(0,0,0,.88) 88%,
+            rgba(0,0,0,1) 100%
+        );
+
+}
+
+
+
+/* =========================================================
+   SLIDE DOTS
+========================================================= */
+
+.slide-dots{
+
+    position:absolute;
+
+    top:20px;
+
+    left:20px;
+
+    z-index:5;
+
+    display:flex;
+
+    gap:4px;
+
+}
+
+
+.slide-dot{
+
+    width:22px;
+
+    height:2px;
+
+    background:rgba(255,255,255,.35);
+
+    transition:.4s;
+
+}
+
+
+.slide-dot.active{
+
+    background:white;
+
+    width:30px;
+
+}
+
+.project.ratio-smo .slide-dots{
+    max-width:calc(100% - 40px);
+    flex-wrap:wrap;
+}
+
+.project.ratio-smo .slide-dot{
+    cursor:pointer !important;
+}
+
+.project.ratio-smo .slide-dot:hover{
+    background:white;
+}
+
+
+
+/* =========================================================
+   CARD INFO
+========================================================= */
+
+.card-info{
+
+    position:absolute;
+
+    z-index:4;
+
+    left:25px;
+
+    right:25px;
+
+    bottom:23px;
+
+    color:white;
+
+}
+
+
+.card-category{
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#c1aaff;
+
+    margin-bottom:8px;
+
+}
+
+
+.card-title{
+
+    font-family:"Manrope";
+
+    font-size:25px;
+
+    font-weight:700;
+
+    letter-spacing:-.8px;
+
+}
+
+
+.card-meta{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:12px;
+
+    color:#999;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+
+.open-icon{
+
+    width:34px;
+
+    height:34px;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:16px;
+
+    transition:.35s;
+
+}
+
+
+.project:hover .open-icon{
+
+    background:white;
+
+    border-color:white;
+
+    color:var(--purple);
+
+    transform:translate(2px,-2px);
+
+}
+
+
+
+/* =========================================================
+   FULLSCREEN VIEWER
+========================================================= */
+
+.viewer{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:none;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(121,56,255,.13),
+            transparent 45%
+        ),
+
+        rgba(5,5,7,.97);
+
+    backdrop-filter:blur(20px);
+
+}
+
+
+.viewer.active{
+
+    display:block;
+
+    animation:viewerIn .35s ease;
+
+}
+
+
+@keyframes viewerIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+
+/* =========================================================
+   VIEWER TOP
+========================================================= */
+
+.viewer-top{
+
+    position:absolute;
+
+    top:22px;
+
+    left:30px;
+
+    right:30px;
+
+    z-index:10;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+
+.viewer-title{
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    color:white;
+
+}
+
+
+.viewer-title span:first-child{
+
+    color:var(--purple-light);
+
+    margin-right:12px;
+
+}
+
+
+.close{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    background:rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:27px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.close:hover{
+
+    background:white;
+
+    color:black;
+
+}
+
+
+
+/* =========================================================
+   VIEWER IMAGE
+========================================================= */
+
+.viewer-stage{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:80px 100px;
+
+}
+
+
+.viewer-image{
+
+    max-width:88vw;
+
+    max-height:84vh;
+
+    width:auto;
+
+    height:auto;
+
+    object-fit:contain;
+
+    border-radius:3px;
+
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.75);
+
+    user-select:none;
+
+}
+
+
+
+/* =========================================================
+   VIEWER NAV
+========================================================= */
+
+.viewer-nav{
+
+    position:absolute;
+
+    left:25px;
+
+    right:25px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    pointer-events:none;
+
+}
+
+
+.nav-btn{
+
+    pointer-events:auto;
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    background:rgba(0,0,0,.35);
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.nav-btn:hover{
+
+    background:white;
+
+    color:black;
+
+}
+
+
+
+/* =========================================================
+   VIEWER COUNTER
+========================================================= */
+
+.viewer-bottom{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:25px;
+
+    display:flex;
+
+    justify-content:center;
+
+    color:#888;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+
+
+/* =========================================================
+   FOOTER
+   SAME YEZ+ STYLE
+========================================================= */
+
+footer{
+
+    background:var(--black);
+
+    color:white;
+
+    padding:75px 5vw;
+
+}
+
+
+.footer-main{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    padding-bottom:75px;
+
+}
+
+
+.footer-logo{
+
+    font-family:"Manrope";
+
+    font-size:55px;
+
+    font-weight:800;
+
+    letter-spacing:-4px;
+
+    margin-top:0;
+
+}
+
+
+.footer-logo span{
+
+    color:var(--purple);
+
+}
+
+
+.footer-brand{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-top:0;
+
+    align-self:flex-start;
+
+    align-items:flex-start;
+
+}
+
+
+.footer-tagline{
+
+    margin-top:18px;
+
+    max-width:320px;
+
+    color:#999;
+
+    font-family:"DM Sans",sans-serif;
+
+    font-size:15px;
+
+    font-weight:400;
+
+    line-height:1.6;
+
+    letter-spacing:0;
+
+}
+
+
+.footer-nav{
+
+    display:flex;
+
+    gap:90px;
+
+    padding-top:15px;
+
+    margin-top:0;
+
+    align-self:flex-start;
+
+}
+
+
+.footer-col{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+    margin-top:0;
+
+}
+
+
+.footer-col small{
+
+    font-size:15px;
+
+    color:#555;
+
+    margin-bottom:8px;
+
+}
+
+
+.footer-col a{
+
+    color:#999;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+
+.footer-col a:hover{
+
+    color:white;
+
+}
+
+
+.footer-bottom{
+
+    border-top:1px solid #222;
+
+    padding:25px 0 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#999;
+
+    font-size:13px;
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .header{
+
+        padding:16px 5vw;
+
+    }
+
+
+    .logo{
+
+        font-size:30px;
+
+    }
+
+
+    .hero{
+
+        min-height:auto;
+
+        padding:130px 5vw 70px;
+
+    }
+
+
+    .hero-title{
+
+        font-size:16vw;
+
+        letter-spacing:-5px;
+
+    }
+
+
+    .hero-bottom{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        margin-top:45px;
+
+    }
+
+
+    .hero-copy{
+
+        font-size:15px;
+
+    }
+
+
+    .filters-wrap{
+
+        padding:0 5vw 40px;
+
+    }
+
+
+    .portfolio{
+        grid-template-columns:1fr !important;
+        width:100%;
+        padding:0 5vw 90px;
+        gap:14px;
+    }
+
+    .portfolio .project,
+    .portfolio.all-mixed .project,
+    .portfolio.all-mixed .project.card-wide,
+    .portfolio.three-col .project{
+        grid-column:span 1 !important;
+        width:100%;
+    }
+
+
+    .card-title{
+
+        font-size:21px;
+
+    }
+
+
+    .viewer-stage{
+
+        padding:80px 25px;
+
+    }
+
+
+    .viewer-image{
+
+        max-width:94vw;
+
+        max-height:82vh;
+
+    }
+
+
+    .viewer-nav{
+
+        left:10px;
+
+        right:10px;
+
+    }
+
+
+    footer{
+
+        padding:55px 5vw;
+
+    }
+
+
+    .footer-main{
+
+        flex-direction:column;
+
+        gap:55px;
+
+        padding-bottom:55px;
+
+    }
+
+
+    .footer-nav{
+
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+        gap:45px 25px;
+
+        padding-top:0;
+
+    }
+
+
+    .footer-col:last-child{
+
+        grid-column:1 / -1;
+
+    }
+
+
+    .footer-bottom{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        line-height:1.5;
+
+    }
+
+}
+
+
+
+@media(max-width:900px){
+    .filters-wrap{
+        padding:0 5vw 40px;
+        width:100%;
+        overflow:hidden;
+    }
+
+    .filters-main,
+    .festival-filters{
+        width:100%;
+        max-width:100%;
+        overflow:hidden;
+        flex-wrap:wrap;
+        gap:7px;
+    }
+
+    .filters-main{
+        padding-bottom:18px;
+    }
+
+    .festival-filters{
+        padding:10px 0 0;
+    }
+
+    .filter{
+        padding:10px 13px;
+        font-size:9px;
+        letter-spacing:1px;
+        max-width:100%;
+    }
+}
+
+@media(max-width:550px){
+
+    .hero-title{
+
+        font-size:18vw;
+
+        line-height:.88;
+
+        letter-spacing:-4px;
+
+    }
+
+
+    .hero-plus{
+
+        font-size:300px;
+
+        right:-80px;
+
+        top:-70px;
+
+    }
+
+
+
+    .card-info{
+
+        left:20px;
+
+        right:20px;
+
+        bottom:20px;
+
+    }
+
+
+    .card-title{
+
+        font-size:23px;
+
+    }
+
+
+    .viewer{
+
+        padding:10px;
+
+    }
+
+
+    .viewer-top{
+
+        top:15px;
+
+        left:15px;
+
+        right:15px;
+
+    }
+
+
+    .viewer-stage{
+
+        padding:70px 10px 80px;
+
+    }
+
+
+    .viewer-image{
+
+        max-width:96vw;
+
+        max-height:78vh;
+
+    }
+
+
+    .viewer-nav{
+
+        top:auto;
+
+        bottom:25px;
+
+        transform:none;
+
+    }
+
+
+    .nav-btn{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+
+    .viewer-bottom{
+
+        display:none;
+
+    }
+
+
+    .footer-logo{
+
+        font-size:45px;
+
+        letter-spacing:-3px;
+
+    }
+
+
+    .footer-nav{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .footer-col:last-child{
+
+        grid-column:auto;
+
+    }
+
+}
+
+
+
+
+/* =========================================================
+   PAGE LOAD / REVEAL ANIMATION
+========================================================= */
+
+body{
+    opacity:0;
+    animation:pageFadeIn .7s cubic-bezier(.22,1,.36,1) .05s forwards;
+}
+
+.header{
+    opacity:0;
+    transform:translateY(-24px);
+    animation:headerReveal .8s cubic-bezier(.22,1,.36,1) .15s forwards;
+}
+
+.hero-grid{
+    opacity:0;
+    animation:gridReveal 1.4s ease .2s forwards;
+}
+
+.hero-plus{
+    opacity:0;
+    transform:scale(.72) rotate(-12deg);
+    animation:plusReveal 1.35s cubic-bezier(.16,1,.3,1) .25s forwards,
+               plusFloat 7s ease-in-out 1.8s infinite;
+}
+
+.hero-label{
+    opacity:0;
+    transform:translateY(24px);
+    animation:heroUp .8s cubic-bezier(.22,1,.36,1) .42s forwards;
+}
+
+.hero-title{
+    overflow:visible;
+}
+
+.hero-title br,
+.hero-title .purple,
+.hero-title .stroke{
+    display:inline-block;
+}
+
+.hero-title{
+    opacity:0;
+    transform:translateY(70px);
+    clip-path:inset(0 0 100% 0);
+    animation:titleReveal 1.05s cubic-bezier(.16,1,.3,1) .5s forwards;
+}
+
+.hero-bottom{
+    opacity:0;
+    transform:translateY(35px);
+    animation:heroUp .9s cubic-bezier(.22,1,.36,1) .82s forwards;
+}
+
+.filters-wrap{
+    opacity:0;
+    transform:translateY(28px);
+    animation:sectionReveal .8s cubic-bezier(.22,1,.36,1) 1s forwards;
+}
+
+.portfolio{
+    opacity:0;
+    animation:portfolioReveal .8s ease 1.12s forwards;
+}
+
+.project{
+    opacity:0;
+    transform:translateY(70px) scale(.94);
+    filter:blur(7px);
+    transition:
+        opacity .75s cubic-bezier(.22,1,.36,1),
+        transform .75s cubic-bezier(.22,1,.36,1),
+        filter .75s cubic-bezier(.22,1,.36,1);
+    will-change:opacity,transform,filter;
+}
+
+.project.card-visible{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+}
+
+.project.card-visible:nth-child(2n){
+    transition-delay:.06s;
+}
+
+.project.card-visible:nth-child(3n){
+    transition-delay:.12s;
+}
+
+.project.card-visible:nth-child(4n){
+    transition-delay:.18s;
+}
+
+footer{
+    opacity:0;
+    transform:translateY(30px);
+    animation:footerReveal .9s cubic-bezier(.22,1,.36,1) 1.35s forwards;
+}
+
+@keyframes pageFadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes headerReveal{
+    from{opacity:0;transform:translateY(-24px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes gridReveal{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes plusReveal{
+    0%{
+        opacity:0;
+        transform:scale(.72) rotate(-12deg);
+        filter:blur(30px);
+    }
+    70%{
+        opacity:.32;
+        filter:blur(10px);
+    }
+    100%{
+        opacity:.35;
+        transform:scale(1) rotate(0deg);
+        filter:blur(18px);
+    }
+}
+
+@keyframes plusFloat{
+    0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+    50%{transform:translate3d(-22px,18px,0) rotate(2deg)}
+}
+
+@keyframes heroUp{
+    from{opacity:0;transform:translateY(28px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes titleReveal{
+    from{
+        opacity:0;
+        transform:translateY(70px);
+        clip-path:inset(0 0 100% 0);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+        clip-path:inset(0 0 0 0);
+    }
+}
+
+@keyframes sectionReveal{
+    from{opacity:0;transform:translateY(28px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes portfolioReveal{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes cardReveal{
+    from{
+        opacity:0;
+        transform:translateY(45px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes footerReveal{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+/* Filter changes reset cards so the visible cards reveal again */
+.portfolio.filter-animate .project{
+    opacity:0;
+    transform:translateY(55px) scale(.96);
+    filter:blur(6px);
+}
+
+.portfolio.filter-animate .project.card-visible{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+}
+
+/* Keep animations comfortable for users who prefer reduced motion */
+@media (prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-delay:0ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+
+    body,
+    .header,
+    .hero-grid,
+    .hero-plus,
+    .hero-label,
+    .hero-title,
+    .hero-bottom,
+    .filters-wrap,
+    .portfolio,
+    .project,
+    footer{
+        opacity:1 !important;
+        transform:none !important;
+        clip-path:none !important;
+    }
+}
+
+
+.viewer-image-enter{
+    animation:viewerImageReveal .55s cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes viewerImageReveal{
+    from{
+        opacity:0;
+        transform:scale(.94) translateY(14px);
+        filter:blur(6px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+        filter:blur(0);
+    }
+}
+/* =========================================================
+   ALL PROJECT CARDS
+   CATEGORY
+   PAGE COUNT
+   TITLE + ARROW ON SAME BOTTOM LINE
+========================================================= */
+
+.project .card-info{
+    position:absolute;
+    left:25px;
+    right:25px;
+    bottom:23px;
+    z-index:4;
+
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+
+    color:white;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.project .card-category{
+    order:1;
+
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#c1aaff;
+
+    margin:0 0 8px 0;
+}
+
+
+/* =========================================================
+   PAGE COUNT
+========================================================= */
+
+.project .card-meta{
+    order:2;
+
+    position:static;
+
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+
+    margin:0 0 6px 0;
+
+    color:#999;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+
+/* Show page count */
+.project .card-meta > span:first-child{
+    display:block;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.project .card-title{
+    order:3;
+
+    position:relative;
+
+    font-family:"Manrope";
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:-.8px;
+    line-height:1.15;
+
+    padding-right:50px;
+}
+
+
+/* =========================================================
+   ARROW BUTTON
+   IMPORTANT:
+   Position relative to .card-info,
+   NOT .card-meta
+========================================================= */
+
+.project .card-meta .open-icon{
+    position:absolute;
+
+    right:0;
+    bottom:0;
+
+    width:34px;
+    height:34px;
+
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-size:16px;
+
+    transition:.35s;
+}
+
+
+/* Hover */
+.project:hover .open-icon{
+    background:white;
+    border-color:white;
+    color:var(--purple);
+    transform:translate(2px,-2px);
+}
+
+
+/* =========================================================
+   BLOG + BANNER
+========================================================= */
+
+.project.ratio-blog .card-info,
+.project.ratio-banner .card-info{
+    bottom:23px;
+}
+
+.project.ratio-blog .card-meta,
+.project.ratio-banner .card-meta{
+    position:static;
+    margin:0 0 6px 0;
+}
+
+.project.ratio-blog .card-title,
+.project.ratio-banner .card-title{
+    padding-right:50px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:550px){
+
+    .project .card-info{
+        left:20px;
+        right:20px;
+        bottom:20px;
+    }
+
+    .project .card-category{
+        font-size:9px;
+        margin-bottom:6px;
+    }
+
+    .project .card-meta{
+        font-size:9px;
+        margin-bottom:5px;
+    }
+
+    .project .card-title{
+        font-size:20px;
+        line-height:1.15;
+        padding-right:45px;
+    }
+
+    .project .card-meta .open-icon{
+        width:32px;
+        height:32px;
+        bottom:0;
+    }
+
+.project.ratio-blog .card-title,
+    .project.ratio-banner .card-title{
+        font-size:16px;
+        line-height:1.2;
+        padding-right:45px;
+    }
+
+}
+
+.footer-col .sub-link{
+    padding-left:14px;
+    color:#666;
+    font-size:14px;
+}
+
+
+@media(max-width:1200px){
+    .footer-nav{
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        gap:45px 25px;
+        padding-top:0;
+    }
+
+    .footer-col:last-child{
+        grid-column:auto;
+    }
+}
+
+@media(max-width:550px){
+    .footer-nav{
+        grid-template-columns:1fr 1fr;
+        gap:35px 20px;
+    }
+
+    .footer-col:last-child{
+        grid-column:auto;
+    }
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        Yez<span>+</span>
+    </a>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-plus">+</div>
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+
+            
+
+
+        </div>
+
+
+        <h1 class="hero-title">
+
+            POST<br>
+
+            <span class="purple">ERS</span>
+
+            <span class="stroke">/-</span>
+
+        </h1>
+
+
+        <div class="hero-bottom">
+
+            <p class="hero-copy">
+
+                A collection of social media creatives, festival posters,
+                blogs and banners crafted to make brands impossible
+                to ignore.
+
+            </p>
+
+
+            <div class="hero-count">
+
+                <strong id="totalCount"></strong>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FILTERS
+========================================================= -->
+
+<div class="filters-wrap">
+
+    <div class="filters-main">
+        <button class="filter active" data-filter="all">All Works</button>
+        <button class="filter" data-filter="smo">SMO</button>
+        <button class="filter" data-filter="smo-carousel">Carousel</button>
+        <button class="filter festival-toggle" data-filter="festival">Festival</button>
+        <button class="filter" data-filter="blog">Blogs</button>
+        <button class="filter" data-filter="banner">Banners</button>
+<button class="filter" data-filter="trending">Trending</button>
+    </div>
+
+    <div class="festival-filters" id="festivalFilters">
+
+    <button class="filter" data-filter="labour-day">
+        Labour Day
+    </button>
+
+    <button class="filter" data-filter="mothers-day">
+        Mother's Day
+    </button>
+
+    <button class="filter" data-filter="new-year">
+        New Year
+    </button>
+
+    <button class="filter" data-filter="others">
+        Others
+    </button>
+
+    <button class="filter" data-filter="pongal">
+        Pongal
+    </button>
+
+    <button class="filter" data-filter="ramzan">
+        Ramzan
+    </button>
+
+    <button class="filter" data-filter="valentine-day">
+        Valentine's Day
+    </button>
+
+    <button class="filter" data-filter="womens-day">
+        Women's Day
+    </button>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     PORTFOLIO
+========================================================= -->
+
+<main
+    class="portfolio"
+    id="portfolio"
+></main>
+
+
+
+<!-- =========================================================
+     FULLSCREEN VIEWER
+========================================================= -->
+
+<div
+    class="viewer"
+    id="viewer"
+>
+
+
+    <div class="viewer-top">
+
+        <div class="viewer-title">
+
+            <span id="viewerCategory">
+                Logo
+            </span>
+
+            <span id="viewerTitle">
+                Project
+            </span>
+
+        </div>
+
+
+        <button
+            class="close"
+            id="closeViewer"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+
+    <div class="viewer-stage">
+
+        <img
+            id="viewerImage"
+            class="viewer-image"
+            src=""
+            alt=""
+        >
+
+    </div>
+
+
+
+    <div class="viewer-nav">
+
+        <button
+            class="nav-btn"
+            id="prevBtn"
+            aria-label="Previous"
+        >
+            ←
+        </button>
+
+
+        <button
+            class="nav-btn"
+            id="nextBtn"
+            aria-label="Next"
+        >
+            →
+        </button>
+
+    </div>
+
+
+
+    <div class="viewer-bottom">
+
+        <span id="viewerCounter">
+            01 / 01
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+
+    <div class="footer-main">
+
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="footer-logo"
+            >
+                Yez<span>+</span>
+            </a>
+
+
+            <p class="footer-tagline">
+
+                We help brands do more, grow more,
+                and stand out with bold ideas,
+                meaningful content, and digital
+                experiences that drive real growth.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-nav">
+
+
+<!-- EXPLORE -->
+    <div class="footer-col">
+        <small>Home</small>
+
+        <a href="index.html#services">Services</a>
+
+        <a href="index.html#work">Work</a>
+        <a class="sub-link" href="branding.html"> ↳ Branding</a>
+        <a class="sub-link" href="posters.html"> ↳ Posters</a>
+        <a class="sub-link" href="videos.html"> ↳ Videos</a>
+        <a class="sub-link" href="websites.html"> ↳ Websites</a>
+
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Packages</a>
+    </div>
+            <!-- EXPLORE -->
+<div class="footer-col">
+    <small>Filters</small>
+
+    <a href="javascript:void(0)" onclick="goToFilter('all')">
+        All Works
+    </a>
+
+    <a href="javascript:void(0)" onclick="goToFilter('smo')">
+        SMO
+    </a>
+
+    <a href="javascript:void(0)" onclick="goToFilter('smo-carousel')">
+        Carousel
+    </a>
+
+    <a href="javascript:void(0)" onclick="goToFilter('festival')">
+        Festival
+    </a>
+
+    <a href="javascript:void(0)" onclick="goToFilter('blog')">
+        Blogs
+    </a>
+
+    <a href="javascript:void(0)" onclick="goToFilter('banner')">
+        Banners
+    </a>
+<a href="javascript:void(0)" onclick="goToFilter('trending')">
+    Trending
+</a>
+</div>
+
+
+
+            <!-- SOCIAL -->
+
+            <div class="footer-col">
+
+                <small>
+                    Social Platform
+                </small>
+
+                <a
+                    href="https://www.instagram.com/yezplus/?utm_source=ig_web_button_share_sheet"
+                    target="_blank"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/company/yezplus"
+                    target="_blank"
+                >
+                    LinkedIn
+                </a>
+
+                <a
+                    href="https://wa.me/9486864679"
+                    target="_blank"
+                >
+                    WhatsApp
+                </a>
+
+            </div>
+
+
+
+            <!-- CONNECT -->
+
+            <div class="footer-col">
+
+                <small>
+                    Connect
+                </small>
+
+                <a
+                    href="mailto:hello.yezplus@gmail.com"
+                >
+                    <span class="contact-icon">
+                        Email:
+                    </span>
+
+                    hello.yezplus@gmail.com
+
+                </a>
+
+
+                <a
+                    href="tel:+919486864679"
+                >
+
+                    <span class="contact-icon">
+                        ☎
+                    </span>
+
+                    +91 94 8686 46 79
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Yez+. All rights reserved.
+        </span>
+
+
+        <span>
+
+            <strong>YEZ</strong> PLUS
+
+            <strong>TRUE</strong> SUCCESS
+
+        </span>
+
+    </div>
+
+
+</footer>
+
+<div class="cursor"></div>
+
+<script>
+
+
+/* =========================================================
+   POSTER PROJECT DATA
+=========================================================
+
+   CHANGE THE IMAGE PATHS / TITLES FOR YOUR REAL POSTERS.
+
+========================================================= */
+
+
+const projects = [
+
+    {
+    category:"smo",
+    subcategory:"smo",
+    title:"TVK Membership Card",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/1.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Sabha Steels Brand Creative",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/2.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Head Start Admissions Open",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/3.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Montessori Admissions Open",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/4.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Ramadan Special Dining",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/5.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Ramadan Combo Offer",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/6.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Special Combo Offer",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/7.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"AI Trading Revolution",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/8.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Automated Trading",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/9.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"AI Trading Future",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/10.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Trade Without Time Limits",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/11.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"School Reopened",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/12.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Power to Rule the Digital World",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/13.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Virtual Internship Program",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/14.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"B.Sc Physics Admissions",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/15.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"B.Sc Artificial Intelligence Admissions",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/16.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"MBA Admissions Open",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/17.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Mechanical Engineering Admissions",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/18.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"B.Sc Artificial Intelligence",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/19.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"B.Tech Artificial Intelligence",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/20.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Engineering Admissions Open",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/21.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"College Admissions Creative",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/22.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Student Admissions Creative",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/23.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Student Achievers",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/24.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Student Achievers Celebration",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/25.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Nithra Apps Achievers",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/26.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Student Achievers Celebration",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/27.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"HackGenix Winners",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/28.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Student Achievers Celebration",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/29.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Vote for Your Rights",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/30.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Level Up Your Future",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/31.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"HR Conclave",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/32.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Peaceful Comforting Stay",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/33.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Premium Bedroom Stay",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/34.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Thanjavur Trip & Stay",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/35.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Premium Plot for Sale",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/36.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Land Investment Opportunity",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/37.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Designed for Modern Living",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/38.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"The Art of Construction",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/39.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Best Home Design",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/40.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Unique Home Design",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/41.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Digital Sri Kottai Mariamman Nagar",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/42.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Premium Residential Plots",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/43.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Dream Home in Valayapatti",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/44.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Golden Arches News Action",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/45.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Natural Hair Care Essentials",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/46.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Pongal Sale Special Offer",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/47.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"We Are Hiring",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/48.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Premium Headphones",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/49.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Traditional Pongal Celebration",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/50.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"World Heritage Day",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/51.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Win All 3 Special Offer",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/52.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Cafe Owners Networking",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/53.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"BNI Business Owners Grant",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/54.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Unlock Your Global Potential",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/55.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Drug Awareness Campaign",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/56.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Engineering Admissions Open",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/57.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"B.A. Tamil Admissions",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/58.jpg"
+    ]
+},
+{
+    category:"smo",
+    subcategory:"smo",
+    title:"Happy Yoga Day",
+    ratio:"smo",
+    images:[
+        "work/posters/smo/59.jpg"
+    ]
+},
+
+    /* =========================================================
+       SMO CAROUSEL
+       Each card contains 4–6 pages.
+       Replace these image paths with your real carousel images.
+    ========================================================= */
+
+   {
+    category:"smo-carousel",
+    subcategory:"smo-carousel",
+    title:"AI-Powered SEO & Search Visibility",
+    ratio:"smo-carousel",
+    images:[
+        "work/posters/carousel/Hy/1.jpg",
+        "work/posters/carousel/Hy/2.jpg",
+        "work/posters/carousel/Hy/3.jpg",
+        "work/posters/carousel/Hy/4.jpg",
+        "work/posters/carousel/Hy/5.jpg",
+        "work/posters/carousel/Hy/6.jpg"
+    ]
+},
+{
+    category:"smo-carousel",
+    subcategory:"smo-carousel",
+    title:"Instagram Automation Made Simple",
+    ratio:"smo-carousel",
+    images:[
+        "work/posters/carousel/NDm/1.jpg",
+        "work/posters/carousel/NDm/2.jpg",
+        "work/posters/carousel/NDm/3.jpg",
+        "work/posters/carousel/NDm/4.jpg",
+        "work/posters/carousel/NDm/5.jpg"
+    ]
+},
+{
+    category:"smo-carousel",
+    subcategory:"smo-carousel",
+    title:"Everyday Hair & Wellness Savings",
+    ratio:"smo-carousel",
+    images:[
+        "work/posters/carousel/Srx/1.jpg",
+        "work/posters/carousel/Srx/2.jpg",
+        "work/posters/carousel/Srx/3.jpg",
+        "work/posters/carousel/Srx/4.jpg",
+        "work/posters/carousel/Srx/5.jpg",
+        "work/posters/carousel/Srx/6.jpg"
+    ]
+},
+{
+    category:"smo-carousel",
+    subcategory:"smo-carousel",
+    title:"5 Dreamy Summer Getaways in India",
+    ratio:"smo",
+    images:[
+        "work/posters/carousel/TJ/1.jpg",
+        "work/posters/carousel/TJ/2.jpg",
+        "work/posters/carousel/TJ/3.jpg",
+        "work/posters/carousel/TJ/4.jpg",
+        "work/posters/carousel/TJ/5.jpg",
+        "work/posters/carousel/TJ/6.jpg",
+        "work/posters/carousel/TJ/7.jpg"
+    ]
+},
+
+
+
+
+    /* =========================================================
+       festival
+       
+       Replace these image paths with your real festival images.
+    ========================================================= */
+
+
+
+
+   {
+    category:"festival",
+    subcategory:"labour-day",
+    title:"International Labour Day",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/labour/1.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"labour-day",
+    title:"Celebrating the Hands That Serve",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/labour/2.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"labour-day",
+    title:"Craftsmanship & Dedication",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/labour/3.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"labour-day",
+    title:"Honouring Every Worker",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/labour/4.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"labour-day",
+    title:"Hard Work Makes Dreams Happen",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/labour/5.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"labour-day",
+    title:"Building a Better Tomorrow",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/labour/6.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"labour-day",
+    title:"Celebrating the Spirit of Labour",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/labour/7.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"labour-day",
+    title:"Every Profession Matters",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/labour/8.jpg"
+    ]
+},
+
+{
+    category:"festival",
+    subcategory:"mothers-day",
+    title:"A Mother's Love, A Daughter's Dream",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/mothers day/1.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"mothers-day",
+    title:"Celebrating Every Mother's Love",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/mothers day/2.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"mothers-day",
+    title:"A Mother's Love is Forever",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/mothers day/3.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"mothers-day",
+    title:"Honouring Mothers Everywhere",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/mothers day/4.jpg"
+    ]
+},
+
+{
+    category:"festival",
+    subcategory:"new-year",
+    title:"Tamil New Year Celebration",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/new year/1.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"new-year",
+    title:"A New Beginning, A New Journey",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/new year/2.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"new-year",
+    title:"Step Into a Brighter New Year",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/new year/3.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"new-year",
+    title:"Welcome the New Year",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/new year/4.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"new-year",
+    title:"New Year, New Possibilities",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/new year/5.png"
+    ]
+},
+
+{
+    category:"festival",
+    subcategory:"others",
+    title:"Happy Easter",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/others/1.jpg"
+    ]
+},
+
+{
+    category:"festival",
+    subcategory:"pongal",
+    title:"Traditional Pongal Celebration",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/pongal/1.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"pongal",
+    title:"Celebrate the Harvest Festival",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/pongal/2.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"pongal",
+    title:"Sweetness of Pongal",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/pongal/3.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"pongal",
+    title:"Harvest, Happiness & Tradition",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/pongal/4.jpg"
+    ]
+},
+
+{
+    category:"festival",
+    subcategory:"ramzan",
+    title:"Eid al-Adha Celebration",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/ramzan/1.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"ramzan",
+    title:"Eid al-Adha Greetings",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/ramzan/2.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"ramzan",
+    title:"Ramadan Mubarak",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/ramzan/3.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"ramzan",
+    title:"Happy Bakrid",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/ramzan/4.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"ramzan",
+    title:"Ramadan Kareem",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/ramzan/5.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"ramzan",
+    title:"Ramadan Nights & Blessings",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/ramzan/6.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"ramzan",
+    title:"Eid al-Adha Greetings",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/ramzan/7.jpg"
+    ]
+},
+
+{
+    category:"festival",
+    subcategory:"valentine-day",
+    title:"Valentine's Day Celebration",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/valentine day/1.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"valentine-day",
+    title:"Chocolate Day Special",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/valentine day/2.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"valentine-day",
+    title:"A Memory That Holds Tight",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/valentine day/3.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"valentine-day",
+    title:"Celebrate Love with Chocolate",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/valentine day/4.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"valentine-day",
+    title:"Teddy Day Special",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/valentine day/5.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"valentine-day",
+    title:"Promise Day Special",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/valentine day/6.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"valentine-day",
+    title:"A Promise Made with Love",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/valentine day/7.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"valentine-day",
+    title:"Rose Day Special",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/valentine day/8.jpg"
+    ]
+},
+
+{
+    category:"festival",
+    subcategory:"womens-day",
+    title:"Designed for Her",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/womens day/1.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"womens-day",
+    title:"International Women's Day",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/womens day/2.jpg"
+    ]
+},
+{
+    category:"festival",
+    subcategory:"womens-day",
+    title:"Explore Like Her",
+    ratio:"festival",
+    images:[
+        "work/posters/festival/womens day/3.jpg"
+    ]
+},
+
+
+
+
+
+    /* =========================================================
+       blog
+       
+       Replace these image paths with your real blog images.
+    ========================================================= */
+
+
+
+
+    {
+    category:"blog",
+    subcategory:"blog",
+    title:"How Students Can Start Content Creation in 2026",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/1.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Why Students Are Not Getting Internship Calls in 2026",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/2.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Why Cybersecurity Is One of the Most In-Demand Careers",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/3.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Top 10 Career Opportunities After B.Tech AI & Data Science",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/4.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Ultimate Summer Checklist for Kids at Fundera Park",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/5.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Beat the 2026 Summer Heat at Fundera Park",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/6.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"A Visitor's Handbook to Exploring Birds Park in Yelagiri",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/7.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Why AI Skills Are Essential for Engineering Students",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/8.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Best Instagram DM Automation Tool for Lead Generation",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/9.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"PIE Tech Near Coimbatore: Engineering Education with Industry-Focused Training",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/10.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"How PIE Tech Prepares Engineering Students for Company Expectations",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/11.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Why Parents Choose PIE Tech for Engineering Courses",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/12.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Still Ignoring Corporate SEO? Google Isn't",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/13.png"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Still Skipping Corporate SEO? Your Competitors Aren't",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/14.png"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Patients Trust Those They See First",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/15.png"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Posting Content Without Keyword Strategy?",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/16.png"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"How Top Indian Hotels Improve Guest Reviews",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/17.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Top 7 Signs You Need to Replace Your Hotel Bed Linen",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/18.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Best Housekeeping Products for Hotels in India",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/19.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Top 10 Places to Visit in Dubai",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/20.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Most Trustable Travel Agency in India",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/21.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Best Travel Agency for Your Next Adventure",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/22.jpg"
+    ]
+},
+{
+    category:"blog",
+    subcategory:"blog",
+    title:"Top 10 Places to Visit in Dubai",
+    ratio:"blog",
+    images:[
+        "work/posters/blogs/23.jpg"
+    ]
+},
+
+
+
+
+
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"Healthy Congratulations to Our Achievers",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/1.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"Celebrating Our Student Achievers",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/2.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"Congratulations to Our Academic Achievers",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/3.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"Academic Achievers Celebration",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/4.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"NEXORA 26 Technical Symposium",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/5.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"Training and Placement Cell Recruitment",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/6.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"Graduation Day Celebration",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/7.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"Important Safety Instructions",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/8.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"Organ Donation and Tree Plantation Program",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/9.jpg"
+    ]
+},
+{
+    category:"banner",
+    subcategory:"banner",
+    title:"26th Annual Sports Day",
+    ratio:"banner",
+    images:[
+        "work/posters/banners/10.jpg"
+    ]
+},
+
+{
+    category:"trending",
+    subcategory:"trending",
+    title:"Playful Penguin",
+    ratio:"smo",
+    images:[
+        "work/posters/trending/penguin/1.jpg",
+        "work/posters/trending/penguin/2.jpg",
+        "work/posters/trending/penguin/3.jpg",
+        "work/posters/trending/penguin/4.jpg"
+    ]
+},
+
+{
+    category:"trending",
+    subcategory:"trending",
+    title:"Punch Monkey",
+    ratio:"smo",
+    images:[
+        "work/posters/trending/punch monkey/1.jpg",
+        "work/posters/trending/punch monkey/2.jpg",
+        "work/posters/trending/punch monkey/3.jpg",
+        "work/posters/trending/punch monkey/4.jpg",
+        "work/posters/trending/punch monkey/5.jpg",
+        "work/posters/trending/punch monkey/6.jpg",
+        "work/posters/trending/punch monkey/7.jpg",
+        "work/posters/trending/punch monkey/8.jpg",
+        "work/posters/trending/punch monkey/9.jpg"
+    ]
+}
+
+];
+
+
+/* =========================================================
+   CATEGORY NAMES
+========================================================= */
+
+const categoryNames = {
+    smo:"SMO",
+    "smo-carousel":"Carousel",
+    festival:"Festival",
+    blog:"Blog",
+    banner:"Banner",
+    trending:"Trending"
+};
+
+const filterNames = {
+    all:"All Works",
+    smo:"SMO",
+    "smo-carousel":"Carousel",
+
+    "labour-day":"Labour Day",
+    "mothers-day":"Mother's Day",
+    "new-year":"New Year",
+    others:"Others",
+    pongal:"Pongal",
+    ramzan:"Ramzan",
+    "valentine-day":"Valentine's Day",
+    "womens-day":"Women's Day",
+
+    blog:"Blogs",
+    banner:"Banners",
+    trending:"Trending"
+};
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const portfolio =
+    document.getElementById("portfolio");
+
+const totalCount =
+    document.getElementById("totalCount");
+
+
+const viewer =
+    document.getElementById("viewer");
+
+const viewerImage =
+    document.getElementById("viewerImage");
+
+const viewerTitle =
+    document.getElementById("viewerTitle");
+
+const viewerCategory =
+    document.getElementById("viewerCategory");
+
+const viewerCounter =
+    document.getElementById("viewerCounter");
+
+
+let currentProject = 0;
+
+let currentImage = 0;
+
+
+
+/* =========================================================
+   BUILD PORTFOLIO
+========================================================= */
+
+function buildPortfolio(filter = "all"){
+
+    /*
+       All Works = mixed layout:
+       - Blog / Banner = 3-column width
+       - Everything else = 4-column width
+       Blog or Banner filter alone = 3 columns
+    */
+    portfolio.classList.toggle("all-mixed", filter === "all");
+    portfolio.classList.toggle(
+        "three-col",
+        filter === "blog" || filter === "banner"
+    );
+
+    portfolio.classList.remove("filter-animate");
+    void portfolio.offsetWidth;
+    portfolio.classList.add("filter-animate");
+
+    portfolio.innerHTML = "";
+
+
+    const visibleProjects =
+        projects.filter(project => {
+
+            if(filter === "all") return true;
+
+            if(project.category === filter) return true;
+
+            if(project.subcategory === filter) return true;
+
+            return false;
+
+        });
+
+
+    totalCount.textContent =
+        String(visibleProjects.length)
+        .padStart(2,"0");
+
+
+
+    visibleProjects.forEach(project => {
+
+
+        const originalIndex =
+            projects.indexOf(project);
+
+
+        const card =
+            document.createElement("article");
+
+
+        card.className = `project ratio-${project.ratio}`;
+
+        /* In All Works, Blog + Banner cards are wider (3-column width). */
+        if(
+            filter === "all" &&
+            (project.category === "blog" || project.category === "banner")
+        ){
+            card.classList.add("card-wide");
+        }
+
+
+        /* =================================================
+           SLIDES
+        ================================================= */
+
+        let slidesHTML = "";
+
+
+        project.images.forEach(
+            (image,index) => {
+
+                slidesHTML += `
+
+                    <div
+                        class="card-slide ${
+                            index === 0
+                            ? "active"
+                            : ""
+                        }"
+                    >
+
+                        <img
+                            src="${image}"
+                            alt="${project.title}"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+
+        /* =================================================
+           DOTS
+        ================================================= */
+
+        let dotsHTML = "";
+
+
+        project.images.forEach(
+            (image,index) => {
+
+                dotsHTML += `
+
+                    <span
+                        class="slide-dot ${
+                            index === 0
+                            ? "active"
+                            : ""
+                        }"
+                    ></span>
+
+                `;
+
+            }
+        );
+
+
+
+        /* =================================================
+           CARD HTML
+        ================================================= */
+
+        card.innerHTML = `
+
+            <div class="card-media">
+
+                ${slidesHTML}
+
+            </div>
+
+
+            <div class="card-overlay"></div>
+
+
+            <div class="slide-dots">
+
+                ${dotsHTML}
+
+            </div>
+
+
+            <div class="card-info">
+
+                <div class="card-category">
+
+                    ${categoryNames[
+                        project.category
+                    ]}
+
+                </div>
+
+
+                <div class="card-title">
+
+                    ${project.title}
+
+                </div>
+
+
+                <div class="card-meta">
+
+                    <span>
+
+                        ${project.images.length}
+
+                        ${
+                            project.images.length === 1
+                            ? "Page"
+                            : "Pages"
+                        }
+
+                    </span>
+
+
+                    <span class="open-icon">
+
+                        ↗
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                openViewer(originalIndex);
+
+            }
+        );
+
+
+        portfolio.appendChild(card);
+
+    });
+
+    requestAnimationFrame(() => {
+        setupCardReveal();
+    });
+
+}
+
+
+
+/* =========================================================
+   AUTO SLIDE
+========================================================= */
+
+function startAutoSlides(){
+
+    setInterval(() => {
+
+
+        const cards =
+            document.querySelectorAll(".project");
+
+
+        cards.forEach(card => {
+
+            if(card.matches(":hover"))
+                return;
+
+            const slides =
+                card.querySelectorAll(
+                    ".card-slide"
+                );
+
+
+            const dots =
+                card.querySelectorAll(
+                    ".slide-dot"
+                );
+
+
+            if(slides.length <= 1)
+                return;
+
+
+            let activeIndex = 0;
+
+
+            slides.forEach(
+                (slide,index) => {
+
+                    if(
+                        slide.classList
+                        .contains("active")
+                    ){
+
+                        activeIndex = index;
+
+                    }
+
+                }
+            );
+
+
+            const nextIndex =
+                (activeIndex + 1)
+                % slides.length;
+
+
+
+            slides[
+                activeIndex
+            ].classList.remove("active");
+
+
+            dots[
+                activeIndex
+            ].classList.remove("active");
+
+
+            slides[
+                nextIndex
+            ].classList.add("active");
+
+
+            dots[
+                nextIndex
+            ].classList.add("active");
+
+
+        });
+
+
+    },3000);
+
+}
+
+
+
+/* =========================================================
+   OPEN VIEWER
+========================================================= */
+
+function openViewer(projectIndex){
+
+    currentProject =
+        projectIndex;
+
+
+    currentImage = 0;
+
+
+    updateViewer();
+
+
+    viewer.classList.add("active");
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+/* =========================================================
+   UPDATE VIEWER
+========================================================= */
+
+function updateViewer(){
+
+    viewerImage.classList.remove("viewer-image-enter");
+    void viewerImage.offsetWidth;
+    viewerImage.classList.add("viewer-image-enter");
+
+    const project =
+        projects[currentProject];
+
+
+    viewerImage.src =
+        project.images[currentImage];
+
+
+    viewerImage.alt =
+        project.title;
+
+
+    viewerTitle.textContent =
+        project.title;
+
+
+    viewerCategory.textContent =
+        filterNames[project.subcategory] ||
+        categoryNames[project.category] ||
+        project.category;
+
+
+    viewerCounter.textContent =
+
+        String(
+            currentImage + 1
+        ).padStart(2,"0")
+
+        +
+
+        " / "
+
+        +
+
+        String(
+            project.images.length
+        ).padStart(2,"0");
+
+}
+
+
+
+/* =========================================================
+   NEXT — GO TO NEXT PAGE / NEXT CARD
+========================================================= */
+
+function nextImage(){
+
+    const current =
+        projects[currentProject];
+
+    /* If current card has another page */
+    if(
+        currentImage <
+        current.images.length - 1
+    ){
+
+        currentImage++;
+
+    }
+    else{
+
+        /* Last page → next card */
+        if(
+            currentProject <
+            projects.length - 1
+        ){
+
+            currentProject++;
+            currentImage = 0;
+
+        }
+        else{
+
+            /* Last card → first card */
+            currentProject = 0;
+            currentImage = 0;
+
+        }
+
+    }
+
+    updateViewer();
+}
+
+
+/* =========================================================
+   PREVIOUS — GO TO PREVIOUS PAGE / PREVIOUS CARD
+========================================================= */
+
+function previousImage(){
+
+    const current =
+        projects[currentProject];
+
+    /* If current card has previous page */
+    if(currentImage > 0){
+
+        currentImage--;
+
+    }
+    else{
+
+        /* First page → previous card */
+        if(currentProject > 0){
+
+            currentProject--;
+
+            currentImage =
+                projects[currentProject]
+                .images.length - 1;
+
+        }
+        else{
+
+            /* First card → last card */
+            currentProject =
+                projects.length - 1;
+
+            currentImage =
+                projects[currentProject]
+                .images.length - 1;
+
+        }
+
+    }
+
+    updateViewer();
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+function closeViewer(){
+
+    viewer.classList.remove("active");
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+document
+    .getElementById("nextBtn")
+    .addEventListener(
+        "click",
+        nextImage
+    );
+
+
+document
+    .getElementById("prevBtn")
+    .addEventListener(
+        "click",
+        previousImage
+    );
+
+
+document
+    .getElementById("closeViewer")
+    .addEventListener(
+        "click",
+        closeViewer
+    );
+
+
+
+/* =========================================================
+   OUTSIDE CLICK
+========================================================= */
+
+viewer.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target === viewer
+        ){
+
+            closeViewer();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+
+        if(
+            !viewer.classList
+            .contains("active")
+        ){
+
+            return;
+
+        }
+
+
+        if(event.key === "Escape"){
+
+            closeViewer();
+
+        }
+
+
+        if(event.key === "ArrowRight"){
+
+            nextImage();
+
+        }
+
+
+        if(event.key === "ArrowLeft"){
+
+            previousImage();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   TOUCH SWIPE
+========================================================= */
+
+let touchStartX = 0;
+
+
+viewer.addEventListener(
+    "touchstart",
+    event => {
+
+        touchStartX =
+            event.changedTouches[0]
+            .screenX;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+viewer.addEventListener(
+    "touchend",
+    event => {
+
+
+        const touchEndX =
+            event.changedTouches[0]
+            .screenX;
+
+
+        const distance =
+            touchEndX - touchStartX;
+
+
+        if(
+            Math.abs(distance) < 50
+        ){
+
+            return;
+
+        }
+
+
+        if(distance < 0){
+
+            nextImage();
+
+        }else{
+
+            previousImage();
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+const mainFilters =
+    document.querySelectorAll(".filters-main .filter");
+
+const festivalFilters =
+    document.querySelectorAll(".festival-filters .filter");
+
+const festivalFilterWrap =
+    document.getElementById("festivalFilters");
+
+
+/* =========================================================
+   MAIN FILTER ACTIVE STATE
+========================================================= */
+
+function setMainActiveFilter(button){
+
+    mainFilters.forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+}
+
+
+/* =========================================================
+   FESTIVAL SUB-FILTER ACTIVE STATE
+========================================================= */
+
+function setFestivalActiveFilter(button){
+
+    festivalFilters.forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+}
+
+
+/* =========================================================
+   MAIN FILTERS
+========================================================= */
+
+mainFilters.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const filter =
+            button.dataset.filter;
+
+
+        /* -----------------------------------------
+           NON-FESTIVAL FILTER
+        ----------------------------------------- */
+
+        if(filter !== "festival"){
+
+            /* Remove active from festival sub filters */
+            festivalFilters.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            /* Remove Festival parent active */
+            mainFilters.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            /* Activate clicked main filter */
+            button.classList.add("active");
+
+            /* Hide festival sub filters */
+            festivalFilterWrap.classList.remove("show");
+
+        }
+
+
+        /* -----------------------------------------
+           FESTIVAL FILTER
+        ----------------------------------------- */
+
+        else{
+
+            /*
+               Festival stays active.
+               Do NOT remove it when a
+               festival sub-filter is selected.
+            */
+
+            setMainActiveFilter(button);
+
+            festivalFilterWrap.classList.add("show");
+
+        }
+
+
+        buildPortfolio(filter);
+
+    });
+
+});
+
+
+/* =========================================================
+   FESTIVAL SUB FILTERS
+========================================================= */
+
+festivalFilters.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        /*
+           IMPORTANT:
+           Festival parent remains active.
+        */
+
+        const festivalButton =
+            document.querySelector(
+                '.filters-main .filter[data-filter="festival"]'
+            );
+
+
+        /* Keep Festival active */
+        festivalButton.classList.add("active");
+
+
+        /* Activate selected festival */
+        setFestivalActiveFilter(button);
+
+
+        /* Keep festival menu open */
+        festivalFilterWrap.classList.add("show");
+
+
+        /* Build selected festival */
+        buildPortfolio(
+            button.dataset.filter
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL — CARDS ANIMATE WHEN THEY ENTER THE SCREEN
+========================================================= */
+
+let cardObserver = null;
+
+function setupCardReveal(){
+
+    if(cardObserver){
+        cardObserver.disconnect();
+    }
+
+    const cards =
+        document.querySelectorAll(".project");
+
+    cardObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if(!entry.isIntersecting){
+                        return;
+                    }
+
+                    const card =
+                        entry.target;
+
+                    const delay =
+                        Math.min(
+                            (card.getBoundingClientRect().top / window.innerHeight) * .12,
+                            .18
+                        );
+
+                    card.style.transitionDelay =
+                        `${Math.max(0,delay)}s`;
+
+                    requestAnimationFrame(() => {
+                        card.classList.add("card-visible");
+                    });
+
+                    cardObserver.unobserve(card);
+
+                });
+
+            },
+            {
+                threshold:.12,
+                rootMargin:"0px 0px -8% 0px"
+            }
+        );
+
+    cards.forEach(card => {
+        cardObserver.observe(card);
+    });
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+buildPortfolio();
+
+setupCardReveal();
+
+startAutoSlides();
+
+
+</script>
+
+<script>
+const cursor = document.querySelector(".cursor");
+
+document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+
+document.querySelectorAll("a, button, .filter-btn, .work-card").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+        cursor.classList.add("hover");
+    });
+
+    el.addEventListener("mouseleave", () => {
+        cursor.classList.remove("hover");
+    });
+});
+
+
+
+/* =========================================================
+   FOOTER -> FILTER LINK
+========================================================= */
+function goToFilter(filterName){
+
+    const targetBtn =
+        document.querySelector(`.filter[data-filter="${filterName}"]`);
+
+    if(targetBtn){
+        targetBtn.click();
+    }
+
+    document
+        .querySelector(".filters-wrap")
+        .scrollIntoView({ behavior:"smooth", block:"start" });
+
+}
+</script>
+
+
+</body>
+</html>
