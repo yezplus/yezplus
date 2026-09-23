@@ -3,6 +3,17 @@
 
 <head>
 <meta charset="UTF-8">
+<link
+  rel="icon"
+  href="images/favicon-dark.png"
+  media="(prefers-color-scheme: light)"
+>
+
+<link
+  rel="icon"
+  href="images/favicon-light.png"
+  media="(prefers-color-scheme: dark)"
+>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Yez+ — Website Works</title>
@@ -125,18 +136,15 @@ button{
     border-bottom:1px solid #202020;
 }
 
-.logo{
-    font-family:Manrope;
-    font-weight:800;
-    font-size:35px;
-
-    letter-spacing:-1.5px;
-
-    color:#fff;
+.logo img{
+    width:85px;
+    height:auto;
+    display:block;
 }
-
-.logo span{
-    color:var(--purple);
+@media(max-width:600px){
+    .logo img{
+        width:60px;
+    }
 }
 
 
@@ -304,7 +312,7 @@ button{
 
     display:grid;
 
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
 
     gap:18px;
 
@@ -583,18 +591,16 @@ footer{
     padding-bottom:75px;
 }
 
-.footer-logo{
-    font-family:Manrope;
-
-    font-size:55px;
-
-    font-weight:800;
-
-    letter-spacing:-4px;
+.footer-logo img{
+    width:140px;
+    height:auto;
+    display:block;
 }
 
-.footer-logo span{
-    color:var(--purple);
+@media(max-width:600px){
+    .footer-logo img{
+        width:110px;
+    }
 }
 
 .footer-brand{
@@ -905,9 +911,7 @@ footer.is-visible{
         padding:16px 5vw;
     }
 
-    .logo{
-        font-size:30px;
-    }
+    
 
     .hero{
         min-height:auto;
@@ -1325,8 +1329,8 @@ footer.is-visible{
 <header class="header">
 
     <a href="index.html" class="logo">
-        Yez<span>+</span>
-    </a>
+    <img src="images/logo1.png" alt="Yez+">
+</a>
 
 </header>
 
@@ -1401,9 +1405,9 @@ footer.is-visible{
 
         <div class="footer-brand">
 
-            <a href="index.html" class="footer-logo">
-                Yez<span>+</span>
-            </a>
+            <div class="footer-logo">
+    <img src="images/logo1.png" alt="Yez+">
+</div>
 
             <p class="footer-tagline">
                 We help brands do more, grow more, and stand out with

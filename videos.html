@@ -3,6 +3,17 @@
 
 <head>
 <meta charset="UTF-8">
+<link
+  rel="icon"
+  href="images/favicon-dark.png"
+  media="(prefers-color-scheme: light)"
+>
+
+<link
+  rel="icon"
+  href="images/favicon-light.png"
+  media="(prefers-color-scheme: dark)"
+>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Yez+ — Video Works</title>
@@ -148,23 +159,15 @@ button {
         both;
 }
 
-.logo {
-    font-family: Manrope;
-
-    font-weight: 800;
-    font-size: 35px;
-
-    letter-spacing: -1.5px;
-
-    color: #fff;
-
-    transition:
-        transform .35s ease,
-        opacity .35s ease;
+.logo img{
+    width:85px;
+    height:auto;
+    display:block;
 }
-
-.logo span {
-    color:var(--purple);
+@media(max-width:600px){
+    .logo img{
+        width:60px;
+    }
 }
 
 
@@ -1118,27 +1121,20 @@ footer {
     padding-bottom: 75px;
 }
 
-.footer-logo {
-    font-family: Manrope;
 
-    font-size: 55px;
-
-    font-weight: 800;
-
-    letter-spacing: -4px;
-
-    transition:
-        transform .35s ease;
+.footer-logo img{
+    width:140px;
+    height:auto;
+    display:block;
 }
 
-.footer-logo:hover {
-    transform:
-        translateY(-3px);
+@media(max-width:600px){
+    .footer-logo img{
+        width:110px;
+    }
 }
 
-.footer-logo span {
-    color: var(--purple);
-}
+
 
 .footer-brand {
     display: flex;
@@ -1373,9 +1369,7 @@ footer {
             5vw;
     }
 
-    .logo {
-        font-size: 30px;
-    }
+
 
     .hero {
         min-height: auto;
@@ -1855,12 +1849,9 @@ footer {
 
 <header class="header">
 
-    <a
-        href="index.html"
-        class="logo"
-    >
-        Yez<span>+</span>
-    </a>
+   <a href="index.html" class="logo">
+    <img src="images/logo1.png" alt="Yez+">
+</a>
 
 </header>
 
@@ -2068,12 +2059,9 @@ footer {
 
         <div class="footer-brand">
 
-            <a
-                href="index.html"
-                class="footer-logo"
-            >
-                Yez<span>+</span>
-            </a>
+            <div class="footer-logo">
+    <img src="images/logo1.png" alt="Yez+">
+</div>
 
 
             <p class="footer-tagline">

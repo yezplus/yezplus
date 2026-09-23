@@ -2,6 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link
+  rel="icon"
+  href="images/favicon-dark.png"
+  media="(prefers-color-scheme: light)"
+>
+
+<link
+  rel="icon"
+  href="images/favicon-light.png"
+  media="(prefers-color-scheme: dark)"
+>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Yez+ — Creative Growth Studio</title>
@@ -128,10 +139,15 @@ LOADER
 }
 
 .loader-logo{
-    font-family:"Manrope";
-    font-size:clamp(60px,10vw,130px);
-    font-weight:800;
-    letter-spacing:-7px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.loader-logo img{
+    width:180px;
+    height:auto;
+    display:block;
 }
 
 .loader-logo span{
@@ -257,21 +273,23 @@ HEADER
     border-color:rgba(255,255,255,.15);
 }
 
-.logo{
-    font-family:"Manrope";
-    font-weight:800;
-    font-size:35px;
-    letter-spacing:-1.5px;
+.logo img{
+    width:85px;
+    height:auto;
+    display:block;
+}
+@media(max-width:600px){
+    .logo img{
+        width:60px;
+    }
+}
+.header.dark .logo img{
+    content:url("images/logo1.png");
+}
+.header.purple .logo img{
+    content:url("images/logo2.png");
 }
 
-.logo span{
-    color:var(--purple);
-}
-
-.header.dark .logo span,
-.header.purple .logo span{
-    color:white;
-}
 
 .nav{
     display:flex;
@@ -2376,20 +2394,16 @@ footer{
 }
 
 
-.footer-logo{
-    font-family:"Manrope";
-
-    font-size:55px;
-
-    font-weight:800;
-
-    letter-spacing:-4px;
-    margin-top:0;
-
+.footer-logo img{
+    width:140px;
+    height:auto;
+    display:block;
 }
 
-.footer-logo span{
-    color:var(--purple);
+@media(max-width:600px){
+    .footer-logo img{
+        width:110px;
+    }
 }
 
 .footer-brand{
@@ -3168,10 +3182,7 @@ RESPONSIVE
         min-height:64px;
     }
 
-    .logo{
-        font-size:22px;
-        letter-spacing:-1px;
-    }
+   
 
     .header-cta{
         padding:9px 14px;
@@ -3778,8 +3789,8 @@ RESPONSIVE
     <div>
 
         <div class="loader-logo">
-            Yez<span>+</span>
-        </div>
+    <img src="images/logo1.png" alt="Yez+">
+</div>
 
         <div class="loader-line"></div>
 
@@ -3798,8 +3809,8 @@ RESPONSIVE
 <header class="header" id="header">
 
     <a href="index.html" class="logo">
-        Yez<span>+</span>
-    </a>
+    <img src="images/logo.png" alt="Yez+">
+</a>
 
     <nav class="nav">
 
@@ -5326,9 +5337,9 @@ From content planning to posting and community engagement, we manage your social
         <div class="footer-brand">
 
             
-<a href="index.html" class="footer-logo">
-        Yez<span>+</span>
-    </a>
+<div class="footer-logo">
+    <img src="images/logo1.png" alt="Yez+">
+</div>
 
 
             <p class="footer-tagline">

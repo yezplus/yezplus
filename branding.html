@@ -3,6 +3,17 @@
 <head>
 
 <meta charset="UTF-8">
+<link
+  rel="icon"
+  href="images/favicon-dark.png"
+  media="(prefers-color-scheme: light)"
+>
+
+<link
+  rel="icon"
+  href="images/favicon-light.png"
+  media="(prefers-color-scheme: dark)"
+>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Yez+ — Branding Works</title>
@@ -167,25 +178,15 @@ a:hover{
 }
 
 
-.logo{
-
-    font-family:"Manrope";
-
-    font-weight:800;
-
-    font-size:35px;
-
-    letter-spacing:-1.5px;
-
-    color:white;
-
+.logo img{
+    width:85px;
+    height:auto;
+    display:block;
 }
-
-
-.logo span{
-
-    color:var(--purple);
-
+@media(max-width:600px){
+    .logo img{
+        width:60px;
+    }
 }
 
 
@@ -1241,25 +1242,17 @@ footer{
 }
 
 
-.footer-logo{
 
-    font-family:"Manrope";
-
-    font-size:55px;
-
-    font-weight:800;
-
-    letter-spacing:-4px;
-
-    margin-top:0;
-
+.footer-logo img{
+    width:140px;
+    height:auto;
+    display:block;
 }
 
-
-.footer-logo span{
-
-    color:var(--purple);
-
+@media(max-width:600px){
+    .footer-logo img{
+        width:110px;
+    }
 }
 
 
@@ -1387,11 +1380,7 @@ footer{
     }
 
 
-    .logo{
-
-        font-size:30px;
-
-    }
+ 
 
 
     .hero{
@@ -2246,9 +2235,9 @@ body.page-loaded .filters-wrap{
 
 <header class="header">
 
-    <a href="index.html" class="logo">
-        Yez<span>+</span>
-    </a>
+   <a href="index.html" class="logo">
+    <img src="images/logo1.png" alt="Yez+">
+</a>
 
 </header>
 
@@ -2486,12 +2475,9 @@ body.page-loaded .filters-wrap{
 
         <div class="footer-brand">
 
-            <a
-                href="index.html"
-                class="footer-logo"
-            >
-                Yez<span>+</span>
-            </a>
+            <div class="footer-logo">
+    <img src="images/logo1.png" alt="Yez+">
+</div>
 
 
             <p class="footer-tagline">
